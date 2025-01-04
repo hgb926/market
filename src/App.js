@@ -1,10 +1,10 @@
 import React from 'react';
+import {RouterProvider} from "react-router-dom";
+import {router} from "./config/route-config";
 
 function App() {
     return (
-        <div>
-            <h1>Hello, React 18!</h1>
-        </div>
+        <RouterProvider router={router}/>
     );
 }
 

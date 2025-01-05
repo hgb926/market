@@ -58,3 +58,15 @@
     }
   }
 }
+
+@media (max-width: 430px) {
+  .container {
+    color: #2A2A2A;
+    .time {
+      display: none;
+    }
+    .notchWrap {
+     display: none;
+    }
+  }
+}

@@ -39,3 +39,10 @@
     }
   }
 }
+
+@media (max-width: 430px) {
+  .container {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

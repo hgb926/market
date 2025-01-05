@@ -13,9 +13,10 @@
   font-size: 1.3rem;
 }
 
-@media (max-width: 390px) {
+@media (max-width: 430px) {
   .container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 90vh;
+    border-radius: 0;
   }
 }

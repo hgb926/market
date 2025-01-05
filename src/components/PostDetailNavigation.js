@@ -14,6 +14,13 @@ const PostDetailNavigation = () => {
         navi('..')
     }
 
+    const clipHandler = () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(res => {
+            alert(`${url}\n복사완료`)
+        })
+    }
+
     return (
         <div className={styles.navBar}>
             <div className={styles.flex}>
@@ -21,7 +28,7 @@ const PostDetailNavigation = () => {
                 <HiOutlineHome onClick={homeHandler}/>
             </div>
             <div className={styles.flex}>
-                <MdIosShare />
+                <MdIosShare onClick={clipHandler}/>
                 <BsThreeDotsVertical />
             </div>
         </div>

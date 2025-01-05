@@ -5,12 +5,17 @@ import {MdIosShare} from "react-icons/md";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import {HiOutlineHome} from "react-icons/hi";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {uiActions} from "./store/ui/UiSlice";
 
 
 const PostDetailNavigation = () => {
 
+    const dispatch = useDispatch();
+
     const navi = useNavigate();
     const homeHandler = () => {
+        dispatch(uiActions.changeRenderStatus(true))
         navi('..')
     }
 

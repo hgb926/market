@@ -3,6 +3,8 @@ import styles from '../styles/pages/Posts.module.scss';
 import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
 import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {uiActions} from "../components/store/ui/UiSlice";
 
 
 // writer id 넣어야함
@@ -83,10 +85,18 @@ const postsData = [
 ];
 
 const Posts = () => {
+
+    const dispatch = useDispatch();
+
+    const renderHandler = () => {
+        dispatch(uiActions.changeRenderStatus(false))
+    }
+
     return (
         <div className={styles.container}>
             {postsData.map((post) => (
                 <Link
+                    onClick={renderHandler}
                     to={`/post/${post.id}`}
                     key={post.id}
                     className={styles.post}

@@ -1,5 +1,35 @@
 .container {
   width: 100%;
-  border: 1px solid black;
-  height: 8%;
+  height: 7%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  .time {
+    //flex: 1 0 auto;
+    width: 133.3px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .notchWrap {
+    //flex: 1.7 0 auto;
+    width: 133.3px;
+
+    .notch {
+      width: 50%;
+      margin: 0 auto;
+      padding: 10px 30px;
+      border-radius: 20px;
+      background: black;
+    }
+  }
+
+  .others {
+    //flex: 1 0 auto;
+    width: 133.3px;
+    display: flex;
+  }
 }

@@ -21,7 +21,11 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '2.3km',
-        suggestFlag: true
+        suggestFlag: true,
+        content: '편안한 의자 4개 팝니다. 사용감은 있지만 튼튼합니다.',
+        viewCount: 120,
+        hearts: 15,
+        category: '가구'
     },
     {
         id: 6,
@@ -34,7 +38,11 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '5.3km',
-        suggestFlag: true
+        suggestFlag: true,
+        content: '나이키 에어포스 키즈 올백 팝니다. 거의 새 상품입니다.',
+        viewCount: 75,
+        hearts: 5,
+        category: '패션'
     },
     {
         id: 2,
@@ -47,7 +55,11 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '2.3km',
-        suggestFlag: false
+        suggestFlag: false,
+        content: '사이즈 미스로 판매합니다. 몇 번 안 입었습니다.',
+        viewCount: 95,
+        hearts: 10,
+        category: '패션'
     },
     {
         id: 3,
@@ -60,7 +72,11 @@ const postsData = [
         comments: 3,
         status: '거래완료',
         distance: '3km',
-        suggestFlag: false
+        suggestFlag: false,
+        content: '매트리스 판매합니다. 상태 좋습니다.',
+        viewCount: 200,
+        hearts: 25,
+        category: '가구'
     },
     {
         id: 4,
@@ -73,7 +89,11 @@ const postsData = [
         comments: 2,
         status: '',
         distance: '0.9km',
-        suggestFlag: true
+        suggestFlag: true,
+        content: '사용하지 않는 맥북 나눔합니다. 직접 오셔서 가져가세요.',
+        viewCount: 180,
+        hearts: 20,
+        category: '전자기기'
     },
     {
         id: 5,
@@ -86,7 +106,11 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '1.1km',
-        suggestFlag: false
+        suggestFlag: false,
+        content: '칼하트 후드티 판매합니다. 사이즈는 XL입니다.',
+        viewCount: 60,
+        hearts: 3,
+        category: '패션'
     },
 ];
 

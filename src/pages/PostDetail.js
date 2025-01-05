@@ -10,6 +10,7 @@ import {uiActions} from "../components/store/ui/UiSlice";
 const PostDetail = () => {
     const location = useLocation();
     const {post} = location.state || {} // Link태그로 전달된 데이터를 받는 법
+    console.log(post)
     const dispatch = useDispatch();
     let {pathname} = useLocation();
     const urls = [
@@ -19,22 +20,27 @@ const PostDetail = () => {
         dispatch(uiActions.changeRenderStatus(false))
     }
     const obj = {
-        "id": 6,
-        "image": "https://img.kr.gcp-karroter.net/origin/article/202412/17344089133093df1c2e11a2cc1db0f77173614bb69b6ba11bf68c504b1a1eaa1f26d3c4d31c80.jpg?f=webp&q=95&s=1440x1440&t=inside",
-        "title": "나이키 에어포스 키즈 올백",
-        "location": "청수동",
-        "time": "2시간 전",
-        "price": "45,000원",
-        "likes": 0,
-        "comments": 0,
-        "status": "",
-        "distance": "5.3km"
-    }
+            id: 2,
+            image: ['https://img.kr.gcp-karroter.net/origin/article/202501/17359995530578a13ef65b52485394ee0a2f9ea7e4358b63c668ca74e52e7c213dcce68caeec30.jpg?f=webp&q=95&s=1440x1440&t=inside'],
+            title: '안입는 후드티 팔아요',
+            location: '불당동',
+            time: '4시간 전',
+            price: '50,000원',
+            likes: 8,
+            comments: 0,
+            status: '',
+            distance: '2.3km',
+            suggestFlag: false,
+            content: '사이즈 미스로 판매합니다. 몇 번 안 입었습니다.',
+            viewCount: 95,
+            hearts: 10,
+            category: '패션'
+        }
 
     // Spring에서 api로 받아와야함
     const seller = {
         username: '초롱이',
-        image: 'https://img.kr.gcp-karroter.net/origin/article/202412/1733451153511cfa180a62709b757a8bccedfc16b14cee31efb477df8f683b00f7770b8e6f8080.jpg?f=webp&q=95&s=1440x1440&t=inside'
+        profile: 'https://img.kr.gcp-karroter.net/origin/article/202412/1733451153511cfa180a62709b757a8bccedfc16b14cee31efb477df8f683b00f7770b8e6f8080.jpg?f=webp&q=95&s=1440x1440&t=inside'
     }
 
     return (
@@ -45,11 +51,19 @@ const PostDetail = () => {
                 <div className={styles.subContainer}>
                     <div className={styles.sellerWrap}>
                         <img alt={'프로필'} className={styles.userImage}
-                             src={seller.image}/>
+                             src={seller.profile}/>
                         <div className={styles.sellerInfo}>
                             <div className={styles.sellerName}>{seller.username}</div>
                             <div className={styles.location}>{post.location}</div>
                         </div>
+                    </div>
+                    <div className={styles.descriptWrap}>
+                        <h1 className={styles.title}>{post.title}</h1>
+                        <span className={styles.category}>{post.category}</span>
+                        <span style={{color: '#9f9e9e'}}> · </span>
+                        <span className={styles.time}>{post.time}</span>
+                        <div className={styles.content}>{post.content}</div>
+                        <p className={styles.wantLocation}>거래 희망 장소</p>
                     </div>
                 </div>
             </div>

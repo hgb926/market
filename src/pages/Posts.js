@@ -4,9 +4,12 @@ import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
 import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
+
+// writer id 넣어야함
 const postsData = [
     {
         id: 1,
+        writerId: 2,
         image: ['https://img.kr.gcp-karroter.net/origin/article/202501/2a38625bbc2f023afc762bff7fd4f636b15675dc722030a808dcd4ac2fceca6d_0.webp?f=webp&q=95&s=1440x1440&t=inside'],
         title: '의자 팝니다',
         location: '불당동',

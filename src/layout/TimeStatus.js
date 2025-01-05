@@ -12,7 +12,8 @@ const TimeStatus = () => {
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
+            let hours = now.getHours().toString();
+            if (hours > 12) hours = hours - 12
             const minutes = now.getMinutes().toString().padStart(2, '0');
             setTime(`${hours}:${minutes}`);
         };

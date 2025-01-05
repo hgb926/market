@@ -32,10 +32,10 @@
     width: 133.3px;
 
     .iconWrap {
-      width: 75px;
+      width: 100px;
       margin: 0 auto;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
 
       .signal {
@@ -44,8 +44,8 @@
       }
 
       .wifi {
-        width: 23px;
-        height: 23px;
+        width: 18px;
+        height: 18px;
       }
       .battery {
         width: 27px;

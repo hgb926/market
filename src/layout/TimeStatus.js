@@ -3,6 +3,7 @@ import styles from '../styles/layout/TimeStatus.module.scss';
 import {BsBarChartFill} from 'react-icons/bs';
 import {TiWiFi} from 'react-icons/ti';
 import {CgBatteryFull} from 'react-icons/cg';
+import {FaWifi} from "react-icons/fa";
 
 const TimeStatus = () => {
     const [time, setTime] = useState('');
@@ -36,7 +37,7 @@ const TimeStatus = () => {
             <div className={styles.others}>
                 <div className={styles.iconWrap}>
                     <BsBarChartFill className={styles.signal}/>
-                    <TiWiFi className={styles.wifi}/>
+                    <FaWifi className={styles.wifi}/>
                     <CgBatteryFull className={styles.battery}/>
                 </div>
             </div>

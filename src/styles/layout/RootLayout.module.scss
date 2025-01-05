@@ -1,14 +1,14 @@
 .container {
   width: 400px;
   height: 844px;
-  border: 1px solid black;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 42px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background: #2b2a2a;
+  //background: #202020;
+  background: #2a2a2a;
   color: white;
   font-size: 1.3rem;
 }

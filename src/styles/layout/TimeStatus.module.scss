@@ -9,7 +9,7 @@
   .time {
     //flex: 1 0 auto;
     width: 133.3px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: white;
   }
@@ -19,10 +19,10 @@
     width: 133.3px;
 
     .notch {
-      width: 50%;
+      width: 45%;
       margin: 0 auto;
       padding: 10px 30px;
-      border-radius: 20px;
+      border-radius: 26px;
       background: black;
     }
   }
@@ -30,6 +30,20 @@
   .others {
     //flex: 1 0 auto;
     width: 133.3px;
-    display: flex;
+
+    .iconWrap {
+      width: 75px;
+      margin: 0 auto;
+      display: flex;
+      .wifi {
+        font-size: 1.3rem;
+      }
+      .battery {
+        font-size: 1.6rem;
+      }
+    }
+    .iconWrap > * {
+      flex: 1 0 auto;
+    }
   }
 }

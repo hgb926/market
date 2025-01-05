@@ -1,0 +1,23 @@
+.navBar {
+  display: flex;
+  position: fixed;
+  top: 0 + 70px; /* 원하는 위치 조정 */
+  left: 50%; /* 왼쪽 끝을 화면의 중앙으로 이동 */
+  transform: translateX(-50%); /* 왼쪽으로 자기 자신의 50%만큼 이동 */
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000; /* 다른 요소 위에 표시 */
+
+  .flex {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  .flex > * {
+    width: 26px;
+    height: 26px;
+  }
+}

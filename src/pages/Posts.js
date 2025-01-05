@@ -21,6 +21,7 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '2.3km',
+        suggestFlag: true
     },
     {
         id: 6,
@@ -33,6 +34,7 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '5.3km',
+        suggestFlag: true
     },
     {
         id: 2,
@@ -45,6 +47,7 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '2.3km',
+        suggestFlag: false
     },
     {
         id: 3,
@@ -57,6 +60,7 @@ const postsData = [
         comments: 3,
         status: '거래완료',
         distance: '3km',
+        suggestFlag: false
     },
     {
         id: 4,
@@ -69,6 +73,7 @@ const postsData = [
         comments: 2,
         status: '',
         distance: '0.9km',
+        suggestFlag: true
     },
     {
         id: 5,
@@ -81,6 +86,7 @@ const postsData = [
         comments: 0,
         status: '',
         distance: '1.1km',
+        suggestFlag: false
     },
 ];
 

@@ -10,7 +10,6 @@ const uiSlice = createSlice({
     reducers: {
         changeRenderStatus(state, action) {
             state.renderMainNavi = action.payload
-            console.log(state.renderMainNavi)
         }
     }
 })

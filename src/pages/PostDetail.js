@@ -2,6 +2,8 @@ import React from 'react';
 import styles from '../styles/pages/PostDetail.module.scss'
 import {useLocation} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
+import {FaHeart} from "react-icons/fa";
+import {CiHeart} from "react-icons/ci";
 
 const PostDetail = () => {
     const location = useLocation();
@@ -26,20 +28,35 @@ const PostDetail = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <PostDetailNavigation/>
-            <img className={styles.pic} src={post.image} alt={post.title}/>
-            <div className={styles.subContainer}>
-                <div className={styles.sellerWrap}>
-                    <img alt={'프로필'} className={styles.userImage}
-                         src={seller.image}/>
-                    <div className={styles.sellerInfo}>
-                        <div className={styles.sellerName}>{seller.username}</div>
-                        <div className={styles.location}>{post.location}</div>
+        <>
+            <div className={styles.container}>
+                <PostDetailNavigation/>
+                <img className={styles.pic} src={post.image} alt={post.title}/>
+                <div className={styles.subContainer}>
+                    <div className={styles.sellerWrap}>
+                        <img alt={'프로필'} className={styles.userImage}
+                             src={seller.image}/>
+                        <div className={styles.sellerInfo}>
+                            <div className={styles.sellerName}>{seller.username}</div>
+                            <div className={styles.location}>{post.location}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div className={styles.bottomBar}>
+                <div className={styles.bottomMain}>
+                    <div className={styles.heart}><CiHeart className={styles.icon}/>️</div>
+                    <div className={styles.descript}>
+                        <span className={styles.price}>{post.price}</span>
+                        {post.suggestFlag && <span className={styles.flag}>가격 제안 불가</span>}
+                    </div>
+                    <div></div>
+                    <div className={styles.chat}>
+                        채팅하기
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 

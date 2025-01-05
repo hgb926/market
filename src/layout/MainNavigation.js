@@ -4,6 +4,7 @@ import {HiMiniHome} from "react-icons/hi2";
 import {RiMapPin2Fill} from "react-icons/ri";
 import {BsChatDotsFill} from "react-icons/bs";
 import {FaUser} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 const MainNavigation = () => {
 
@@ -13,34 +14,34 @@ const MainNavigation = () => {
     return (
         <div className={styles.container}>
             <div className={styles.navWrap}>
-                <div
+                <Link to={'/'}
                     className={`${styles.menu} ${currentPage === 'home' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('home')}
                 >
                     <HiMiniHome className={styles.icon}/>
                     <p>홈</p>
-                </div>
-                <div
+                </Link>
+                <Link to={'chat'}
                     className={`${styles.menu} ${currentPage === 'chat' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('chat')}
                 >
                     <BsChatDotsFill className={styles.icon}/>
                     <p>채팅</p>
-                </div>
-                <div
+                </Link>
+                <Link to={'map'}
                     className={`${styles.menu} ${currentPage === 'map' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('map')}
                 >
                     <RiMapPin2Fill className={styles.icon}/>
                     <p>동네지도</p>
-                </div>
-                <div
+                </Link>
+                <Link to={'info'}
                     className={`${styles.menu} ${currentPage === 'info' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('info')}
                 >
                     <FaUser className={styles.icon}/>
                     <p>나의 정보</p>
-                </div>
+                </Link>
             </div>
         </div>
     );

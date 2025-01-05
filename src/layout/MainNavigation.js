@@ -3,7 +3,7 @@ import styles from '../styles/layout/MainNavigation.module.scss'
 
 const MainNavigation = () => {
     return (
-        <div>
+        <div className={styles.container}>
             mainNavi
         </div>
     );

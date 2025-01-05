@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from '../styles/layout/TopStatus.module.scss'
+import styles from '../styles/layout/TimeStatus.module.scss'
 
 const TimeStatus = () => {
     return (
-        <div>
+        <div className={styles.container}>
             time
         </div>
     );

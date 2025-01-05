@@ -3,7 +3,7 @@ import styles from '../styles/layout/MainSection.module.scss'
 
 const MainSection = () => {
     return (
-        <div>
+        <div className={styles.container}>
             main section
         </div>
     );

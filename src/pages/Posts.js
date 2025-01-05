@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../styles/pages/Posts.module.scss';
+import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
+import {FaHeart} from "react-icons/fa";
 
 const postsData = [
     {
@@ -95,8 +97,8 @@ const Posts = () => {
                         )}
                     </div>
                     <div className={styles.icons}>
-                        <span>💬 {post.comments}</span>
-                        <span>❤️ {post.likes}</span>
+                        <span><IoChatbubbleEllipsesSharp /> {post.comments}</span>
+                        <span><FaHeart />️ {post.likes}</span>
                     </div>
                 </div>
             ))}

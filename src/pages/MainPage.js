@@ -6,7 +6,7 @@ import MainNavigation from "../layout/MainNavigation";
 
 const MainPage = () => {
     return (
-        <div>
+        <div className={styles.container}>
             <TimeStatus/>
             <MainSection/>
             <MainNavigation/>

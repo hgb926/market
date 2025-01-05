@@ -4,10 +4,20 @@ import {useLocation} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
 import {FaHeart} from "react-icons/fa";
 import {CiHeart} from "react-icons/ci";
+import {useDispatch} from "react-redux";
+import {uiActions} from "../components/store/ui/UiSlice";
 
 const PostDetail = () => {
     const location = useLocation();
     const {post} = location.state || {} // Link태그로 전달된 데이터를 받는 법
+    const dispatch = useDispatch();
+    let {pathname} = useLocation();
+    const urls = [
+        '/', '/chat', '/map', '/info'
+    ]
+    if (urls.some(u => u !== pathname)) {
+        dispatch(uiActions.changeRenderStatus(false))
+    }
     const obj = {
         "id": 6,
         "image": "https://img.kr.gcp-karroter.net/origin/article/202412/17344089133093df1c2e11a2cc1db0f77173614bb69b6ba11bf68c504b1a1eaa1f26d3c4d31c80.jpg?f=webp&q=95&s=1440x1440&t=inside",

@@ -1,0 +1,26 @@
+.container {
+  width: 400px;
+  height: 844px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 42px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  //background: #202020;
+  background: #2a2a2a;
+  color: white;
+  font-size: 1.3rem;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media (max-width: 430px) {
+  .container {
+    width: 100vw;
+    height: 90vh;
+    border-radius: 0;
+  }
+}

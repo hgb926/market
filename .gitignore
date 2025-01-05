@@ -1,0 +1,5 @@
+# ESLint Cache
+.eslintcache
+
+# Build/Cache Files
+index.pack

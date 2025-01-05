@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  height: 7%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  .time {
+    //flex: 1 0 auto;
+    width: 133.3px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .notchWrap {
+    //flex: 1.7 0 auto;
+    width: 133.3px;
+
+    .notch {
+      width: 45%;
+      margin: 0 auto;
+      padding: 10px 30px;
+      border-radius: 26px;
+      background: black;
+    }
+  }
+
+  .others {
+    //flex: 1 0 auto;
+    width: 133.3px;
+
+    .iconWrap {
+      width: 75px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .signal {
+        width: 20px;
+        height: 20px;
+      }
+
+      .wifi {
+        width: 23px;
+        height: 23px;
+      }
+      .battery {
+        width: 27px;
+        height: 27px;
+      }
+    }
+    .iconWrap > * {
+      flex: 1 0 auto;
+      margin-right: 5px;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    color: #2A2A2A;
+    .time {
+      display: none;
+    }
+    .notchWrap {
+     display: none;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import styles from '../styles/pages/MainPage.module.scss'
 import MainSection from "../layout/MainSection";
 import MainNavigation from "../layout/MainNavigation";
 
+
 const MainPage = () => {
     return (
         <div className={styles.container}>

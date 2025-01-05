@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../styles/pages/Map.module.scss'
 
 const MapPage = () => {
     return (
-        <div>
+        <div className={styles.container}>
             map
         </div>
     );

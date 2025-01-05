@@ -12,6 +12,7 @@
     padding: 5px 0;
     font-size: 1.6rem;
     margin-left: 15px;
+    cursor: pointer;
 
     .arrow {
 
@@ -20,6 +21,7 @@
 
   .menus {
     display: flex;
+    cursor: pointer;
   }
 
   .menus > * {

@@ -58,7 +58,7 @@ const postsData = [
         title: '맥북 나눔합니다',
         location: '두정동',
         time: '3시간 전',
-        price: '나눔🧡',
+        price: '나눔',
         likes: 3,
         comments: 2,
         status: '',

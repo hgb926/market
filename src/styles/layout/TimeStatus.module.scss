@@ -35,15 +35,26 @@
       width: 75px;
       margin: 0 auto;
       display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .signal {
+        width: 20px;
+        height: 20px;
+      }
+
       .wifi {
-        font-size: 1.3rem;
+        width: 23px;
+        height: 23px;
       }
       .battery {
-        font-size: 1.6rem;
+        width: 27px;
+        height: 27px;
       }
     }
     .iconWrap > * {
       flex: 1 0 auto;
+      margin-right: 5px;
     }
   }
 }

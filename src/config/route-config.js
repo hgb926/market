@@ -6,11 +6,12 @@ import Home from "../pages/Home";
 import Chat from "../pages/Chat";
 import MyPage from "../pages/MyPage";
 import MapPage from "../pages/Map";
+import PostDetail from "../pages/PostDetail";
 
 
 const homeRouter = [
     {
-        index: true,
+        path: '',
         element: <Home/>,
     },
     {
@@ -24,7 +25,11 @@ const homeRouter = [
     {
         path: 'info',
         element: <MyPage/>
-    }
+    },
+    {
+        path: 'post/:id',
+        element: <PostDetail/>
+    },
 ]
 
 export const router = createBrowserRouter([

@@ -1,0 +1,30 @@
+import React from 'react';
+import styles from '../styles/pages/PostDetail.module.scss'
+import {useLocation} from "react-router-dom";
+import PostDetailNavigation from "../components/PostDetailNavigation";
+
+const PostDetail = () => {
+    const location = useLocation();
+    const { post } = location.state || {} // Link태그로 전달된 데이터를 받는 법
+    const obj = {
+    "id": 6,
+    "image": "https://img.kr.gcp-karroter.net/origin/article/202412/17344089133093df1c2e11a2cc1db0f77173614bb69b6ba11bf68c504b1a1eaa1f26d3c4d31c80.jpg?f=webp&q=95&s=1440x1440&t=inside",
+    "title": "나이키 에어포스 키즈 올백",
+    "location": "청수동",
+    "time": "2시간 전",
+    "price": "45,000원",
+    "likes": 0,
+    "comments": 0,
+    "status": "",
+    "distance": "5.3km"
+    }
+
+    return (
+        <div className={styles.container}>
+            <PostDetailNavigation/>
+            <img className={styles.pic} src={post.image} alt={post.title}/>
+        </div>
+    );
+};
+
+export default PostDetail;

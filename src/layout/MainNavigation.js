@@ -10,19 +10,19 @@ const MainNavigation = () => {
         <div className={styles.container}>
             <div className={styles.navWrap}>
                 <div className={styles.menu}>
-                    <HiMiniHome />
+                    <HiMiniHome className={styles.icon}/>
                     <p>홈</p>
                 </div>
                 <div className={styles.menu}>
-                    <BsChatDotsFill />
+                    <BsChatDotsFill className={styles.icon}/>
                     <p>채팅</p>
                 </div>
                 <div className={styles.menu}>
-                    <RiMapPin2Fill />
+                    <RiMapPin2Fill className={styles.icon}/>
                     <p>동네지도</p>
                 </div>
                 <div className={styles.menu}>
-                    <FaUser />
+                    <FaUser className={styles.icon}/>
                     <p>나의 정보</p>
                 </div>
             </div>

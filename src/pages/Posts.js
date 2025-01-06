@@ -153,8 +153,8 @@ const Posts = () => {
                 </Link>
             ))}
             <Button
-                type={'addPost'}
                 text={'글쓰기'}
+                url={'write'}
             />
         </div>
     );

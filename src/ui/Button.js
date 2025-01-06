@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from '../styles/ui/Button.module.scss'
-import {LuPlus} from "react-icons/lu";
+import {Link} from "react-router-dom";
 
-const Button = ({type, text}) => {
+const Button = ({text, url}) => {
     return (
-        <div className={styles.container}>
+        <Link
+            to={url}
+            className={styles.container}
+        >
             + {text}
-        </div>
+        </Link>
     );
 };
 

@@ -7,6 +7,7 @@ import Chat from "../pages/Chat";
 import MyPage from "../pages/MyPage";
 import MapPage from "../pages/Map";
 import PostDetail from "../pages/PostDetail";
+import WriteForm from "../pages/WriteForm";
 
 
 const homeRouter = [
@@ -30,6 +31,10 @@ const homeRouter = [
         path: 'post/:id',
         element: <PostDetail/>
     },
+    {
+        path: 'write',
+        element: <WriteForm/>
+    }
 ]
 
 export const router = createBrowserRouter([

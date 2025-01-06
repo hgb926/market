@@ -5,6 +5,7 @@ import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
+import Button from "../ui/Button";
 
 
 // writer id 넣어야함
@@ -151,6 +152,10 @@ const Posts = () => {
                     </div>
                 </Link>
             ))}
+            <Button
+                type={'addPost'}
+                text={'글쓰기'}
+            />
         </div>
     );
 };

@@ -31,6 +31,9 @@ const PostDetail = () => {
     }
 
     const changeShowImage = (flag) => {
+        console.log(
+            '호출'
+        )
         setShowImages(flag)
     }
 

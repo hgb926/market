@@ -18,6 +18,12 @@ const ImageSlider = ({ images, changeShowImage }) => {
         }
     };
 
+    const cancelHandler = (e) => {
+        console.log(e.currentTarget)
+        if (e.target.tagName === 'svg') return;
+        else changeShowImage(false)
+    }
+
     return ReactDOM.createPortal(
         <div className={styles.container}>
             <TimeStatus />
@@ -25,7 +31,10 @@ const ImageSlider = ({ images, changeShowImage }) => {
                 changeShowImage={changeShowImage}
                 type={'cancel'}
             />
-            <div className={styles.imageContainer}>
+            <div
+                className={styles.imageContainer}
+                onClick={(e) => cancelHandler(e)}
+            >
                 <div
                     className={styles.image}
                     ref={imageRef}

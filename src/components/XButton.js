@@ -3,11 +3,15 @@ import {useNavigate} from "react-router-dom";
 import {MdOutlineCancel} from "react-icons/md";
 import styles from '../styles/components/XButton.module.scss'
 
-const XButton = () => {
+const XButton = ({changeShowImage, type}) => {
 
     const navi = useNavigate();
     const backHandler = () => {
-        navi('..')
+        if (type === 'cancel') {
+            changeShowImage(false)
+        } else {
+            navi('..')
+        }
     }
 
     return (

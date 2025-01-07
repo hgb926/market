@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import TimeStatus from "../layout/TimeStatus";
 import XButton from "./XButton";
 
-const ImageSlider = ({ images }) => {
+const ImageSlider = ({ images, changeShowImage }) => {
     const imageRef = useRef();
 
     console.log(images)
@@ -12,7 +12,10 @@ const ImageSlider = ({ images }) => {
     return ReactDOM.createPortal(
         <div className={styles.container}>
             <TimeStatus/>
-            <XButton/>
+            <XButton
+                changeShowImage={changeShowImage}
+                type={'cancel'}
+            />
             <div className={styles.imageContainer}>
                 <div
                     className={styles.image}

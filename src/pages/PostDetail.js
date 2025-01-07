@@ -27,6 +27,10 @@ const PostDetail = () => {
         profile: 'https://img.kr.gcp-karroter.net/origin/article/202412/1733451153511cfa180a62709b757a8bccedfc16b14cee31efb477df8f683b00f7770b8e6f8080.jpg?f=webp&q=95&s=1440x1440&t=inside'
     }
 
+    const changeShowImage = (flag) => {
+        setShowImages(flag)
+    }
+
     return (
         <>
             {!showImages ? (<>
@@ -71,6 +75,7 @@ const PostDetail = () => {
                 </>) :
                 (<ImageSlider
                     images={post.image}
+                    changeShowImage={changeShowImage}
                 />)}
         </>
     );

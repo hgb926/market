@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 const MainNavigation = () => {
 
     const [currentPage, setCurrentPage] = useState('home')
+    const userData = localStorage.getItem("userData") || {};
 
 
     return (
@@ -35,7 +36,7 @@ const MainNavigation = () => {
                     <RiMapPin2Fill className={styles.icon}/>
                     <p>동네지도</p>
                 </Link>
-                <Link to={'info'}
+                <Link to={`${userData.length ? 'info' : 'auth'}`}
                     className={`${styles.menu} ${currentPage === 'info' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('info')}
                 >

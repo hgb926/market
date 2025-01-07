@@ -8,7 +8,14 @@ import MyPage from "../pages/MyPage";
 import MapPage from "../pages/Map";
 import PostDetail from "../pages/PostDetail";
 import WriteForm from "../pages/WriteForm";
+import Auth from "../pages/Auth";
 
+
+const authRouter = [
+    {
+
+    }
+]
 
 const homeRouter = [
     {
@@ -47,6 +54,11 @@ export const router = createBrowserRouter([
                 path: '/',
                 element: <MainPage/>,
                 children: homeRouter
+            },
+            {
+                path: 'auth',
+                element: <Auth/>,
+                children: authRouter
             }
         ]
     }

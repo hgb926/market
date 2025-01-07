@@ -20,7 +20,6 @@ const ImageSlider = ({ images, changeShowImage }) => {
     };
 
     const cancelHandler = (e) => {
-        console.log(e.currentTarget)
         if (e.target.tagName === 'svg') return;
         else changeShowImage(false)
     }

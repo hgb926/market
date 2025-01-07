@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import styles from '../styles/components/ImageSlider.module.scss'
 import ReactDOM from "react-dom";
 import TimeStatus from "../layout/TimeStatus";
+import XButton from "./XButton";
 
 const ImageSlider = ({ images }) => {
     const imageRef = useRef();
@@ -11,6 +12,7 @@ const ImageSlider = ({ images }) => {
     return ReactDOM.createPortal(
         <div className={styles.container}>
             <TimeStatus/>
+            <XButton/>
             <div className={styles.imageContainer}>
                 <div
                     className={styles.image}

@@ -29,7 +29,8 @@ const ImageSlider = ({ images, changeShowImage }) => {
             <TimeStatus />
             <XButton
                 changeShowImage={changeShowImage}
-                type={'cancel'}
+                from={'imageSlider'}
+                ui={'x'}
             />
             <div
                 className={styles.imageContainer}

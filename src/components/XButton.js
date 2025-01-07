@@ -2,27 +2,35 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {MdOutlineCancel} from "react-icons/md";
 import styles from '../styles/components/XButton.module.scss'
+import {IoIosArrowRoundBack} from "react-icons/io";
+import {LiaTimesSolid} from "react-icons/lia";
 
-const XButton = ({changeShowImage, type}) => {
+const XButton = ({changeShowImage, from, ui}) => {
 
     const navi = useNavigate();
     const backHandler = () => {
-        if (type === 'cancel') {
+        if (from === 'imageSlider') {
             changeShowImage(false)
-        } else {
+        } else if (from === 'auth') {
             navi('..')
         }
     }
 
+    let button;
+    switch (ui) {
+        case "x":
+            button = <LiaTimesSolid />;
+            break;
+        case "<-":
+            button = <IoIosArrowRoundBack style={{ fontSize:"2.5rem"}}/>
+            break;
+        default :
+        button = 'x'
+    }
+
     return (
         <div onClick={backHandler} className={styles.cancel}>
-            x
-            {/*<MdOutlineCancel*/}
-            {/*style={{*/}
-            {/*    width: '30px',*/}
-            {/*    height: '30px'*/}
-            {/*}}*/}
-            {/*/>*/}
+            {button}
         </div>
     );
 };

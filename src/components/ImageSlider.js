@@ -1,18 +1,26 @@
-import React, {useRef} from 'react';
-import styles from '../styles/components/ImageSlider.module.scss'
-import ReactDOM from "react-dom";
-import TimeStatus from "../layout/TimeStatus";
-import XButton from "./XButton";
-import ControlArrow from "./ControlArrow";
+import React, { useRef, useState } from 'react';
+import styles from '../styles/components/ImageSlider.module.scss';
+import ReactDOM from 'react-dom';
+import TimeStatus from '../layout/TimeStatus';
+import XButton from './XButton';
+import ControlArrow from './ControlArrow';
 
 const ImageSlider = ({ images, changeShowImage }) => {
     const imageRef = useRef();
+    const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
 
-    console.log(images)
+    // 이미지 변경 함수
+    const changeImage = (type) => {
+        if (type === 'prev') {
+            setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        } else if (type === 'next') {
+            setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        }
+    };
 
     return ReactDOM.createPortal(
         <div className={styles.container}>
-            <TimeStatus/>
+            <TimeStatus />
             <XButton
                 changeShowImage={changeShowImage}
                 type={'cancel'}
@@ -22,15 +30,17 @@ const ImageSlider = ({ images, changeShowImage }) => {
                     className={styles.image}
                     ref={imageRef}
                     style={{
-                        backgroundImage: `url(${images[0]})`,
+                        backgroundImage: `url(${images[currentIndex]})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
                 ></div>
             </div>
-            <ControlArrow/>
+            <ControlArrow
+                changeImg={changeImage}
+            />
         </div>,
-    document.getElementById('modal-root')
+        document.getElementById('modal-root')
     );
 };
 

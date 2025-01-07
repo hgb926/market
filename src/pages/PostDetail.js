@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
 import ControlArrow from "../components/ControlArrow";
+import Dots from "../components/Dots";
 
 const PostDetail = () => {
     const location = useLocation();
@@ -65,6 +66,10 @@ const PostDetail = () => {
                                  }}>
                                 <ControlArrow
                                     changeImg={changeImage}
+                                />
+                                <Dots
+                                    length={images.length}
+                                    currentIdx={currentIndex}
                                 />
                             </div>
                         </div>

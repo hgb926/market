@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import TimeStatus from '../layout/TimeStatus';
 import XButton from './XButton';
 import ControlArrow from './ControlArrow';
+import Dots from "./Dots";
 
 const ImageSlider = ({ images, changeShowImage }) => {
     const imageRef = useRef();
@@ -47,6 +48,10 @@ const ImageSlider = ({ images, changeShowImage }) => {
             </div>
             <ControlArrow
                 changeImg={changeImage}
+            />
+            <Dots
+                length={images.length}
+                currentIdx={currentIndex}
             />
         </div>,
         document.getElementById('modal-root')

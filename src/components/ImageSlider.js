@@ -12,9 +12,9 @@ const ImageSlider = ({ images, changeShowImage }) => {
     // 이미지 변경 함수
     const changeImage = (type) => {
         if (type === 'prev') {
-            setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+            setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
         } else if (type === 'next') {
-            setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
         }
     };
 

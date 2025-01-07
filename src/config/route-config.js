@@ -9,11 +9,18 @@ import MapPage from "../pages/Map";
 import PostDetail from "../pages/PostDetail";
 import WriteForm from "../pages/WriteForm";
 import Auth from "../pages/Auth";
+import Register from "../pages/Register";
+import AuthMain from "../pages/AuthMain";
 
 
 const authRouter = [
     {
-
+        path: '',
+        element: <AuthMain/>,
+    },
+    {
+        path: 'register',
+        element: <Register/>
     }
 ]
 

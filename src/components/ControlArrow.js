@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../styles/components/ControlArrow.module.scss';
-import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from 'react-icons/md';
+import {SlArrowLeft, SlArrowRight} from "react-icons/sl";
 
 const ControlArrow = ({changeImg}) => {
     return (
         <div className={styles.control}>
-            <MdKeyboardArrowLeft onClick={() => changeImg('prev')}/>
-            <MdKeyboardArrowRight onClick={() => changeImg('next')}/>
+            <SlArrowLeft onClick={() => changeImg('prev')}/>
+            <SlArrowRight onClick={() => changeImg('next')}/>
         </div>
     );
 };

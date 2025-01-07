@@ -10,17 +10,17 @@
   gap: 5px;
 
   .dots {
-    padding: 0.3rem;
     background: #bfbfbf;
     opacity: 0.5;
-    border-radius: 50%;
-    transition: opacity .1s ease-out;
   }
   .active {
-    padding: 0.3rem;
     background: white;
     opacity: 0.9;
-    border-radius: 50%;
-    transition: opacity .1s ease-out;
   }
+}
+
+.dotsContainer > * {
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition: opacity .1s ease-out;
 }

@@ -9,7 +9,6 @@ const Dots = ({ length, currentIdx }) => {
                 <span
                     key={index}
                     className={`${currentIdx === index ? styles.active : styles.dots}`}
-                    // className={`${styles.menu} ${currentPage === 'info' ? styles.active : undefined}`}
                 />
             ))}
         </div>

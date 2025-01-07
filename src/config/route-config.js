@@ -10,13 +10,13 @@ import PostDetail from "../pages/PostDetail";
 import WriteForm from "../pages/WriteForm";
 import Auth from "../pages/Auth";
 import Register from "../pages/Register";
-import AuthMain from "../pages/AuthMain";
+import LoginPage from "../pages/LoginPage";
 
 
 const authRouter = [
     {
         path: '',
-        element: <AuthMain/>,
+        element: <LoginPage/>,
     },
     {
         path: 'register',

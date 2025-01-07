@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/pages/Auth.module.scss'
 import {Link} from "react-router-dom";
 
-const AuthMain = () => {
+const LoginPage = () => {
     return (
         <>
             <span className={styles.topLine}/>
@@ -22,4 +22,4 @@ const AuthMain = () => {
     );
 };
 
-export default AuthMain;
+export default LoginPage;

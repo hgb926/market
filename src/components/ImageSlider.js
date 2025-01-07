@@ -3,6 +3,7 @@ import styles from '../styles/components/ImageSlider.module.scss'
 import ReactDOM from "react-dom";
 import TimeStatus from "../layout/TimeStatus";
 import XButton from "./XButton";
+import ControlArrow from "./ControlArrow";
 
 const ImageSlider = ({ images, changeShowImage }) => {
     const imageRef = useRef();
@@ -27,6 +28,7 @@ const ImageSlider = ({ images, changeShowImage }) => {
                     }}
                 ></div>
             </div>
+            <ControlArrow/>
         </div>,
     document.getElementById('modal-root')
     );

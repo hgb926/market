@@ -1,0 +1,14 @@
+.control {
+  width: 97%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.control > * {
+  font-size: 3rem;
+  font-weight: 200;
+}

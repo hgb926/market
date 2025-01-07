@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background: #121212;
+  background: #2A2A2A;
   color: #fff;
   height: 100vh;
   overflow-y: auto;
@@ -33,21 +33,33 @@
 /* 이미지 업로드 */
 .imageUpload {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.camera {
+  width: 25px;
+  height: 25px;
 }
 
 .imageBox {
-  width: 100px;
-  height: 100px;
-  background: #2a2a2a;
+  width: 80px;
+  height: 80px;
+  background: #2a2a2a center;
+  background-size: cover;
+  overflow: hidden;
   border-radius: 8px;
   display: flex;
   justify-content: center;
+  color: #656565;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   flex-direction: column;
   gap: 4px;
+  border: 1px solid #3a3a3a;
+  cursor: pointer;
 }
 
 /* 입력 그룹 */
@@ -124,7 +136,7 @@
 
 /* 작성 완료 버튼 */
 .submitButton {
-  width: 90%;
+  width: 84%;
   margin: 0 auto;
   padding: 12px;
   background: #ff7e36;
@@ -137,6 +149,8 @@
   position: fixed;
   bottom: 20px;
   left: 20px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .submitButton:hover {
@@ -203,7 +217,7 @@
 .inputGroup input,
 .inputGroup textarea {
   margin-top: 8px;
-  padding: 10px;
+  padding: 15px;
   background: #2a2a2a;
   border: 1px solid #3a3a3a;
   border-radius: 4px;

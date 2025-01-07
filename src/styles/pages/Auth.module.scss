@@ -1,3 +1,67 @@
+
+.topLine {
+  display: block;
+  width: 80%;
+  margin: 60px auto 0;
+
+  border-bottom: 1px solid #434343;
+}
 .container {
-  
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin-top: 30px;
+    font-size: 2rem;
+  }
+  .inputGroup {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .inputGroup > * {
+    width: 80%;
+    margin: 0 auto;
+    background: none;
+    padding: 20px 0;
+    border: none;
+    border-bottom: 1px solid #686767;
+  }
+  .loginBtn {
+    width: 80%;
+    margin: 30px auto 0;
+    background: #212121;
+    padding: 20px 0;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: font-size 0.3s;
+  }
+  .loginBtn:hover {
+    font-size: 1.5rem;
+  }
+  .bottom {
+
+    display: flex;
+    width: 80%;
+    margin: 30px auto 0;
+    text-align: center;
+    justify-content: center;
+    color: #9f9e9e;
+    font-size: 1.1rem;
+  }
+  .register {
+    width: 50%;
+    cursor: pointer;
+    border-right: 1px solid white;
+
+  }
+  .findPw {
+    width: 50%;
+    cursor: pointer;
+
+  }
+
 }

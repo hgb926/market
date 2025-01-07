@@ -34,7 +34,13 @@ const WriteForm = () => {
 
     const getImages = (data) => {
         setImages(data)
-        console.log(images)
+    }
+
+    const submitHandler = () => {
+        const payload = {
+            //
+        }
+
     }
 
     return (
@@ -112,7 +118,7 @@ const WriteForm = () => {
             />
 
             {/* 작성 완료 버튼 */}
-            <button className={styles.submitButton}>작성 완료</button>
+            <div className={styles.submitButton} onClick={submitHandler}>작성 완료</div>
         </div>
     );
 };

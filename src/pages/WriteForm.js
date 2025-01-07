@@ -5,6 +5,7 @@ import styles from '../styles/pages/WriteForm.module.scss';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
+import ImageUpload from "../components/ImageUpload";
 
 const WriteForm = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,6 @@ const WriteForm = () => {
     const suggestFlagRef = useRef();
     const descriptionRef = useRef();
     const wantLocationRef = useRef();
-    const fileInputRef = useRef();
 
     // 페이지 진입 시 MainNavigation 숨김
     dispatch(uiActions.changeRenderStatus(false));
@@ -32,29 +32,10 @@ const WriteForm = () => {
         setTradeType(e.target.value);
     };
 
-    const imageBoxClickHandler = () => {
-        fileInputRef.current?.click();
-    };
-
-    // 이미지 업로드 핸들러
-    const fileHandler = (e) => {
-        const files = Array.from(e.target.files || []);
-
-        if (images.length + files.length > 10) {
-            alert('최대 10개의 이미지만 등록할 수 있습니다.');
-            return;
-        }
-
-        const newImages = files.map((file) => {
-            return {
-                id: Date.now() + Math.random(),
-                url: URL.createObjectURL(file),
-            };
-        });
-
-        setImages((prevImages) => [...(prevImages || []), ...newImages]);
-    };
-    console.log(images)
+    const getImages = (data) => {
+        setImages(data)
+        console.log(images)
+    }
 
     return (
         <div className={styles.container}>
@@ -66,28 +47,8 @@ const WriteForm = () => {
             </div>
 
             {/* 이미지 업로드 */}
-            <div className={styles.imageUpload}>
-                {(Array.isArray(images) ? images : []).map((img) => (
-                    <div
-                        key={img.id}
-                        className={styles.imageBox}
-                        style={{ backgroundImage: `url(${img.url})` }}
-                    ></div>
-                ))}
-                {Array.isArray(images) && images.length < 10 && (
-                    <div className={styles.imageBox} onClick={imageBoxClickHandler}>
-                        <AiFillCamera className={styles.camera} />
-                        <span>{images.length}/10</span>
-                    </div>
-                )}
-            </div>
-            <input
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={fileHandler}
-                accept="image/*"
-                multiple
+            <ImageUpload
+                getImages={getImages}
             />
 
             {/* 제목 입력 */}

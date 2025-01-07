@@ -12,7 +12,7 @@ const XButton = ({changeShowImage, from, ui}) => {
         if (from === 'imageSlider') {
             changeShowImage(false)
         } else if (from === 'auth') {
-            navi('..')
+            navi(-1)
         }
     }
 

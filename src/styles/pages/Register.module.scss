@@ -1,0 +1,16 @@
+.container {
+  width: 92%;
+  margin: 0 auto;
+  
+  .stepBar {
+    margin: 60px auto 0;
+    width: 90%;
+    height: 3px;
+    background: #3a3a3a;
+    .dynamic {
+      background: #a1a1a1;
+      height: 3px;
+      transition: width 0.5s;
+    }
+  }
+}

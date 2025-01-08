@@ -22,6 +22,8 @@ const Register = () => {
             </div>
             <Email/>
             {/*<Password/>*/}
+            <span className={styles.line}></span>
+            <div className={styles.next}>다음</div>
         </div>
     );
 };

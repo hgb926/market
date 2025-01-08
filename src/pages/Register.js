@@ -8,7 +8,7 @@ import UserImage from "../components/auth/UserImage";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const [currentStep, setCurrentStep] = useState(1);
+    const [currentStep, setCurrentStep] = useState(2);
     const [active, setActive] = useState(false);
 
     const [email, setEmail] = useState('');
@@ -54,6 +54,11 @@ const Register = () => {
     };
 
     const getPassword = (pw) => {
+        if (!pw) {
+            setActive(false)
+            setPassword('')
+            return
+        }
         setActive(true);
         setPassword(pw);
     };

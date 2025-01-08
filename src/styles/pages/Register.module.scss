@@ -64,6 +64,10 @@
       border-bottom: 1px solid #686767;
       color: white;
     }
+    // 파란테두리 없애기
+    .input:focus {
+      outline: none;
+    }
 
     .sendCode {
       position: absolute;
@@ -86,7 +90,7 @@
 
 .title {
   width: 90%;
-  margin: 50px auto;
+  margin: 50px auto 15px;
   font-size: 1.4rem;
   line-height: 1.5rem;
 }
@@ -118,7 +122,7 @@
     }
 
     .clear {
-      color: white;
+      color: #F35A20;
     }
   }
 }

@@ -9,7 +9,7 @@ import {
     validateImageSize
 } from '../../utils/validation';
 
-const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickValue, imageFile, }) => {
+const ValidationBox = ({currentStep, emailValue, pwCheckValue, checkValidate, pwValue, nickValue, imageFile, }) => {
     // 이메일 검증 상태
     const [emailSuccess, setEmailSuccess] = useState(false);
 
@@ -17,6 +17,7 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
     const [hasNumber, setHasNumber] = useState(false);
     const [isValidPwLength, setIsValidPwLength] = useState(false);
     const [hasSpecialChar, setHasSpecialChar] = useState(false);
+    const [isPwMatch, setIsPwMatch] = useState(false)
 
     // 닉네임 검증 상태
     const [isValidNicknameLength, setIsValidNicknameLength] = useState(false);
@@ -26,7 +27,7 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
     const [isValidImage, setIsValidImage] = useState(false);
     const [imageValidationMessage, setImageValidationMessage] = useState('');
 
-    // ✅ 이메일 검증
+    //  이메일 검증
     useEffect(() => {
         const isValid = validateEmail(emailValue);
         setEmailSuccess(isValid);
@@ -35,10 +36,10 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
         }
     }, [emailValue, checkValidate]);
 
-    // ✅ 비밀번호 검증
+    //  비밀번호 검증
     useEffect(() => {
         if (pwValue) {
-            const {hasNumber, isValidLength, hasSpecialChar} = validatePassword(pwValue);
+            const { hasNumber, isValidLength, hasSpecialChar } = validatePassword(pwValue);
             setHasNumber(hasNumber);
             setIsValidPwLength(isValidLength);
             setHasSpecialChar(hasSpecialChar);
@@ -49,7 +50,14 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
         }
     }, [pwValue]);
 
-    // ✅ 닉네임 검증
+    // 비밀번호 확인 검증
+    useEffect(() => {
+        const isMatch = pwValue && pwCheckValue && pwValue === pwCheckValue;
+        setIsPwMatch(isMatch);
+        checkValidate(isMatch); // 일치 여부를 부모로 전달
+    }, [pwValue, pwCheckValue, checkValidate]);
+
+    //  닉네임 검증
     useEffect(() => {
         if (nickValue) {
             const {isValidLength, hasNotSpecialChar} = validateNickname(nickValue);
@@ -66,7 +74,7 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
         }
     }, [nickValue, checkValidate]);
 
-    // ✅ 이미지 검증
+    // 이미지 검증
     useEffect(() => {
         if (imageFile) {
             if (!validateImageType(imageFile)) {
@@ -122,6 +130,12 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
                             1개 이상의 특수문자 (!,@,#,%,^,&,*,?,_,~)를 <br/>사용해야 합니다.
                         </p>
                     </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${isPwMatch ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${isPwMatch ? styles.clear : ""}`}>
+                            비밀번호가 일치해야 합니다.
+                        </p>
+                    </div>
                 </>
             )}
 
@@ -129,7 +143,7 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
             {currentStep === "nickname" && (
                 <>
                     <div className={styles.valBox}>
-                        <FiCheck className={`${styles.check} ${isValidNicknameLength ? styles.clear : ""}`}/>
+                    <FiCheck className={`${styles.check} ${isValidNicknameLength ? styles.clear : ""}`}/>
                         <p className={`${styles.valText} ${isValidNicknameLength ? styles.clear : ""}`}>
                             글자수는 4 ~ 10자리로 사용해야 합니다.</p>
                     </div>

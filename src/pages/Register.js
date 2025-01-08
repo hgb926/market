@@ -10,16 +10,18 @@ const Register = () => {
     // step도
     const [currentStep, setCurrentStep] = useState(1)
     const [active, setActive] = useState(false)
+    const [email, setEmail] = useState('')
 
     const increase = () => {
         setCurrentStep(prev => prev +1)
+        setActive(false)
     }
 
-    const emailCheck = (flag) => {
-        if (flag) {
-            setActive(true)
-        }
+    const getEmail = (email) => {
+        setActive(true)
+        setEmail(email);
     }
+    console.log(email)
 
     useEffect(() => {
 
@@ -33,7 +35,7 @@ const Register = () => {
                     width: `${currentStep * 20}%`
                 }}></div>
             </div>
-            { currentStep === 1 && <Email emailCheck={emailCheck}/>}
+            { currentStep === 1 && <Email getEmail={getEmail}/>}
             { currentStep === 2 && <Password/>}
             <span className={styles.line}></span>
             <div

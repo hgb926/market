@@ -14,7 +14,7 @@ const Password = () => {
                         placeholder={'비밀번호'}
                         className={styles.input}
                     />
-                    <div className={styles.sendCode} >비밀번호 보기</div>
+                    <div className={styles.sendCode} >보기</div>
                 </div>
                 <div className={styles.inputWrap}>
                     <input

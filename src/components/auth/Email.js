@@ -4,7 +4,7 @@ import MainTitle from "./MainTitle";
 import { AUTH_URL } from "../../config/host-config";
 import ValidationBox from "./ValidationBox";
 
-const Email = ({ emailCheck }) => {
+const Email = ({ getEmail }) => {
     const emailRef = useRef();
     const codeRef = useRef();
     const [createCodeInput, setCreateCodeInput] = useState(false);
@@ -42,7 +42,7 @@ const Email = ({ emailCheck }) => {
 
         if (valCode.toString() === codeValue.toString()) {
             setCodeValidation(true);
-            if (emailValidation) emailCheck(true);
+            if (emailValidation) getEmail(emailValue);
         } else {
             alert("코드 불일치");
         }
@@ -50,9 +50,9 @@ const Email = ({ emailCheck }) => {
 
     useEffect(() => {
         if (codeValidation && emailValidation) {
-            emailCheck(true);
+            getEmail(emailValue);
         }
-    }, [codeValidation, emailValidation, emailCheck]);
+    }, [codeValidation, emailValidation, getEmail]);
 
     return (
         <>

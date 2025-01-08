@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from '../styles/pages/Register.module.scss'
 import Email from "../components/auth/Email";
 import MainTitle from "../components/auth/MainTitle";
+import Password from "../components/auth/Password";
 
 const Register = () => {
     // email, password, username, address, profileImage 받아야함
@@ -20,6 +21,7 @@ const Register = () => {
                 }}></div>
             </div>
             <Email/>
+            {/*<Password/>*/}
         </div>
     );
 };

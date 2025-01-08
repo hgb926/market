@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styles from '../styles/pages/Register.module.scss'
+import Email from "../components/auth/Email";
+import MainTitle from "../components/auth/MainTitle";
 
 const Register = () => {
     // email, password, username, address, profileImage 받아야함
@@ -17,7 +19,7 @@ const Register = () => {
                     width: `${currentStep * 20}%`
                 }}></div>
             </div>
-            <div onClick={increase}>z</div>
+            <Email/>
         </div>
     );
 };

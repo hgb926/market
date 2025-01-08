@@ -5,12 +5,52 @@
   .stepBar {
     margin: 60px auto 0;
     width: 90%;
-    height: 3px;
+    height: 2.5px;
     background: #3a3a3a;
     .dynamic {
       background: #a1a1a1;
-      height: 3px;
+      height: 2.5px;
       transition: width 0.5s;
     }
   }
+}
+
+.subContainer {
+  width: 90%;
+  margin: 0 auto;
+
+  .inputWrap {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    .input {
+      width: 100%;
+      margin: 0 auto;
+      background: none;
+      padding: 20px 0;
+      border: none;
+      border-bottom: 1px solid #686767;
+      color: white;
+    }
+    .sendCode {
+      position: absolute;
+      font-size: 0.9rem;
+      right: 0;
+      top: 28px;
+      color: #9f9e9e;
+      cursor: pointer;
+      padding: 10px 15px;
+      background: #3a3a3a;
+      border-radius: 10px;
+    }
+  }
+}
+
+.title {
+  width: 90%;
+  margin: 50px auto;
+  font-size: 1.4rem;
 }

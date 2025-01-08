@@ -13,7 +13,7 @@
   flex-direction: column;
 
   .title {
-    margin-top: 30px;
+    margin-top: 60px;
     font-size: 2rem;
   }
   .inputGroup {
@@ -23,6 +23,7 @@
     gap: 10px;
   }
   .inputGroup > * {
+    color: white;
     width: 80%;
     margin: 0 auto;
     background: none;
@@ -32,7 +33,7 @@
   }
   .loginBtn {
     width: 80%;
-    margin: 30px auto 0;
+    margin: 50px auto 0;
     background: #212121;
     padding: 20px 0;
     border-radius: 18px;

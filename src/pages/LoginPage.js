@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/pages/Auth.module.scss'
+import styles from '../styles/pages/LoginPage.module.scss'
 import {Link} from "react-router-dom";
 
 const LoginPage = () => {

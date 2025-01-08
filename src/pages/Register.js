@@ -6,6 +6,7 @@ import Nickname from "../components/auth/Nickname";
 import Address from "../components/auth/Address";
 import UserImage from "../components/auth/UserImage";
 import { useNavigate } from "react-router-dom";
+import {AUTH_URL} from "../config/host-config";
 
 const Register = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -22,7 +23,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const increase = () => {
+    const increase = async () => {
         if (currentStep > 4) {
             if (isTriedUploadImg && isValidImage) {
                 alert('이미지 검증에 실패했습니다. 올바른 이미지를 업로드해주세요.');
@@ -37,9 +38,18 @@ const Register = () => {
                 zoneCode,
                 image
             }
-            console.log(payload)
+
+            const response = await fetch(`${AUTH_URL}/register`, {
+                method: "POST",
+                headers: {"Content-Type" : "Application/json"},
+                body: JSON.stringify(payload)
+            });
+
+            let responseData = await response.json();
+
+
             alert('회원가입이 완료되었습니다.');
-            navigate(-1);
+            navigate('/auth');
             return;
         }
 

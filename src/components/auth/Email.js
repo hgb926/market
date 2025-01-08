@@ -15,7 +15,7 @@ const Email = ({ getEmail }) => {
     const [codeValidation, setCodeValidation] = useState(false);
 
     const sendCodeHandler = async () => {
-        console.log(emailValidation)
+
         if (!emailValidation) return
         try {
             const response = await fetch(`${AUTH_URL}/send-code`);

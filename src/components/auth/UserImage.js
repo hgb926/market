@@ -13,12 +13,12 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     // 이미지 선택 핸들러
     const fileHandler = (e) => {
         const file = e.target.files[0];
-        console.log(file)
+
         if (!file) return;
 
         setSelectedFile(file);
         const imageUrl = URL.createObjectURL(file);
-        console.log(imageUrl)
+
         getImage(imageUrl)
         setUserImage(imageUrl);
 

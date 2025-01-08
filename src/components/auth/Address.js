@@ -11,7 +11,6 @@ const Address = ({ getAddress, getZoneCode }) => {
 
     // 주소 선택 완료 핸들러
     const completeHandler = (data) => {
-        console.log('선택된 주소:', data);
         setAddressValue(data.address); // 주소 상태 업데이트
         setZoneCode(data.zonecode)
         setModalOpen(false); // 모달 닫기
@@ -31,7 +30,7 @@ const Address = ({ getAddress, getZoneCode }) => {
     };
 
     return (
-        <div>
+        <>
             {/* 제목 */}
             <MainTitle title={'주소를 입력해주세요.'} />
 
@@ -70,7 +69,7 @@ const Address = ({ getAddress, getZoneCode }) => {
                     onComplete={completeHandler}
                 />
             )}
-        </div>
+        </>
     );
 };
 

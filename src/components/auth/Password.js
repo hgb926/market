@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
 import ValidationBox from "./ValidationBox";
@@ -7,7 +7,6 @@ const Password = ({ getPassword }) => {
 
     const [pwValidate, setPwValidate] = useState(false)
     const [pwValue, setPwValue] = useState('')
-    const [pwCheckValue, setPwCheckValue] = useState('')
     const [hidePw, setHidePw] = useState(false)
     const pwRef = useRef();
     const pwCheckRef = useRef();
@@ -21,7 +20,6 @@ const Password = ({ getPassword }) => {
         setPwValue(e.target.value)
     }
     const pwCheckValueChangeHandler = e => {
-        setPwCheckValue(e.target.value)
         if (e.target.value === pwValue) {
             getPassword(pwValue)
         }

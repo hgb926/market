@@ -8,11 +8,13 @@ const Register = () => {
     // email, password, username, address, profileImage 받아야함
     // Register.module.scss에서 다 처리하도록?
     // step도
-    const [currentStep, setCurrentStep] = useState(1)
+    const [currentStep, setCurrentStep] = useState(2)
     const [active, setActive] = useState(false)
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const increase = () => {
+        if (!email) return
         setCurrentStep(prev => prev +1)
         setActive(false)
     }
@@ -21,7 +23,11 @@ const Register = () => {
         setActive(true)
         setEmail(email);
     }
-    console.log(email)
+
+    const getPassword = (pw) => {
+        setActive(true)
+        setPassword(pw)
+    }
 
     useEffect(() => {
 
@@ -36,7 +42,7 @@ const Register = () => {
                 }}></div>
             </div>
             { currentStep === 1 && <Email getEmail={getEmail}/>}
-            { currentStep === 2 && <Password/>}
+            { currentStep === 2 && <Password getPassword={getPassword}/>}
             <span className={styles.line}></span>
             <div
                 className={`${styles.next} ${active ? styles.active : ""}`}

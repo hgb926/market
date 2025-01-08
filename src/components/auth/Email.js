@@ -78,7 +78,7 @@ const Email = ({ getEmail }) => {
                         <input
                             type={'text'}
                             ref={codeRef}
-                            placeholder={'인증코드'}
+                            placeholder={'4자리의 인증코드'}
                             className={styles.input}
                             onChange={codeValueChangeHandler}
                         />

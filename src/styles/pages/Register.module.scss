@@ -24,16 +24,19 @@
   .next {
     width: 90%;
     margin: 30px auto 0;
-    border: 1px solid white;
+    border: 1px solid #535353;
+    color: #535353;
     padding: 20px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    cursor: pointer;
+    transition: font-size 0.4s;
   }
   .active {
-
+    cursor: pointer;
+    border: 1px solid white;
+    color: white;
   }
 }
 
@@ -68,6 +71,10 @@
       padding: 10px 15px;
       background: #3a3a3a;
       border-radius: 10px;
+      transition: color 0.3s;
+    }
+    .clear {
+      color: white;
     }
   }
 }
@@ -91,11 +98,13 @@
 
     .check {
       color: #686767;
+      transition: color 0.3s;
     }
 
     .valText {
       font-size: 0.9rem;
       color: #686767;
+      transition: color 0.3s;
     }
 
     .clear {

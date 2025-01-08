@@ -66,15 +66,17 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
             if (!validateImageType(imageFile)) {
                 setIsValidImage(false);
                 setImageValidationMessage('이미지 파일만 업로드 가능합니다.');
+                checkValidate(true)
                 return;
             }
 
             if (!validateImageSize(imageFile, 3)) {
                 setIsValidImage(false);
                 setImageValidationMessage('이미지 크기는 최대 3MB까지 가능합니다.');
+                checkValidate(true)
                 return;
             }
-
+            checkValidate(false)
             setIsValidImage(true);
             setImageValidationMessage('');
             getImage(imageFile);

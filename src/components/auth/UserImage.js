@@ -3,7 +3,7 @@ import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
 import ValidationBox from "./ValidationBox";
 
-const UserImage = ({ getImage }) => {
+const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     const [userImage, setUserImage] = useState(''); // 사용자 이미지 상태
     const [selectedFile, setSelectedFile] = useState(null); // 선택된 파일
     const imageRef = useRef();
@@ -13,12 +13,12 @@ const UserImage = ({ getImage }) => {
     // 이미지 선택 핸들러
     const fileHandler = (e) => {
         const file = e.target.files[0];
-
         if (!file) return;
 
-        setSelectedFile(file); // 선택된 파일 저장
+        setSelectedFile(file);
         const imageUrl = URL.createObjectURL(file);
-        setUserImage(imageUrl); // 이미지 미리보기 업데이트
+        setUserImage(imageUrl);
+        currentStatus(true); // 이미지 선택됨
     };
 
     // 파일 선택 트리거
@@ -48,6 +48,7 @@ const UserImage = ({ getImage }) => {
                     currentStep={'image'}
                     imageFile={selectedFile}
                     getImage={getImage}
+                    checkValidate={setImageValidation}
                 />
             </div>
         </>

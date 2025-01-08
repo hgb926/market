@@ -23,8 +23,14 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
-        if (validateEmail(email) && validatePassword(pw)) setActive(true)
-        else setActive(false)
+        const {hasNumber, isValidLength, hasSpecialChar} = validatePassword(pw);
+        const isValidEmail = validateEmail(email);
+
+        if (isValidEmail && hasNumber && isValidLength && hasSpecialChar) {
+            setActive(true);
+        } else {
+            setActive(false);
+        }
     }, [email, pw]);
 
     return (

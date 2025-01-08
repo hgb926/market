@@ -19,3 +19,14 @@ export const validateNickname = (nickname) => {
         hasNotSpecialChar: /^[a-zA-Z0-9]+$/.test(nickname) // 특수문자 미포함
     };
 };
+
+// 이미지 파일인지 확인
+export const validateImageType = (file) => {
+    return file.type.startsWith('image/');
+};
+
+// 이미지 크기 확인 (5MB 이하)
+export const validateImageSize = (file, maxSizeMB = 3) => {
+    const maxSize = maxSizeMB * 1024 * 1024; // MB -> Bytes 변환
+    return file.size <= maxSize;
+};

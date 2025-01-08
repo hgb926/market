@@ -61,7 +61,7 @@ const Register = () => {
     }
 
     useEffect(() => {
-
+        if (currentStep > 4) setActive(true)
     }, [currentStep]);
 
 

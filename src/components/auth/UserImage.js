@@ -1,19 +1,55 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import MainTitle from "./MainTitle";
+import styles from "../../styles/pages/Register.module.scss";
+import ValidationBox from "./ValidationBox";
 
 const UserImage = ({ getImage }) => {
-
-    const [userImage, setUserImage] = useState('')
-    const [imageValidate, setImageValidate] = useState(false)
+    const [userImage, setUserImage] = useState(''); // 사용자 이미지 상태
+    const [selectedFile, setSelectedFile] = useState(null); // 선택된 파일
     const imageRef = useRef();
 
-    const checkValidate = (flag) => {
-        setImageValidate(flag)
-    }
+    const defaultImg = 'https://as1.ftcdn.net/v2/jpg/02/59/39/46/1000_F_259394679_GGA8JJAEkukYJL9XXFH2JoC3nMguBPNH.jpg';
+
+    // 이미지 선택 핸들러
+    const fileHandler = (e) => {
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        setSelectedFile(file); // 선택된 파일 저장
+        const imageUrl = URL.createObjectURL(file);
+        setUserImage(imageUrl); // 이미지 미리보기 업데이트
+    };
+
+    // 파일 선택 트리거
+    const triggerFileSelect = () => {
+        imageRef.current.click();
+    };
 
     return (
         <>
             <MainTitle title={'프로필 사진을 등록해주세요.'} subText={'(생략 가능)'}/>
+            <div className={styles.subContainer}>
+                <div className={styles.imageWrap} onClick={triggerFileSelect}>
+                    <img
+                        alt={'프로필'}
+                        className={styles.userImage}
+                        src={userImage || defaultImg}
+                    />
+                    <input
+                        type="file"
+                        ref={imageRef}
+                        style={{ display: 'none' }}
+                        onChange={fileHandler}
+                        accept="image/*"
+                    />
+                </div>
+                <ValidationBox
+                    currentStep={'image'}
+                    imageFile={selectedFile}
+                    getImage={getImage}
+                />
+            </div>
         </>
     );
 };

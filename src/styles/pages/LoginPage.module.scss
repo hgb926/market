@@ -31,8 +31,51 @@
     border: none;
     border-bottom: 1px solid #686767;
   }
+
+  .inputGroup > input:focus {
+    outline: none;
+  }
+
+  .autoLoginWrap {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    gap: 10px;
+    border-bottom: none;
+  }
+
+  .autoLogin {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #686767;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .autoLogin:checked::after {
+    content: "✔";
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .autoLoginLabel {
+    cursor: pointer;
+    color: #9f9e9e;
+  }
+
   .loginBtn {
     width: 80%;
+    color: #6a6a6a;
     margin: 50px auto 0;
     background: #212121;
     padding: 20px 0;
@@ -40,9 +83,13 @@
     cursor: pointer;
     transition: font-size 0.3s;
   }
-  .loginBtn:hover {
+  .active {
+    color: white;
+  }
+  .active:hover {
     font-size: 1.5rem;
   }
+
   .bottom {
 
     display: flex;
@@ -50,7 +97,7 @@
     margin: 30px auto 0;
     text-align: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .register {
     width: 50%;

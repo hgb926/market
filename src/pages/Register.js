@@ -7,7 +7,7 @@ import Nickname from "../components/auth/Nickname";
 const Register = () => {
 
     // email, password, username, address, profileImage 받아야함
-    const [currentStep, setCurrentStep] = useState(3)
+    const [currentStep, setCurrentStep] = useState(1)
     const [active, setActive] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from '../styles/pages/LoginPage.module.scss'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {validateEmail, validatePassword,} from '../utils/validation';
+import {AUTH_URL} from "../config/host-config";
+
 
 const LoginPage = () => {
 
@@ -11,6 +13,7 @@ const LoginPage = () => {
     const [active, setActive] = useState(false)
     const emailRef = useRef();
     const pwRef = useRef();
+    const navi = useNavigate();
 
 
     // 로그인 하기
@@ -23,6 +26,19 @@ const LoginPage = () => {
             autoLogin
         }
         console.log(payload)
+        const response = await fetch(`${AUTH_URL}/login`, {
+            method: "POST",
+            headers: {"Content-Type" : "Application/json"},
+            body: JSON.stringify(payload)
+        });
+        if (response.status === 200) {
+            const userData = await response.json();
+            localStorage.setItem('userData', JSON.stringify(userData.user))
+            navi('/')
+        } else {
+            const userData = await response.json();
+            alert(userData.message)
+        }
     }
 
     useEffect(() => {

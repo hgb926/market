@@ -21,6 +21,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate }) => {
 
     return (
         <div className={styles.valContainer}>
+
             {currentStep === "email" && (
                 <div className={styles.valBox}>
                     <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`} />
@@ -29,6 +30,30 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate }) => {
                     </p>
                 </div>
             )}
+
+            {currentStep === "password" && (
+                <>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${emailSuccess ? styles.clear : ""}`}>
+                            1개 이상의 숫자를 사용해야 합니다.
+                        </p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${emailSuccess ? styles.clear : ""}`}>
+                            8자리 이상으로 사용해야 합니다.
+                        </p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${emailSuccess ? styles.clear : ""}`}>
+                            1개 이상의 특수문자 (!,@,#,%,^,&,*,?,_,~)<br/>를 사용해야 합니다.
+                        </p>
+                    </div>
+                </>
+            )}
+
         </div>
     );
 };

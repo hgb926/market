@@ -33,12 +33,8 @@ const Email = ({ getEmail }) => {
     };
 
     const checkValidate = (flag) => {
-        console.log(flag)
-    };
-
-    const checkEmail = flag => {
         setEmailValidation(flag)
-    }
+    };
 
     const codeValueChangeHandler = (e) => {
         setCodeValue(e.target.value);
@@ -100,7 +96,6 @@ const Email = ({ getEmail }) => {
                     currentStep={'email'}
                     emailValue={emailValue}
                     checkValidate={checkValidate}
-                    checkEmail={checkEmail}
                 />
             </div>
         </>

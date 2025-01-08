@@ -7,6 +7,7 @@ const LoginPage = () => {
 
     const [email, setEmail] = useState('')
     const [pw, setPw] = useState('')
+    const [autoLogin, setAutoLogin] = useState(false)
     const [active, setActive] = useState(false)
     const emailRef = useRef();
     const pwRef = useRef();
@@ -15,8 +16,10 @@ const LoginPage = () => {
         if (!active) return
         const payload = {
             email,
-            password: pw
+            password: pw,
+            autoLogin
         }
+        console.log(payload)
     }
 
     useEffect(() => {
@@ -47,8 +50,9 @@ const LoginPage = () => {
                             type={'checkbox'}
                             id="autoLogin"
                             className={styles.autoLogin}
+                            onChange={() => setAutoLogin(!autoLogin)}
                         />
-                        <label htmlFor="autoLogin" className={styles.autoLoginLabel}>
+                        <label htmlFor="autoLogin" className={styles.autoLoginLabel} onChange={() => setAutoLogin(!autoLogin)}>
                             자동 로그인
                         </label>
                     </div>

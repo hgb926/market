@@ -24,7 +24,7 @@ const Register = () => {
 
     const increase = () => {
         if (currentStep > 4) {
-            if (isTriedUploadImg && !isValidImage) {
+            if (isTriedUploadImg && isValidImage) {
                 alert('이미지 검증에 실패했습니다. 올바른 이미지를 업로드해주세요.');
                 return;
             }

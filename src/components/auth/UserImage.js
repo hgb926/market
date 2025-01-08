@@ -17,7 +17,9 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
 
         setSelectedFile(file);
         const imageUrl = URL.createObjectURL(file);
+        getImage(imageUrl || defaultImg)
         setUserImage(imageUrl);
+
         currentStatus(true); // 이미지 선택됨
     };
 
@@ -25,6 +27,8 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     const triggerFileSelect = () => {
         imageRef.current.click();
     };
+
+
 
     return (
         <>

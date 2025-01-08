@@ -116,7 +116,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
             {/* 🖼️ 이미지 검증 */}
             {currentStep === "image" && (
                 <div className={styles.valBox}>
-                    <FiCheck className={`${styles.check} ${imageValidationMessage ? styles.clear : ""}`}/>
+                    <FiCheck className={`${styles.check} ${isValidImage ? styles.clear : ""}`}/>
                     <p className={`${styles.valText} ${isValidImage ? styles.clear : ""}`}>
                         {isValidImage
                             ? '이미지가 올바르게 등록되었습니다.'

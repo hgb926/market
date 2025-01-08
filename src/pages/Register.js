@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/Register.module.scss'
 import Email from "../components/auth/Email";
-import MainTitle from "../components/auth/MainTitle";
 import Password from "../components/auth/Password";
+import Nickname from "../components/auth/Nickname";
 
 const Register = () => {
+
     // email, password, username, address, profileImage 받아야함
-    // Register.module.scss에서 다 처리하도록?
-    // step도
-    const [currentStep, setCurrentStep] = useState(2)
+    const [currentStep, setCurrentStep] = useState(1)
     const [active, setActive] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [nickname, setNickname] = useState('')
 
     const increase = () => {
-        if (!email) return
+        if (!active) return
         setCurrentStep(prev => prev +1)
         setActive(false)
     }
@@ -27,6 +27,11 @@ const Register = () => {
     const getPassword = (pw) => {
         setActive(true)
         setPassword(pw)
+    }
+
+    const getNickname = (name) => {
+        setActive(true)
+        setNickname(name)
     }
 
     useEffect(() => {
@@ -43,6 +48,7 @@ const Register = () => {
             </div>
             { currentStep === 1 && <Email getEmail={getEmail}/>}
             { currentStep === 2 && <Password getPassword={getPassword}/>}
+            { currentStep === 3 && <Nickname getNickname={getNickname}/>}
             <span className={styles.line}></span>
             <div
                 className={`${styles.next} ${active ? styles.active : ""}`}

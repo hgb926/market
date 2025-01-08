@@ -8,12 +8,13 @@ import Address from "../components/auth/Address";
 const Register = () => {
 
     // email, password, username, address, profileImage 받아야함
-    const [currentStep, setCurrentStep] = useState(3)
+    const [currentStep, setCurrentStep] = useState(4)
     const [active, setActive] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [nickname, setNickname] = useState('')
     const [address, setAddress] = useState('')
+    const [zoneCode, setZoneCode] = useState('')
 
     const increase = () => {
         if (!active) return
@@ -36,8 +37,13 @@ const Register = () => {
         setNickname(name)
     }
 
-    const getAddress = () => {
+    const getAddress = (add) => {
+        setActive(true)
+        setAddress(add)
+    }
 
+    const getZoneCode = (zoneCode) => {
+        setZoneCode(zoneCode)
     }
 
     useEffect(() => {
@@ -55,7 +61,7 @@ const Register = () => {
             { currentStep === 1 && <Email getEmail={getEmail}/>}
             { currentStep === 2 && <Password getPassword={getPassword}/>}
             { currentStep === 3 && <Nickname getNickname={getNickname}/>}
-            { currentStep === 4 && <Address getAddress={getAddress}/> }
+            { currentStep === 4 && <Address getAddress={getAddress} getZoneCode={getZoneCode}/> }
             <span className={styles.line}></span>
             <div
                 className={`${styles.next} ${active ? styles.active : ""}`}

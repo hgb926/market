@@ -45,11 +45,16 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
             const { isValidLength, hasNotSpecialChar } = validateNickname(nickValue);
             setIsValidNicknameLength(isValidLength);
             setHasNotSpecialChar(hasNotSpecialChar);
+            if (isValidLength && hasNotSpecialChar) {
+                checkValidate(true); // 닉네임 유효성 통과
+            } else {
+                checkValidate(false); // 유효성 실패
+            }
         } else {
             setIsValidNicknameLength(false);
             setHasNotSpecialChar(true);
         }
-    }, [nickValue]);
+    }, [nickValue, checkValidate]);
 
     return (
         <div className={styles.valContainer}>

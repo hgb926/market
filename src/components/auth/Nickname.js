@@ -17,6 +17,10 @@ const Nickname = ({getNickname}) => {
         setNicknameValidate(flag)
     }
 
+    const checkDuplicate = () => {
+        if (!nicknameValidate) return;
+        getNickname(nicknameValue)
+    }
     return (
         <>
             <MainTitle title={'닉네임을 입력해주세요.'}/>
@@ -29,7 +33,10 @@ const Nickname = ({getNickname}) => {
                         className={styles.input}
                         onChange={nicknameChangeHandler}
                     />
-                    <div className={styles.sendCode}>
+                    <div
+                        className={styles.sendCode}
+                        onClick={checkDuplicate}
+                    >
                         중복확인
                     </div>
 

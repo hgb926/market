@@ -3,15 +3,17 @@ import styles from '../styles/pages/Register.module.scss'
 import Email from "../components/auth/Email";
 import Password from "../components/auth/Password";
 import Nickname from "../components/auth/Nickname";
+import Address from "../components/auth/Address";
 
 const Register = () => {
 
     // email, password, username, address, profileImage 받아야함
-    const [currentStep, setCurrentStep] = useState(1)
+    const [currentStep, setCurrentStep] = useState(3)
     const [active, setActive] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [nickname, setNickname] = useState('')
+    const [address, setAddress] = useState('')
 
     const increase = () => {
         if (!active) return
@@ -34,6 +36,10 @@ const Register = () => {
         setNickname(name)
     }
 
+    const getAddress = () => {
+
+    }
+
     useEffect(() => {
 
     }, [currentStep]);
@@ -49,6 +55,7 @@ const Register = () => {
             { currentStep === 1 && <Email getEmail={getEmail}/>}
             { currentStep === 2 && <Password getPassword={getPassword}/>}
             { currentStep === 3 && <Nickname getNickname={getNickname}/>}
+            { currentStep === 4 && <Address getAddress={getAddress}/> }
             <span className={styles.line}></span>
             <div
                 className={`${styles.next} ${active ? styles.active : ""}`}

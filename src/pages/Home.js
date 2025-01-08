@@ -6,7 +6,11 @@ import Posts from "./Posts";
 const Home = () => {
     return (
         <div className={styles.container}>
-            <HomeNavigation/>
+            <HomeNavigation
+                mainText={'백석동'}
+                isRenderArrow={true}
+                onlyBell={true}
+            />
             <Posts/>
         </div>
     );

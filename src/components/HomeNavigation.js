@@ -4,14 +4,20 @@ import {IoIosArrowDown, IoMdSearch} from "react-icons/io";
 import {RxHamburgerMenu} from "react-icons/rx";
 import {LuBell} from "react-icons/lu";
 
-const HomeNavigation = () => {
+const HomeNavigation = ({ mainText, isRenderArrow, onlyBell}) => {
     return (
         <div className={styles.container}>
-            <div className={styles.town}>백석동 <IoIosArrowDown className={styles.arrow}/></div>
+            <div className={styles.town}>{mainText}
+                { isRenderArrow && <IoIosArrowDown className={styles.arrow}/>}
+            </div>
             <div className={styles.empty}></div>
             <div className={styles.menus}>
-                <RxHamburgerMenu />
-                <IoMdSearch />
+                { onlyBell &&
+                    <>
+                        <RxHamburgerMenu />
+                        <IoMdSearch />
+                    </>
+                }
                 <LuBell />
             </div>
         </div>

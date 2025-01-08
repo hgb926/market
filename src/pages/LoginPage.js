@@ -12,6 +12,9 @@ const LoginPage = () => {
     const emailRef = useRef();
     const pwRef = useRef();
 
+
+    // 로그인 하기
+
     const loginHandler = async () => {
         if (!active) return
         const payload = {

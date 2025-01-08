@@ -8,7 +8,7 @@ import UserImage from "../components/auth/UserImage";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const [currentStep, setCurrentStep] = useState(2);
+    const [currentStep, setCurrentStep] = useState(1);
     const [active, setActive] = useState(false);
 
     const [email, setEmail] = useState('');

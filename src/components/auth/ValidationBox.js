@@ -9,7 +9,7 @@ import {
     validateImageSize
 } from '../../utils/validation';
 
-const ValidationBox = ({currentStep, emailValue, pwCheckValue, checkValidate, pwValue, nickValue, imageFile, }) => {
+const ValidationBox = ({currentStep, emailValue, pwCheckValue, checkValidate, pwValue, nickValue, imageFile, checkEmail }) => {
     // 이메일 검증 상태
     const [emailSuccess, setEmailSuccess] = useState(false);
 
@@ -30,7 +30,10 @@ const ValidationBox = ({currentStep, emailValue, pwCheckValue, checkValidate, pw
     //  이메일 검증
     useEffect(() => {
         const isValid = validateEmail(emailValue);
+
         setEmailSuccess(isValid);
+        checkValidate(isValid)
+        checkEmail(isValid)
         if (typeof checkValidate === 'function') {
             checkValidate(isValid);
         }

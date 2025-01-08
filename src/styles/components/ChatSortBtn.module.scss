@@ -1,0 +1,21 @@
+.container {
+  width: 92%;
+  margin: 70px auto 0;
+  display: flex;
+  gap: 15px;
+  .sortBtn {
+    font-size: 0.9rem;
+    padding: 7px 15px;
+    border-radius: 14px;
+    background: #2A2A2A;
+    color: #9E9D9D;
+    cursor: pointer;
+    border: 1px solid #9E9D9D;
+    transition: all 0.6s ease;
+  }
+  .active {
+    background: #9E9D9D;
+    color: black;
+    border: 1px solid black;
+  }
+}

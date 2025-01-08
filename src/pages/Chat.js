@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/pages/Chat.module.scss'
 import HomeNavigation from "../components/HomeNavigation";
+import ChatSortBtn from "../components/ChatSortBtn";
 
 const Chat = () => {
     return (
@@ -10,6 +11,7 @@ const Chat = () => {
                 isRenderArrow={false}
                 onlyBell={false}
             />
+            <ChatSortBtn/>
         </div>
     );
 };

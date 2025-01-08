@@ -1,6 +1,5 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import {MdOutlineCancel} from "react-icons/md";
 import styles from '../styles/components/XButton.module.scss'
 import {IoIosArrowRoundBack} from "react-icons/io";
 import {LiaTimesSolid} from "react-icons/lia";

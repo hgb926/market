@@ -15,6 +15,7 @@ const Email = ({ getEmail }) => {
     const [codeValidation, setCodeValidation] = useState(false);
 
     const sendCodeHandler = async () => {
+        if (!emailValidation) return
         try {
             const response = await fetch(`${AUTH_URL}/send-code`);
             let data = await response.json();

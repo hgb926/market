@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 import styles from "../../styles/pages/Register.module.scss";
 import { FiCheck } from "react-icons/fi";
 
-const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue }) => {
-    // ✅ 이메일 검증 상태
+const ValidationBox = ({ currentStep,
+                           emailValue,
+                           checkValidate,
+                           pwValue,
+                           nickValue
+                       }) => {
+    // 이메일 검증 상태
     const [emailSuccess, setEmailSuccess] = useState(false);
 
-    // ✅ 비밀번호 검증 상태
+    // 비밀번호 검증 상태
     const [hasNumber, setHasNumber] = useState(false);       // 숫자 포함 여부
     const [isValidLength, setIsValidLength] = useState(false); // 길이 검증
     const [hasSpecialChar, setHasSpecialChar] = useState(false); // 특수문자 포함 여부
 
-    // ✅ 이메일 검증
+    //  이메일 검증
     useEffect(() => {
         if (emailValue && emailValue.includes("@") && emailValue.includes('.') && emailValue.slice(-3) === "com") {
             setEmailSuccess(true);
@@ -42,7 +47,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue }) => {
     return (
         <div className={styles.valContainer}>
 
-            {/* 📧 이메일 검증 */}
+            {/* 이메일 검증 */}
             {currentStep === "email" && (
                 <div className={styles.valBox}>
                     <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`} />
@@ -52,7 +57,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue }) => {
                 </div>
             )}
 
-            {/* 🔒 비밀번호 검증 */}
+            {/* 비밀번호 검증 */}
             {currentStep === "password" && (
                 <>
                     <div className={styles.valBox}>
@@ -75,6 +80,24 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue }) => {
                     </div>
                 </>
             )}
+
+            {currentStep === "nickname" && (
+                <>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${hasNumber ? styles.clear : ""}`} />
+                        <p className={`${styles.valText} ${hasNumber ? styles.clear : ""}`}>
+                            글자수는 4 ~ 10자리로 사용해야 합니다.
+                        </p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${isValidLength ? styles.clear : ""}`} />
+                        <p className={`${styles.valText} ${isValidLength ? styles.clear : ""}`}>
+                            특수문자 (!,@,#,%,^,&,*,?,_,~)는 입력할 수 없습니다.
+                        </p>
+                    </div>
+                </>
+            )}
+
         </div>
     );
 };

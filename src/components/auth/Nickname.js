@@ -34,12 +34,12 @@ const Nickname = ({getNickname}) => {
                     </div>
 
                 </div>
+                <ValidationBox
+                    currentStep={'nickname'}
+                    nickValue={nicknameValue}
+                    checkValidate={checkValidate}
+                />
             </div>
-            <ValidationBox
-                currentStep={'nickname'}
-                nickValue={nicknameValue}
-                checkValidate={checkValidate}
-            />
         </>
     );
 };

@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "../../styles/pages/Register.module.scss";
-import { FiCheck } from "react-icons/fi";
-import { validateEmail, validatePassword, validateNickname, validateImageType, validateImageSize } from '../../utils/validation';
+import {FiCheck} from "react-icons/fi";
+import {
+    validateEmail,
+    validatePassword,
+    validateNickname,
+    validateImageType,
+    validateImageSize
+} from '../../utils/validation';
 
-const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickValue, imageFile, getImage }) => {
+const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickValue, imageFile, }) => {
     // 이메일 검증 상태
     const [emailSuccess, setEmailSuccess] = useState(false);
 
@@ -32,7 +38,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
     // ✅ 비밀번호 검증
     useEffect(() => {
         if (pwValue) {
-            const { hasNumber, isValidLength, hasSpecialChar } = validatePassword(pwValue);
+            const {hasNumber, isValidLength, hasSpecialChar} = validatePassword(pwValue);
             setHasNumber(hasNumber);
             setIsValidPwLength(isValidLength);
             setHasSpecialChar(hasSpecialChar);
@@ -46,7 +52,7 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
     // ✅ 닉네임 검증
     useEffect(() => {
         if (nickValue) {
-            const { isValidLength, hasNotSpecialChar } = validateNickname(nickValue);
+            const {isValidLength, hasNotSpecialChar} = validateNickname(nickValue);
             setIsValidNicknameLength(isValidLength);
             setHasNotSpecialChar(hasNotSpecialChar);
             if (isValidLength && hasNotSpecialChar) {
@@ -79,16 +85,16 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
             checkValidate(false)
             setIsValidImage(true);
             setImageValidationMessage('');
-            getImage(imageFile);
+
         }
-    }, [imageFile, getImage]);
+    }, [imageFile]);
 
     return (
         <div className={styles.valContainer}>
             {/* 📧 이메일 검증 */}
             {currentStep === "email" && (
                 <div className={styles.valBox}>
-                    <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`} />
+                    <FiCheck className={`${styles.check} ${emailSuccess ? styles.clear : ""}`}/>
                     <p className={`${styles.valText} ${emailSuccess ? styles.clear : ""}`}>
                         이메일 형식이 올바른지 확인해주세요.
                     </p>
@@ -99,31 +105,55 @@ const ValidationBox = ({ currentStep, emailValue, checkValidate, pwValue, nickVa
             {currentStep === "password" && (
                 <>
                     <div className={styles.valBox}>
-                        <FiCheck className={`${styles.check} ${hasNumber ? styles.clear : ""}`} />
-                        <p>1개 이상의 숫자를 사용해야 합니다.</p>
+                        <FiCheck className={`${styles.check} ${hasNumber ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${hasNumber ? styles.clear : ""}`}>
+                            1개 이상의 숫자를 사용해야 합니다.
+                        </p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${isValidPwLength ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${isValidPwLength ? styles.clear : ""}`}>
+                            길이가 8자리 이상 되어야 합니다.
+                        </p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${hasSpecialChar ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${hasSpecialChar ? styles.clear : ""}`}>
+                            1개 이상의 특수문자 (!,@,#,%,^,&,*,?,_,~)를 <br/>사용해야 합니다.
+                        </p>
                     </div>
                 </>
             )}
 
             {/* 📝 닉네임 검증 */}
             {currentStep === "nickname" && (
-                <div className={styles.valBox}>
-                    <FiCheck className={`${styles.check} ${isValidNicknameLength ? styles.clear : ""}`} />
-                    <p>글자수는 4 ~ 10자리로 사용해야 합니다.</p>
-                </div>
+                <>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${isValidNicknameLength ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${isValidNicknameLength ? styles.clear : ""}`}>
+                            글자수는 4 ~ 10자리로 사용해야 합니다.</p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${hasNotSpecialChar ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${hasNotSpecialChar ? styles.clear : ""}`}>
+                            특수문자 (!,@,#,%,^,&,*,?,_,~)는 <br/>사용하실 수 없습니다.</p>
+                    </div>
+                </>
             )}
 
             {/* 🖼️ 이미지 검증 */}
             {currentStep === "image" && (
-                <div className={styles.valBox}>
-                    <FiCheck className={`${styles.check} ${isValidImage ? styles.clear : ""}`}/>
-                    <p className={`${styles.valText} ${isValidImage ? styles.clear : ""}`}>
-                        {isValidImage
-                            ? '이미지가 올바르게 등록되었습니다.'
-                            : imageValidationMessage || '용량 최대 3MB까지 가능합니다.'
-                        }
-                    </p>
-                </div>
+                <>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${isValidImage ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${isValidImage ? styles.clear : ""}`}>
+                            {isValidImage
+                                ? '이미지가 올바르게 등록되었습니다.'
+                                : imageValidationMessage || '용량 최대 3MB까지 가능합니다.'
+                            }
+                        </p>
+                    </div>
+                </>
             )}
         </div>
     );

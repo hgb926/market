@@ -8,7 +8,7 @@ import UserImage from "../components/auth/UserImage";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const [currentStep, setCurrentStep] = useState(5);
+    const [currentStep, setCurrentStep] = useState(1);
     const [active, setActive] = useState(false);
 
     const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ const Register = () => {
     const [nickname, setNickname] = useState('');
     const [address, setAddress] = useState('');
     const [zoneCode, setZoneCode] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState('https://as1.ftcdn.net/v2/jpg/02/59/39/46/1000_F_259394679_GGA8JJAEkukYJL9XXFH2JoC3nMguBPNH.jpg');
     const [isTriedUploadImg, setIsTriedUploadImg] = useState(false);
     const [isValidImage, setIsValidImage] = useState(false);
 
@@ -28,6 +28,16 @@ const Register = () => {
                 alert('이미지 검증에 실패했습니다. 올바른 이미지를 업로드해주세요.');
                 return;
             }
+
+            const payload = {
+                email,
+                password,
+                nickname,
+                address,
+                zoneCode,
+                image
+            }
+            console.log(payload)
             alert('회원가입이 완료되었습니다.');
             navigate(-1);
             return;

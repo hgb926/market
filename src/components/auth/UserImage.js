@@ -13,11 +13,13 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     // 이미지 선택 핸들러
     const fileHandler = (e) => {
         const file = e.target.files[0];
+        console.log(file)
         if (!file) return;
 
         setSelectedFile(file);
         const imageUrl = URL.createObjectURL(file);
-        getImage(imageUrl || defaultImg)
+        console.log(imageUrl)
+        getImage(imageUrl)
         setUserImage(imageUrl);
 
         currentStatus(true); // 이미지 선택됨
@@ -27,8 +29,6 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     const triggerFileSelect = () => {
         imageRef.current.click();
     };
-
-
 
     return (
         <>
@@ -51,7 +51,6 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
                 <ValidationBox
                     currentStep={'image'}
                     imageFile={selectedFile}
-                    getImage={getImage}
                     checkValidate={setImageValidation}
                 />
             </div>

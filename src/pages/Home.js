@@ -11,7 +11,10 @@ import {sliceAddress} from "../utils/sliceAddress";
 const Home = () => {
 
     const dispatch = useDispatch();
-    const {address} = useSelector(state => state.userInfo.userData);
+    const userData = useSelector(state => state.userInfo.userData);
+    const address = userData?.address ? sliceAddress(userData.address) : null;
+
+
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -31,7 +34,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <HomeNavigation
-                mainText={`${sliceAddress(address)}`}
+                mainText={address ? address : "왜안됨"}
                 arrow={true}
                 hamburger={true}
                 search={true}

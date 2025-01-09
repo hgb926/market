@@ -4,12 +4,14 @@ import styles from '../styles/pages/Home.module.scss'
 import Posts from "./Posts";
 import {useNavigate} from "react-router-dom";
 import {AUTH_URL} from "../config/host-config";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../components/store/user/UserSlice";
+import {sliceAddress} from "../utils/sliceAddress";
 
 const Home = () => {
 
     const dispatch = useDispatch();
+    const {address} = useSelector(state => state.userInfo.userData);
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -29,7 +31,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <HomeNavigation
-                mainText={'백석동'}
+                mainText={`${sliceAddress(address)}`}
                 arrow={true}
                 hamburger={true}
                 search={true}

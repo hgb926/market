@@ -24,10 +24,11 @@ const PostDetail = () => {
     if (urls.some(u => u !== pathname)) {
         dispatch(uiActions.changeRenderStatus(false))
     }
+    console.log(post)
 
     // Spring에서 api로 받아와야함
     const seller = {
-        username: '초롱이',
+        nickname: '초롱이',
         profile: 'https://img.kr.gcp-karroter.net/origin/article/202412/1733451153511cfa180a62709b757a8bccedfc16b14cee31efb477df8f683b00f7770b8e6f8080.jpg?f=webp&q=95&s=1440x1440&t=inside'
     }
 
@@ -38,9 +39,9 @@ const PostDetail = () => {
     // 이미지 변경 함수
     const changeImage = (type) => {
         if (type === 'prev') {
-            setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
+            setCurrentIndex(prev => (prev === 0 ? post.images.length - 1 : prev - 1));
         } else if (type === 'next') {
-            setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+            setCurrentIndex(prev => (prev === post.images.length - 1 ? 0 : prev + 1));
         }
     };
 
@@ -60,7 +61,7 @@ const PostDetail = () => {
                             <div className={styles.pic}
                                  onClick={(e) => checkClickTarget(e)}
                                  style={{
-                                     backgroundImage: `url(${images[currentIndex]})`,
+                                     backgroundImage: `url(${post.images[currentIndex]})`,
                                      backgroundSize: 'cover',
                                      backgroundPosition: 'center'
                                  }}>
@@ -68,7 +69,7 @@ const PostDetail = () => {
                                     changeImg={changeImage}
                                 />
                                 <Dots
-                                    length={images.length}
+                                    length={post.images.length}
                                     currentIdx={currentIndex}
                                 />
                             </div>
@@ -80,15 +81,15 @@ const PostDetail = () => {
                                      className={styles.userImage}
                                      src={seller.profile}/>
                                 <div className={styles.sellerInfo}>
-                                    <div className={styles.sellerName}>{seller.username}</div>
-                                    <div className={styles.location}>{post.location}</div>
+                                    <div className={styles.sellerName}>{seller.nickname}</div>
+                                    <div className={styles.location}>{post.wantPlace}</div>
                                 </div>
                             </div>
                             <div className={styles.descriptWrap}>
                                 <h1 className={styles.title}>{post.title}</h1>
                                 <span className={styles.category}>{post.category}</span>
                                 <span style={{color: '#9f9e9e'}}> · </span>
-                                <span className={styles.time}>{post.time}</span>
+                                <span className={styles.time}>{post.createdAt}</span>
                                 <div className={styles.content}>{post.content}</div>
                                 <p className={styles.wantLocation}>거래 희망 장소</p>
                             </div>
@@ -109,7 +110,7 @@ const PostDetail = () => {
                     </div>
                 </>) :
                 (<ImageSlider
-                    images={post.image}
+                    images={post.images}
                     changeShowImage={changeShowImage}
                 />)}
         </>

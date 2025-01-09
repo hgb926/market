@@ -10,6 +10,7 @@ const ImageSlider = ({ images, changeShowImage }) => {
     const imageRef = useRef();
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
 
+    console.log(images)
     // 이미지 변경 함수
     const changeImage = (type) => {
         if (type === 'prev') {

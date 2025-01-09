@@ -8,8 +8,7 @@ const Chat = () => {
         <div className={styles.container}>
             <HomeNavigation
                 mainText={'채팅'}
-                isRenderArrow={false}
-                onlyBell={false}
+                bell={true}
             />
             <ChatSortBtn/>
         </div>

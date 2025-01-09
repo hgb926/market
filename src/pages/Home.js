@@ -8,8 +8,10 @@ const Home = () => {
         <div className={styles.container}>
             <HomeNavigation
                 mainText={'백석동'}
-                isRenderArrow={true}
-                onlyBell={true}
+                arrow={true}
+                hamburger={true}
+                search={true}
+                bell={true}
             />
             <Posts/>
         </div>

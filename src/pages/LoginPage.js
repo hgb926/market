@@ -3,6 +3,8 @@ import styles from '../styles/pages/LoginPage.module.scss'
 import {Link, useNavigate} from "react-router-dom";
 import {validateEmail, validatePassword,} from '../utils/validation';
 import {AUTH_URL} from "../config/host-config";
+import {useDispatch} from "react-redux";
+import {userActions} from "../components/store/user/UserSlice";
 
 
 const LoginPage = () => {
@@ -14,32 +16,32 @@ const LoginPage = () => {
     const emailRef = useRef();
     const pwRef = useRef();
     const navi = useNavigate();
+    const dispatch = useDispatch();
 
 
     // 로그인 하기
-
     const loginHandler = async () => {
-        if (!active) return
-        const payload = {
-            email,
-            password: pw,
-            autoLogin
-        }
-        console.log(payload)
+        if (!active) return;
+
+        const payload = { email, password: pw };
         const response = await fetch(`${AUTH_URL}/login`, {
-            method: "POST",
-            headers: {"Content-Type" : "Application/json"},
-            body: JSON.stringify(payload)
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            credentials: 'include', // 쿠키 포함
         });
+
         if (response.status === 200) {
+            alert('로그인 성공');
             const userData = await response.json();
-            localStorage.setItem('userData', JSON.stringify(userData.user))
-            navi('/')
+            dispatch(userActions.setUser(userData))
+            navi('/');
         } else {
-            const userData = await response.json();
-            alert(userData.message)
+            const { message } = await response.json();
+            alert(message);
         }
-    }
+    };
+
 
     useEffect(() => {
         const {hasNumber, isValidLength, hasSpecialChar} = validatePassword(pw);

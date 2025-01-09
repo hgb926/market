@@ -1,15 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/MainNavigation.module.scss'
 import {HiMiniHome} from "react-icons/hi2";
 import {RiMapPin2Fill} from "react-icons/ri";
 import {BsChatDotsFill} from "react-icons/bs";
 import {FaUser} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {AUTH_URL} from "../config/host-config";
+import {useSelector} from "react-redux";
 
 const MainNavigation = () => {
 
     const [currentPage, setCurrentPage] = useState('home')
-    const userData = localStorage.getItem("userData") || {};
+    const navi = useNavigate();
+    const userData = useSelector(state => state.userInfo.userData) || undefined;
+    console.log(userData)
+
+    // 자동 로그인 상태 확인
 
 
     return (
@@ -36,12 +42,12 @@ const MainNavigation = () => {
                     <RiMapPin2Fill className={styles.icon}/>
                     <p>동네지도</p>
                 </Link>
-                <Link to={`${userData.length ? 'info' : 'auth'}`}
+                <Link to={`${userData ? 'info' : 'auth'}`}
                     className={`${styles.menu} ${currentPage === 'info' ? styles.active : undefined}`}
                     onClick={() => setCurrentPage('info')}
                 >
                     <FaUser className={styles.icon}/>
-                    <p>나의 정보</p>
+                    <p>{`${userData ? '나의 정보' : '로그인'}`}</p>
                 </Link>
             </div>
         </div>

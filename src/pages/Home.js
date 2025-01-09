@@ -1,9 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import HomeNavigation from "../components/HomeNavigation";
 import styles from '../styles/pages/Home.module.scss'
 import Posts from "./Posts";
+import {useNavigate} from "react-router-dom";
+import {AUTH_URL} from "../config/host-config";
+import {useDispatch} from "react-redux";
+import {userActions} from "../components/store/user/UserSlice";
 
 const Home = () => {
+
+    const [userData, setUserData] = useState('')
+    const navi = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const checkLogin = async () => {
+            const response = await fetch(`${AUTH_URL}/user`, {
+                method: 'GET',
+                credentials: 'include',
+            })
+
+            if (response.status === 200) {
+                const userData = await response.json();
+                dispatch(userActions.setUser(userData))
+                console.log('자동로그인 성공: ', userData)
+            }
+        }
+        checkLogin();
+    }, []);
+
     return (
         <div className={styles.container}>
             <HomeNavigation

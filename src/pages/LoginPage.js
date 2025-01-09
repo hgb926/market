@@ -23,7 +23,7 @@ const LoginPage = () => {
     const loginHandler = async () => {
         if (!active) return;
 
-        const payload = { email, password: pw };
+        const payload = { email, password: pw, autoLogin};
         const response = await fetch(`${AUTH_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

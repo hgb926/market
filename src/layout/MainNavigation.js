@@ -13,7 +13,6 @@ const MainNavigation = () => {
     const [currentPage, setCurrentPage] = useState('home')
     const navi = useNavigate();
     const userData = useSelector(state => state.userInfo.userData) || undefined;
-    console.log(userData)
 
     // 자동 로그인 상태 확인
 

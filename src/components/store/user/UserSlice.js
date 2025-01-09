@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     userData: null, // 초기 상태
-    securityData: null,
 };
 
 const userSlice = createSlice({
@@ -15,9 +14,6 @@ const userSlice = createSlice({
         clearUser: (state) => {
             state.useData = null; // 유저 데이터 초기화
         },
-        setSecurityData: (state, action) => {
-            state.securityData = action.payload;
-        }
     },
 });
 

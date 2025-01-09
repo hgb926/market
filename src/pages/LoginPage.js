@@ -34,7 +34,7 @@ const LoginPage = () => {
         if (response.status === 200) {
             const userData = await response.json();
             console.log(userData)
-            dispatch(userActions.setUser(userData))
+            // dispatch(userActions.setUser(userData))
             navi('/');
         } else {
             const { message } = await response.json();

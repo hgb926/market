@@ -32,8 +32,9 @@ const ImageUpload = ({ getImages }) => {
 
     // images 상태 변경 시 getImages 호출
     useEffect(() => {
-        getImages(images);
-    }, [images, getImages]);
+        const imageUrls = images.map((img) => img.url); // 이미지의 URL만 추출
+        getImages(imageUrls); // URL 배열을 getImages에 전달
+    }, [images]); // 의존성 배열에서 images만 포함
 
     return (
         <>

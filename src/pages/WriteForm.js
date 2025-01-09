@@ -11,16 +11,20 @@ import CategoryDropdown from "../components/CategoryDropdown";
 const WriteForm = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
-    let {id} = useSelector(state => state.userInfo.userData) || "시발";
+    let {id} = useSelector(state => state.userInfo.userData) || "하아";
 
-    const [selectedCategory, setSelectedCategory] = useState('');
 
-    const handleCategorySelect = (category) => {
-        setSelectedCategory(category);
-    };
-
-    // 상태 관리
     const [images, setImages] = useState([]); // 이미지 목록
+    const [category, setCategory] = useState('');
+    const [title, setTitle] = useState('')
+    const [price, setPrice] = useState(0)
+    const [suggestFlag, setSuggestFlag] = useState(false)
+    const [content, setContent] = useState('')
+    const [wantPlace, setWantPlace] = useState('')
+
+    const categorySelectHandler = (category) => {
+        setCategory(category);
+    };
 
 
     // 페이지 진입 시 MainNavigation 숨김
@@ -42,8 +46,15 @@ const WriteForm = () => {
 
     const submitHandler = () => {
         const payload = {
-            //
+            writerId: id,
+            title,
+            images,
+            price,
+            suggestFlag,
+            content,
+            category
         }
+        console.log(payload)
 
     }
 
@@ -64,11 +75,15 @@ const WriteForm = () => {
             {/* 제목 입력 */}
             <div className={styles.inputGroup}>
                 <label>제목</label>
-                <input type="text" placeholder="글 제목" />
+                <input
+                    type="text"
+                    placeholder="글 제목"
+                    onChange={(e) => setTitle(e.target.value)}
+                />
             </div>
             <div className={styles.inputGroup}>
                 <label>카테고리</label>
-                <CategoryDropdown onCategorySelect={handleCategorySelect} />
+                <CategoryDropdown onCategorySelect={categorySelectHandler} />
             </div>
 
             {/* 거래 방식 */}
@@ -97,11 +112,19 @@ const WriteForm = () => {
                     </label>
                 </div>
                 {tradeType === 'sell' && (
-                    <input type="text" placeholder="₩ 가격을 입력해주세요." />
+                    <input
+                        type="number"
+                        placeholder="₩ 가격을 입력해주세요."
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
                 )}
                 {tradeType === 'sell' && (
                     <div className={styles.checkbox}>
-                        <input type="checkbox" id="suggestFlag" />
+                        <input
+                            type="checkbox"
+                            id="suggestFlag"
+                            onChange={(e) => setSuggestFlag(!suggestFlag)}
+                        />
                         <label htmlFor="suggestFlag">가격 제안 받기</label>
                     </div>
                 )}
@@ -112,6 +135,7 @@ const WriteForm = () => {
                 <label>자세한 설명</label>
                 <textarea
                     placeholder="백석동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)"
+                    onChange={(e) => setContent(e.target.value)}
                 ></textarea>
             </div>
 
@@ -121,6 +145,7 @@ const WriteForm = () => {
                 className={styles.locationInput}
                 type="text"
                 placeholder="장소를 입력해주세요."
+                onChange={(e) => setWantPlace(e.target.value)}
             />
 
             {/* 작성 완료 버튼 */}

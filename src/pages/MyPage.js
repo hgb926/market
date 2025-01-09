@@ -3,10 +3,12 @@ import styles from '../styles/pages/MyPage.module.scss'
 import HomeNavigation from "../components/HomeNavigation";
 import {AUTH_URL} from "../config/host-config";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const MyPage = () => {
 
     const navi = useNavigate();
+    let userData = useSelector(state => state.userInfo.userData);
 
 
     // 테스트코드 (정상작동, credentials를 보내면 서버에서 req.user가 가능
@@ -16,7 +18,7 @@ const MyPage = () => {
             credentials: 'include'
         })
 
-         navi('/auth')
+        navi('/auth')
     }
 
     return (
@@ -27,9 +29,11 @@ const MyPage = () => {
                 setting={true}
             />
             <div
-                style={{marginTop:'300px'}}
-            onClick={logoutHandler}
-            >logout</div>
+                style={{marginTop: '300px'}}
+                onClick={logoutHandler}
+            >logout
+            </div>
+            <div>{userData.nickname}</div>
         </div>
     );
 };

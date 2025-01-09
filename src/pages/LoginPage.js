@@ -32,8 +32,8 @@ const LoginPage = () => {
         });
 
         if (response.status === 200) {
-            alert('로그인 성공');
             const userData = await response.json();
+            console.log(userData)
             dispatch(userActions.setUser(userData))
             navi('/');
         } else {

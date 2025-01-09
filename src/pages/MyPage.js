@@ -8,19 +8,14 @@ const MyPage = () => {
 
     const navi = useNavigate();
 
-    // 테스트코드 (정상작동, credentials를 보내면 서버에서 req.user가 가능)
-    // const fetchHandler = async () => {
-    //     let response = await fetch(`${AUTH_URL}/time`, {
-    //         method: 'GET',
-    //         credentials: 'include' // 쿠키를 포함
-    //     });
-    // }
 
+    // 테스트코드 (정상작동, credentials를 보내면 서버에서 req.user가 가능
     const logoutHandler = async () => {
         await fetch(`${AUTH_URL}/logout`, {
             method: 'GET',
             credentials: 'include'
         })
+
          navi('/auth')
     }
 

@@ -9,8 +9,6 @@ import {userActions} from "../components/store/user/UserSlice";
 
 const Home = () => {
 
-    const [userData, setUserData] = useState('')
-    const navi = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +20,7 @@ const Home = () => {
 
             if (response.status === 200) {
                 const userData = await response.json();
-                dispatch(userActions.setUser(userData))
+                dispatch(userActions.setSecurityData(userData))
                 console.log('자동로그인 성공: ', userData)
             }
         }

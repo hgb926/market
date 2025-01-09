@@ -8,6 +8,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import ImageUpload from "../components/ImageUpload";
 import CategoryDropdown from "../components/CategoryDropdown";
 import {sliceDetailAddress} from "../utils/sliceAddress";
+import {POST_URL} from "../config/host-config";
 
 const WriteForm = () => {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const WriteForm = () => {
         setImages(data)
     }
 
-    const submitHandler = () => {
+    const submitHandler = async () => {
         const payload = {
             writerId: id,
             writerInfo: {
@@ -63,10 +64,18 @@ const WriteForm = () => {
             likes: 0,
             chat: 0,
             viewCount: 0,
-            createdAt: new Date(),
         }
-        console.log(payload)
-
+        const response = await fetch(`${POST_URL}/add`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {"Content-Type": "Application/json"},
+            body: JSON.stringify(payload),
+        });
+        if (response.status === 200) {
+            const responseData = await response.json();
+            console.log(responseData)
+            navi('/')
+        }
     }
 
     return (

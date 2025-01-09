@@ -16,5 +16,7 @@ if (clientHostName === "localhost") {
 const API_BASE_URL = backendHostName;
 
 const AUTH = "/auth"
+const POST = '/post'
 
 export const AUTH_URL = API_BASE_URL + AUTH;
+export const POST_URL = API_BASE_URL + POST;

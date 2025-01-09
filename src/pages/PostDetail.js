@@ -112,6 +112,7 @@ const PostDetail = () => {
                 (<ImageSlider
                     images={post.images}
                     changeShowImage={changeShowImage}
+                    currentIdx={currentIndex}
                 />)}
         </>
     );

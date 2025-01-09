@@ -19,13 +19,12 @@ const postsData = [
         time: '4시간 전',
         price: '60,000원',
         likes: 3,
-        comments: 0,
+        chats: 0,
         status: '',
         distance: '2.3km',
         suggestFlag: true,
         content: '편안한 의자 4개 팝니다. 사용감은 있지만 튼튼합니다.',
         viewCount: 120,
-        hearts: 15,
         category: '가구'
     },
     {
@@ -36,7 +35,7 @@ const postsData = [
         time: '2시간 전',
         price: '45,000원',
         likes: 0,
-        comments: 0,
+        chats: 0,
         status: '',
         distance: '5.3km',
         suggestFlag: true,
@@ -53,7 +52,7 @@ const postsData = [
         time: '4시간 전',
         price: '50,000원',
         likes: 8,
-        comments: 0,
+        chats: 0,
         status: '',
         distance: '2.3km',
         suggestFlag: false,
@@ -70,13 +69,12 @@ const postsData = [
         time: '5시간 전',
         price: '66,000원',
         likes: 16,
-        comments: 3,
+        chats: 3,
         status: '거래완료',
         distance: '3km',
         suggestFlag: false,
         content: '매트리스 판매합니다. 상태 좋습니다.',
         viewCount: 200,
-        hearts: 25,
         category: '가구'
     },
     {
@@ -87,7 +85,7 @@ const postsData = [
         time: '3시간 전',
         price: '나눔',
         likes: 3,
-        comments: 2,
+        chats: 2,
         status: '',
         distance: '0.9km',
         suggestFlag: true,
@@ -104,7 +102,7 @@ const postsData = [
         time: '2시간 전',
         price: '45,000원',
         likes: 0,
-        comments: 0,
+        chats: 0,
         status: '',
         distance: '1.1km',
         suggestFlag: false,
@@ -147,7 +145,7 @@ const Posts = () => {
                         )}
                     </div>
                     <div className={styles.icons}>
-                        <span><IoChatbubbleEllipsesSharp /> {post.comments}</span>
+                        <span><IoChatbubbleEllipsesSharp /> {post.chats}</span>
                         <span><FaHeart />️ {post.likes}</span>
                     </div>
                 </Link>

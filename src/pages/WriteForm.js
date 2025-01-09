@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
 import ImageUpload from "../components/ImageUpload";
 import CategoryDropdown from "../components/CategoryDropdown";
+import {sliceAddress} from "../utils/sliceAddress";
 
 const WriteForm = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
-    let {id} = useSelector(state => state.userInfo.userData) || "하아";
-
+    let {id, address, profileUrl, nickname} = useSelector(state => state.userInfo.userData) || "하아";
+    address = sliceAddress(address)
 
     const [images, setImages] = useState([]); // 이미지 목록
     const [category, setCategory] = useState('');
@@ -47,12 +48,22 @@ const WriteForm = () => {
     const submitHandler = () => {
         const payload = {
             writerId: id,
+            writerInfo: {
+                nickname,
+                address,
+                profileUrl,
+            },
             title,
             images,
             price,
             suggestFlag,
             content,
-            category
+            category,
+            wantPlace,
+            likes: 0,
+            chat: 0,
+            viewCount: 0,
+            createdAt: new Date(),
         }
         console.log(payload)
 

@@ -23,7 +23,8 @@ const ImageUpload = ({ getImages }) => {
         const newImages = files.map((file) => {
             return {
                 id: Date.now() + Math.random(),
-                url: URL.createObjectURL(file),
+                url: URL.createObjectURL(file), // 미리보기용 URL
+                file, // 실제 파일 객체
             };
         });
 
@@ -32,9 +33,8 @@ const ImageUpload = ({ getImages }) => {
 
     // images 상태 변경 시 getImages 호출
     useEffect(() => {
-        const imageUrls = images.map((img) => img.url); // 이미지의 URL만 추출
-        getImages(imageUrls); // URL 배열을 getImages에 전달
-    }, [images]); // 의존성 배열에서 images만 포함
+        getImages(images.map((img) => img.file)); // 이미지 파일 객체를 전달
+    }, [images]);
 
     return (
         <>

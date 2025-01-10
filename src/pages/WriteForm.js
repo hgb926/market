@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import { uiActions } from '../components/store/ui/UiSlice';
 import styles from '../styles/pages/WriteForm.module.scss';
 import { IoClose } from 'react-icons/io5';
@@ -43,40 +43,47 @@ const WriteForm = () => {
     };
 
     const getImages = (data) => {
+        console.log(data)
         setImages(data)
     }
 
     const submitHandler = async () => {
-        const payload = {
-            writerId: id,
-            writerInfo: {
-                nickname,
-                address,
-                profileUrl,
-            },
-            title,
-            images,
-            price,
-            suggestFlag,
-            content,
-            category,
-            wantPlace,
-            likes: 0,
-            chat: 0,
-            viewCount: 0,
-        }
-        const response = await fetch(`${POST_URL}/add`, {
-            method: 'POST',
-            credentials: 'include',
-            headers: {"Content-Type": "Application/json"},
-            body: JSON.stringify(payload),
+        const formData = new FormData();
+        formData.append("writerId", id);
+        formData.append("writerInfo", JSON.stringify({ nickname, address, profileUrl }));
+        formData.append("title", title);
+        formData.append("price", price);
+        formData.append("suggestFlag", suggestFlag);
+        formData.append("content", content);
+        formData.append("category", category);
+        formData.append("wantPlace", wantPlace);
+        formData.append("tradeType", tradeType);
+
+        images.forEach((imageFile) => {
+            formData.append("images", imageFile); // 파일 객체를 추가
         });
-        if (response.status === 200) {
-            const responseData = await response.json();
-            console.log(responseData)
-            navi('/')
+
+
+
+        try {
+            const response = await fetch(`${POST_URL}/add`, {
+                method: 'POST',
+                credentials: 'include',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData);
+                navi('/');
+            } else {
+                const error = await response.text();
+                console.error("Error:", error);
+            }
+        } catch (err) {
+            console.error("Error submitting the post:", err);
         }
-    }
+    };
 
     return (
         <div className={styles.container}>

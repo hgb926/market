@@ -20,7 +20,6 @@ const Posts = () => {
             setPosts(posts);
         } catch (e) {
             console.log(e)
-            return
         }
     }
 

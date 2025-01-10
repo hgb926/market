@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import styles from '../../styles/pages/Register.module.scss';
 import MainTitle from "./MainTitle";
-import { AUTH_URL } from "../../config/host-config";
+import {AUTH_URL} from "../../config/host-config";
 import ValidationBox from "./ValidationBox";
 
-const Email = ({ getEmail }) => {
+const Email = ({getEmail}) => {
     const emailRef = useRef();
     const codeRef = useRef();
     const [createCodeInput, setCreateCodeInput] = useState(false);
@@ -26,11 +26,22 @@ const Email = ({ getEmail }) => {
 
         if (!emailValidation) return
         try {
-            const response = await fetch(`${AUTH_URL}/send-code`);
-            let data = await response.json();
-            console.log(data);
-            setValCode(data);
-            setCreateCodeInput(true);
+            const response = await fetch(`${AUTH_URL}/send-code`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email: emailValue})
+            });
+
+            if (response.status === 200) {
+                let data = await response.json();
+                console.log(data);
+                setValCode(data);
+                setCreateCodeInput(true);
+            } else {
+                let data = await response.text();
+                alert(data)
+            }
+
         } catch (error) {
             console.error("Error sending code:", error);
         }
@@ -66,7 +77,7 @@ const Email = ({ getEmail }) => {
 
     return (
         <>
-            <MainTitle title={'이메일을 입력해주세요.'} />
+            <MainTitle title={'이메일을 입력해주세요.'}/>
             <div className={styles.subContainer}
                  onKeyDown={enterKeyHandler}
             >

@@ -31,7 +31,7 @@ const PostDetail = () => {
 
 
     // Spring에서 api로 받아와야함
-    const {writerInfo : seller} = post
+    const {writerInfo: seller} = post
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -55,6 +55,11 @@ const PostDetail = () => {
             return setShowImages(false)
         }
         setShowImages(true)
+    }
+
+    const requestChatHandler = () => {
+        if (id !== post.writerId) return;
+        // 서버로 요청보내면 될듯!
     }
 
     return (
@@ -82,10 +87,10 @@ const PostDetail = () => {
                         <div className={styles.subContainer}>
                             <div className={styles.sellerWrap}>
                                 <img
-                                     alt={'프로필'}
-                                     onClick={() => setShowUserProfile(true)}
-                                     className={styles.userImage}
-                                     src={seller.profileUrl}/>
+                                    alt={'프로필'}
+                                    onClick={() => setShowUserProfile(true)}
+                                    className={styles.userImage}
+                                    src={seller.profileUrl}/>
                                 <div className={styles.sellerInfo}>
                                     <div className={styles.sellerName}>{seller.nickname}</div>
                                     <div className={styles.location}>{sliceAddress(seller.address)}</div>
@@ -113,11 +118,15 @@ const PostDetail = () => {
                                     </>
                                     :
                                     <span className={styles.price}>나눔!</span>}
-                        </div>
+                            </div>
 
-                            {id !== post.writerId && <div className={styles.chat}>
-                                채팅하기
-                            </div>}
+                            {id !== post.writerId &&
+                                <div
+                                    className={styles.chat}
+                                    onClick={requestChatHandler}
+                                >
+                                    채팅하기
+                                </div>}
                         </div>
                     </div>
                 </>) :

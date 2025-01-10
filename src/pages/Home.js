@@ -36,7 +36,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <HomeNavigation
-                mainText={address ? address : "왜안됨"}
+                mainText={address ? address : " "}
                 arrow={true}
                 hamburger={true}
                 search={true}

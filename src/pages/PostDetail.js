@@ -4,7 +4,7 @@ import {useLocation} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
 import {FaHeart} from "react-icons/fa";
 import {CiHeart} from "react-icons/ci";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
 import ControlArrow from "../components/ControlArrow";
@@ -17,6 +17,7 @@ const PostDetail = () => {
     const {post} = location.state || {} // Link태그로 전달된 데이터를 받는 법
     const dispatch = useDispatch();
     let {pathname} = useLocation();
+    let {id} = useSelector(state => state.userInfo.userData);
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
     const [images, setImages] = useState(post.image)
@@ -31,7 +32,6 @@ const PostDetail = () => {
 
     // Spring에서 api로 받아와야함
     const {writerInfo : seller} = post
-    console.log(seller)
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -57,6 +57,8 @@ const PostDetail = () => {
         setShowImages(true)
     }
 
+    console.log(seller)
+    console.log(post)
     return (
         <>
             {!showImages ? (<>
@@ -106,13 +108,18 @@ const PostDetail = () => {
                         <div className={styles.bottomMain}>
                             <div className={styles.heart}><CiHeart className={styles.icon}/>️</div>
                             <div className={styles.descript}>
-                                {post.tradeType === "sell" ? <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span> : <span className={styles.price}>나눔!</span>}
-                                {post.suggestFlag && <span className={styles.flag}>가격 제안 불가</span>}
-                            </div>
-                            <div></div>
-                            <div className={styles.chat}>
+                                {post.tradeType === "sell" ?
+                                    <>
+                                        <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
+                                        <span className={styles.flag}>{post.suggestFlag ? '가격 제안 불가' : '가격 제한 가능'}</span>
+                                    </>
+                                    :
+                                    <span className={styles.price}>나눔!</span>}
+                        </div>
+
+                            {id !== post.writerId && <div className={styles.chat}>
                                 채팅하기
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </>) :
@@ -128,5 +135,6 @@ const PostDetail = () => {
         </>
     );
 };
+
 
 export default PostDetail;

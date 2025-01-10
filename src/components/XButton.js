@@ -4,12 +4,14 @@ import styles from '../styles/components/XButton.module.scss'
 import {IoIosArrowRoundBack} from "react-icons/io";
 import {LiaTimesSolid} from "react-icons/lia";
 
-const XButton = ({changeShowImage, from, ui}) => {
+const XButton = ({changeShowImage, changeShowUserImage, from, ui}) => {
 
     const navi = useNavigate();
     const backHandler = () => {
         if (from === 'imageSlider') {
             changeShowImage(false)
+        } else if (from === 'showUserImage') {
+            changeShowUserImage(false)
         } else if (from === 'auth') {
             navi(-1)
         }

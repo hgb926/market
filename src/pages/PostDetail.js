@@ -10,6 +10,7 @@ import ImageSlider from "../components/ImageSlider";
 import ControlArrow from "../components/ControlArrow";
 import Dots from "../components/Dots";
 import {sliceAddress} from "../utils/sliceAddress";
+import ShowUserImage from "../components/ShowUserImage";
 
 const PostDetail = () => {
     const location = useLocation();
@@ -19,6 +20,7 @@ const PostDetail = () => {
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
     const [images, setImages] = useState(post.image)
+    const [showUserProfile, setShowUserProfile] = useState(false)
     const urls = [
         '/', '/chat', '/map', '/info'
     ]
@@ -33,6 +35,10 @@ const PostDetail = () => {
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
+    }
+
+    const changeShowUserImage = (flag) => {
+        setShowUserProfile(flag)
     }
 
     // 이미지 변경 함수
@@ -77,6 +83,7 @@ const PostDetail = () => {
                             <div className={styles.sellerWrap}>
                                 <img
                                      alt={'프로필'}
+                                     onClick={() => setShowUserProfile(true)}
                                      className={styles.userImage}
                                      src={seller.profileUrl}/>
                                 <div className={styles.sellerInfo}>
@@ -114,6 +121,10 @@ const PostDetail = () => {
                     changeShowImage={changeShowImage}
                     currentIdx={currentIndex}
                 />)}
+            {showUserProfile && (<ShowUserImage
+                image={seller.profileUrl}
+                changeShowUserImage={changeShowUserImage}
+            />)}
         </>
     );
 };

@@ -9,7 +9,7 @@ import {
     validateImageSize
 } from '../../utils/validation';
 
-const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickValue, imageFile, }) => {
+const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickValue, imageFile, sendNicknameMsg}) => {
     // 이메일 검증 상태
     const [emailSuccess, setEmailSuccess] = useState(false);
 
@@ -21,6 +21,8 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
     // 닉네임 검증 상태
     const [isValidNicknameLength, setIsValidNicknameLength] = useState(false);
     const [hasNotSpecialChar, setHasNotSpecialChar] = useState(false);
+    const [nicknameDuplicate, setNicknameDuplicate] = useState(false)
+    const [nicknameErrMsg, setNicknameErrMsg] = useState(sendNicknameMsg)
 
     // 이미지 검증 상태
     const [isValidImage, setIsValidImage] = useState(false);
@@ -65,6 +67,12 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
             setHasNotSpecialChar(true);
         }
     }, [nickValue, checkValidate]);
+
+    useEffect(() => {
+        if (sendNicknameMsg === '사용 가능한 닉네임입니다!') setNicknameDuplicate(true)
+        else setNicknameDuplicate(false)
+        setNicknameErrMsg(sendNicknameMsg); // props가 변경될 때 상태 업데이트
+    }, [sendNicknameMsg]);
 
     // ✅ 이미지 검증
     useEffect(() => {
@@ -137,6 +145,11 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
                         <FiCheck className={`${styles.check} ${hasNotSpecialChar ? styles.clear : ""}`}/>
                         <p className={`${styles.valText} ${hasNotSpecialChar ? styles.clear : ""}`}>
                             특수문자 (!,@,#,%,^,&,*,?,_,~)는 <br/>사용하실 수 없습니다.</p>
+                    </div>
+                    <div className={styles.valBox}>
+                        <FiCheck className={`${styles.check} ${nicknameDuplicate ? styles.clear : ""}`}/>
+                        <p className={`${styles.valText} ${nicknameDuplicate ? styles.clear : ""}`}>
+                            {nicknameErrMsg}</p>
                     </div>
                 </>
             )}

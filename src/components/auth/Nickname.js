@@ -1,14 +1,17 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
 import ValidationBox from "./ValidationBox";
 import {AUTH_URL} from "../../config/host-config";
+import {FiCheck} from "react-icons/fi";
 
 const Nickname = ({getNickname}) => {
 
     const [nicknameValue, setNicknameValue] = useState('')
     const [nicknameValidate, setNicknameValidate] = useState(false)
     const nicknameRef = useRef();
+    const [errMsg, setErrMsg] = useState('중복되지 않아야 합니다.')
+    const [allClear, setAllClear] = useState(false)
 
     const nicknameChangeHandler = (e) => {
         setNicknameValue(e.target.value)
@@ -29,19 +32,23 @@ const Nickname = ({getNickname}) => {
 
             if (response.status === 200) {
                 let data = await response.text();
-                console.log(data);
+                setErrMsg(data)
+                setAllClear(true)
                 getNickname(nicknameValue)
             } else {
                 let data = await response.text();
-                alert(data)
+                setAllClear(false)
+                setErrMsg(data)
             }
 
         } catch (e) {
             console.log(e)
         }
-
-
     }
+
+    useEffect(() => {
+
+    }, [errMsg]);
 
     const enterKeyHandler = (e) => {
         if (e.key === 'Enter') {
@@ -62,7 +69,7 @@ const Nickname = ({getNickname}) => {
                         onKeyDown={(e) => enterKeyHandler(e)}
                     />
                     <div
-                        className={styles.sendCode}
+                        className={`${styles.sendCode} ${allClear ? styles.clear : ''}`}
                         onClick={checkDuplicate}
                     >
                         중복확인
@@ -73,6 +80,7 @@ const Nickname = ({getNickname}) => {
                     currentStep={'nickname'}
                     nickValue={nicknameValue}
                     checkValidate={checkValidate}
+                    sendNicknameMsg={errMsg}
                 />
             </div>
         </>

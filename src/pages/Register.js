@@ -30,19 +30,20 @@ const Register = () => {
                 return;
             }
 
-            const payload = {
-                email,
-                password,
-                nickname,
-                address,
-                zoneCode,
-                image
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+            formData.append("nickname", nickname);
+            formData.append("address", address);
+            formData.append("zoneCode", zoneCode);
+
+            if (image) {
+                formData.append("image", image); // 파일 객체 추가
             }
 
             const response = await fetch(`${AUTH_URL}/register`, {
                 method: "POST",
-                headers: {"Content-Type" : "Application/json"},
-                body: JSON.stringify(payload)
+                body: formData
             });
 
             let responseData = await response.json();

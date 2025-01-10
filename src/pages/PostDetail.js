@@ -24,13 +24,11 @@ const PostDetail = () => {
     if (urls.some(u => u !== pathname)) {
         dispatch(uiActions.changeRenderStatus(false))
     }
-    console.log(post)
+
 
     // Spring에서 api로 받아와야함
-    const seller = {
-        nickname: '초롱이',
-        profile: 'https://img.kr.gcp-karroter.net/origin/article/202412/1733451153511cfa180a62709b757a8bccedfc16b14cee31efb477df8f683b00f7770b8e6f8080.jpg?f=webp&q=95&s=1440x1440&t=inside'
-    }
+    const {writerInfo : seller} = post
+    console.log(seller)
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -92,6 +90,7 @@ const PostDetail = () => {
                                 <span className={styles.time}>{post.createdAt}</span>
                                 <div className={styles.content}>{post.content}</div>
                                 <p className={styles.wantLocation}>거래 희망 장소</p>
+                                <div className={styles.map}>{post.wantPlace}</div>
                             </div>
                         </div>
                     </div>

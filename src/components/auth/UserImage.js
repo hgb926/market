@@ -8,7 +8,7 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     const [selectedFile, setSelectedFile] = useState(null); // 선택된 파일
     const imageRef = useRef();
 
-    const defaultImg = 'https://as1.ftcdn.net/v2/jpg/02/59/39/46/1000_F_259394679_GGA8JJAEkukYJL9XXFH2JoC3nMguBPNH.jpg';
+    const defaultImg = 'https://node-forum1217.s3.ap-northeast-2.amazonaws.com/uploads/1736486966914_1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg';
 
     // 이미지 선택 핸들러
     const fileHandler = (e) => {
@@ -16,10 +16,9 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
 
         if (!file) return;
 
-        setSelectedFile(file);
         const imageUrl = URL.createObjectURL(file);
 
-        getImage(imageUrl)
+        getImage(file); // 이미지 파일 객체 전달
         setUserImage(imageUrl);
 
         currentStatus(true); // 이미지 선택됨

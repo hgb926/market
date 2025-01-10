@@ -9,6 +9,7 @@ import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
 import ControlArrow from "../components/ControlArrow";
 import Dots from "../components/Dots";
+import {sliceAddress} from "../utils/sliceAddress";
 
 const PostDetail = () => {
     const location = useLocation();
@@ -80,7 +81,7 @@ const PostDetail = () => {
                                      src={seller.profileUrl}/>
                                 <div className={styles.sellerInfo}>
                                     <div className={styles.sellerName}>{seller.nickname}</div>
-                                    <div className={styles.location}>{post.wantPlace}</div>
+                                    <div className={styles.location}>{sliceAddress(seller.address)}</div>
                                 </div>
                             </div>
                             <div className={styles.descriptWrap}>

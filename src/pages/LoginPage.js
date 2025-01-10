@@ -54,6 +54,11 @@ const LoginPage = () => {
         }
     }, [email, pw]);
 
+    const enterKeyHandler = e => {
+        if (!active) return;
+        loginHandler()
+    }
+
     return (
         <>
             <span className={styles.topLine}/>
@@ -71,6 +76,7 @@ const LoginPage = () => {
                         placeholder={"비밀번호"}
                         ref={pwRef}
                         onChange={(e) => setPw(e.target.value)}
+                        onKeyDown={(e) => enterKeyHandler(e)}
                     />
                     <div className={styles.autoLoginWrap}>
                         <input

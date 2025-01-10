@@ -16,18 +16,22 @@ const Home = () => {
 
 
 
-    useEffect(() => {
         const checkLogin = async () => {
-            const response = await fetch(`${AUTH_URL}/user`, {
-                method: 'GET',
-                credentials: 'include',
-            })
+            try {
+                const response = await fetch(`${AUTH_URL}/user`, {
+                    method: 'GET',
+                    credentials: 'include',
+                })
 
-            if (response.status === 200) {
-                const userData = await response.json();
-                dispatch(userActions.setUser(userData))
+                if (response.status === 200) {
+                    const userData = await response.json();
+                    dispatch(userActions.setUser(userData))
+                }
+            } catch (e) {
+                console.log(e)
             }
         }
+    useEffect(() => {
         checkLogin();
     }, []);
 

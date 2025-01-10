@@ -14,10 +14,14 @@ const Posts = () => {
     const [posts, setPosts] = useState([])
 
     const getPosts = async () => {
-        const response = await fetch(`${POST_URL}`);
-        const posts = await response.json();
-        console.log(posts)
-        setPosts(posts);
+        try {
+            const response = await fetch(`${POST_URL}`);
+            const posts = await response.json();
+            setPosts(posts);
+        } catch (e) {
+            console.log(e)
+            return
+        }
     }
 
     useEffect(() => {

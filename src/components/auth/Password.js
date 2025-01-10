@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
-import ValidationBox from "./ValidationBox";
+import PasswordValidation from "./PasswordValidation";
 
 const Password = ({ getPassword }) => {
     const [pwValidate, setPwValidate] = useState(false); // 비밀번호 검증 상태
@@ -74,11 +74,8 @@ const Password = ({ getPassword }) => {
                 </div>
 
                 {/* 검증 박스 */}
-                <ValidationBox
-                    currentStep={'password'}
+                <PasswordValidation
                     pwValue={pwValue}
-                    pwCheckValue={pwCheckValue}
-                    checkValidate={setPwValidate}
                 />
             </div>
         </>

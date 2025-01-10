@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import styles from '../../styles/pages/Register.module.scss';
 import MainTitle from "./MainTitle";
 import {AUTH_URL} from "../../config/host-config";
-import ValidationBox from "./ValidationBox";
+import EmailValidation from "./EmailValidation";
 
 const Email = ({getEmail}) => {
     const emailRef = useRef();
@@ -115,8 +115,7 @@ const Email = ({getEmail}) => {
                         </div>
                     </div>
                 )}
-                <ValidationBox
-                    currentStep={'email'}
+                <EmailValidation
                     emailValue={emailValue}
                     checkValidate={checkValidate}
                 />

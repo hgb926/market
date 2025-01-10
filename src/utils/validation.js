@@ -28,5 +28,5 @@ export const validateImageType = (file) => {
 // 이미지 크기 확인 (5MB 이하)
 export const validateImageSize = (file, maxSizeMB = 3) => {
     const maxSize = maxSizeMB * 1024 * 1024; // MB -> Bytes 변환
-    return file.size <= maxSize;
+    return file.size <= maxSize; // false여야 맞음
 };

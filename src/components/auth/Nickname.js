@@ -1,9 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
-import ValidationBox from "./ValidationBox";
 import {AUTH_URL} from "../../config/host-config";
-import {FiCheck} from "react-icons/fi";
+import NicknameValidation from "./NicknameValidation";
 
 const Nickname = ({getNickname}) => {
 
@@ -76,8 +75,7 @@ const Nickname = ({getNickname}) => {
                     </div>
 
                 </div>
-                <ValidationBox
-                    currentStep={'nickname'}
+                <NicknameValidation
                     nickValue={nicknameValue}
                     checkValidate={checkValidate}
                     sendNicknameMsg={errMsg}

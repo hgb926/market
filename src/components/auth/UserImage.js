@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
-import ValidationBox from "./ValidationBox";
+import UserImageValidation from "./UserImageValidation";
 
 const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
     const [userImage, setUserImage] = useState(''); // 사용자 이미지 상태
@@ -47,8 +47,7 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
                         accept="image/*"
                     />
                 </div>
-                <ValidationBox
-                    currentStep={'image'}
+                <UserImageValidation
                     imageFile={selectedFile}
                     checkValidate={setImageValidation}
                 />

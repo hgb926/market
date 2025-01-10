@@ -98,7 +98,7 @@ const PostDetail = () => {
                         <div className={styles.bottomMain}>
                             <div className={styles.heart}><CiHeart className={styles.icon}/>️</div>
                             <div className={styles.descript}>
-                                <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
+                                {post.tradeType === "sell" ? <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span> : <span className={styles.price}>나눔!</span>}
                                 {post.suggestFlag && <span className={styles.flag}>가격 제안 불가</span>}
                             </div>
                             <div></div>

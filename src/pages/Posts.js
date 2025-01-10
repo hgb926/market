@@ -52,8 +52,11 @@ const Posts = () => {
                             {post.wantPlace} · {post.createdAt}
                         </p>
                         <div>
-                            <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
-                            <span className={styles.status}>{post.status}</span>
+                            { post.tradeType === "sell" && <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
+                            <span
+                                className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}` }>
+                                {post.tradeType === "sell" ? '판매' : "나눔"}
+                            </span>
                         </div>
                     </div>
                     <div className={styles.icons}>

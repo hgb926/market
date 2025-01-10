@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import MainTitle from "./MainTitle";
 import styles from "../../styles/pages/Register.module.scss";
 import ValidationBox from "./ValidationBox";
+import {AUTH_URL} from "../../config/host-config";
 
 const Nickname = ({getNickname}) => {
 
@@ -17,9 +18,29 @@ const Nickname = ({getNickname}) => {
         setNicknameValidate(flag)
     }
 
-    const checkDuplicate = () => {
+    const checkDuplicate = async () => {
         if (!nicknameValidate) return;
-        getNickname(nicknameValue)
+        try {
+            const response = await fetch(`${AUTH_URL}/check-nickname`, {
+                method: "POST",
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({nickname: nicknameValue})
+            })
+
+            if (response.status === 200) {
+                let data = await response.text();
+                console.log(data);
+                getNickname(nicknameValue)
+            } else {
+                let data = await response.text();
+                alert(data)
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
+
+
     }
 
     const enterKeyHandler = (e) => {

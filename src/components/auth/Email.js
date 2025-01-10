@@ -43,7 +43,7 @@ const Email = ({getEmail}) => {
             }
 
         } catch (error) {
-            console.error("Error sending code:", error);
+            console.error(error);
         }
     };
 

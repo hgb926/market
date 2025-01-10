@@ -14,6 +14,14 @@ const Email = ({ getEmail }) => {
     const [emailValidation, setEmailValidation] = useState(false)
     const [codeValidation, setCodeValidation] = useState(false);
 
+    const enterKeyHandler = (e) => {
+        if (e.key === 'Enter' && createCodeInput) {
+            codeCheckHandler();
+        } else if (e.key === 'Enter') {
+            sendCodeHandler()
+        }
+    }
+
     const sendCodeHandler = async () => {
 
         if (!emailValidation) return
@@ -59,7 +67,9 @@ const Email = ({ getEmail }) => {
     return (
         <>
             <MainTitle title={'이메일을 입력해주세요.'} />
-            <div className={styles.subContainer}>
+            <div className={styles.subContainer}
+                 onKeyDown={enterKeyHandler}
+            >
                 <div className={styles.inputWrap}>
                     <input
                         type={'email'}
@@ -67,6 +77,7 @@ const Email = ({ getEmail }) => {
                         placeholder={'이메일'}
                         className={styles.input}
                         onChange={emailValueChangeHandler}
+                        onKeyDown={enterKeyHandler}
                     />
                     <div
                         className={`${styles.sendCode} ${emailValidation ? styles.clear : ""}`}
@@ -83,6 +94,7 @@ const Email = ({ getEmail }) => {
                             placeholder={'4자리의 인증코드'}
                             className={styles.input}
                             onChange={codeValueChangeHandler}
+                            onKeyDown={enterKeyHandler}
                         />
                         <div
                             className={`${styles.sendCode} ${codeValidation ? styles.clear : ""}`}

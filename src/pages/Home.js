@@ -14,8 +14,6 @@ const Home = () => {
     const userData = useSelector(state => state.userInfo.userData);
     const address = userData?.address ? sliceAddress(userData.address) : null;
 
-
-
         const checkLogin = async () => {
             try {
                 const response = await fetch(`${AUTH_URL}/user`, {

@@ -21,6 +21,12 @@ const Nickname = ({getNickname}) => {
         if (!nicknameValidate) return;
         getNickname(nicknameValue)
     }
+
+    const enterKeyHandler = (e) => {
+        if (e.key === 'Enter') {
+            checkDuplicate()
+        }
+    }
     return (
         <>
             <MainTitle title={'닉네임을 입력해주세요.'}/>
@@ -32,6 +38,7 @@ const Nickname = ({getNickname}) => {
                         placeholder={'닉네임'}
                         className={styles.input}
                         onChange={nicknameChangeHandler}
+                        onKeyDown={(e) => enterKeyHandler(e)}
                     />
                     <div
                         className={styles.sendCode}

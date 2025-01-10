@@ -57,8 +57,6 @@ const PostDetail = () => {
         setShowImages(true)
     }
 
-    console.log(seller)
-    console.log(post)
     return (
         <>
             {!showImages ? (<>

@@ -7,25 +7,51 @@ import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import Button from "../ui/Button";
 import {POST_URL} from "../config/host-config";
+import PostsSkeleton from "./PostsSkeleton";
 
 
 const Posts = () => {
 
     const [posts, setPosts] = useState([])
 
+    const [loading, setLoading] = useState(false);
+    // 더이상 가져올 데이터가 있는지 확인
+    const [isFinish, setIsFinish] = useState(false);
+
+    // 로딩 스켈레톤 스크린을 보여줄 개수
+    const [skeletonCount, setSkeletonCount] = useState(4);
+
     const getPosts = async () => {
+        if (isFinish) {
+            console.log('loading finished!');
+            return;
+        }
+
+        console.log('start loading...');
+        setLoading(true);
+
         try {
             const response = await fetch(`${POST_URL}`);
             const posts = await response.json();
-            setPosts(posts);
-        } catch (e) {
-            console.log(e)
-        }
-    }
 
+            if (response.status === 200) {
+                setTimeout(() => {
+                    setPosts(posts);
+                    setLoading(false); // 스켈레톤 화면 종료
+                }, 500); // 500ms 딜레이
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            console.error(e);
+            setLoading(false); // 에러 발생 시 로딩 종료
+        }
+    };
     useEffect(() => {
         getPosts()
     }, []);
+
+
 
     const dispatch = useDispatch();
 
@@ -34,7 +60,8 @@ const Posts = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <>
+        {loading ? <PostsSkeleton/> : <div className={styles.container}>
             {posts.map((post) => (
                 <Link
                     onClick={renderHandler}
@@ -51,9 +78,10 @@ const Posts = () => {
                             {post.wantPlace} · {post.createdAt}
                         </p>
                         <div>
-                            { post.tradeType === "sell" && <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
+                            {post.tradeType === "sell" &&
+                                <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
                             <span
-                                className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}` }>
+                                className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}`}>
                                 {post.tradeType === "sell" ? '판매' : "나눔"}
                             </span>
                         </div>
@@ -69,6 +97,8 @@ const Posts = () => {
                 url={'write'}
             />
         </div>
+        }
+        </>
     );
 };
 

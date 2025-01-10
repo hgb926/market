@@ -77,7 +77,7 @@ const PostDetail = () => {
                                 <img
                                      alt={'프로필'}
                                      className={styles.userImage}
-                                     src={seller.profile}/>
+                                     src={seller.profileUrl}/>
                                 <div className={styles.sellerInfo}>
                                     <div className={styles.sellerName}>{seller.nickname}</div>
                                     <div className={styles.location}>{post.wantPlace}</div>
@@ -98,7 +98,7 @@ const PostDetail = () => {
                         <div className={styles.bottomMain}>
                             <div className={styles.heart}><CiHeart className={styles.icon}/>️</div>
                             <div className={styles.descript}>
-                                <span className={styles.price}>{post.price}</span>
+                                <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
                                 {post.suggestFlag && <span className={styles.flag}>가격 제안 불가</span>}
                             </div>
                             <div></div>

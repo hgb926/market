@@ -131,7 +131,7 @@ const ValidationBox = ({currentStep, emailValue, checkValidate, pwValue, nickVal
                     <div className={styles.valBox}>
                         <FiCheck className={`${styles.check} ${isValidNicknameLength ? styles.clear : ""}`}/>
                         <p className={`${styles.valText} ${isValidNicknameLength ? styles.clear : ""}`}>
-                            글자수는 4 ~ 10자리로 사용해야 합니다.</p>
+                            글자수는 2 ~ 8 사용해야 합니다.</p>
                     </div>
                     <div className={styles.valBox}>
                         <FiCheck className={`${styles.check} ${hasNotSpecialChar ? styles.clear : ""}`}/>

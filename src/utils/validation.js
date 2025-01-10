@@ -15,8 +15,8 @@ export const validatePassword = (password) => {
 // 닉네임 검증
 export const validateNickname = (nickname) => {
     return {
-        isValidLength: nickname.length >= 4 && nickname.length <= 10, // 글자수 4~10
-        hasNotSpecialChar: /^[a-zA-Z0-9]+$/.test(nickname) // 특수문자 미포함
+        isValidLength: nickname.length >= 2 && nickname.length <= 8, // 글자수 2~8
+        hasNotSpecialChar : /^[a-zA-Z0-9가-힣]+$/.test(nickname)
     };
 };
 

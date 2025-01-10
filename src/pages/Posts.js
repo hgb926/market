@@ -52,7 +52,7 @@ const Posts = () => {
                             {post.wantPlace} · {post.createdAt}
                         </p>
                         <div>
-                            <span className={styles.price}>{post.price}원</span>
+                            <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
                             <span className={styles.status}>{post.status}</span>
                         </div>
                     </div>

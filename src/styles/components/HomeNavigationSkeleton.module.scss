@@ -1,0 +1,50 @@
+.container {
+  width: 91%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background: #2A2A2A;
+  padding: 10px 0;
+
+  .town {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+
+    .text {
+      width: 120px;
+      height: 20px;
+      background-color: #3a3a3a;
+      border-radius: 4px;
+      animation: pulse 1.5s infinite;
+    }
+  }
+
+  .menus {
+    display: flex;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      background-color: #3a3a3a;
+      border-radius: 50%;
+      margin-left: 12px;
+      animation: pulse 1.5s infinite;
+    }
+  }
+}
+
+/* 스켈레톤 애니메이션 */
+@keyframes pulse {
+  0% {
+    background-color: #3a3a3a;
+  }
+  50% {
+    background-color: #4a4a4a;
+  }
+  100% {
+    background-color: #3a3a3a;
+  }
+}

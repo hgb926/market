@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/ChatRoom.module.scss'
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {CHAT_URL} from "../config/host-config";
 import {IoIosArrowBack} from "react-icons/io";
 import {HiOutlineDotsVertical} from "react-icons/hi";
@@ -13,6 +13,7 @@ const ChatRoom = () => {
     let {id} = useParams();
     let userData = useSelector(state => state.userInfo.userData);
     console.log(id)
+    let navi = useNavigate();
 
     const getDetail = async () => {
 
@@ -35,12 +36,19 @@ const ChatRoom = () => {
         getDetail()
     }, []);
 
+    const backHandler = () => {
+     navi('chat')
+    }
+
     return (
         <>
             {loading ? <div></div> : <>
                 <div className={styles.sellerContainer}>
                     <div className={styles.subContainer}>
-                        <IoIosArrowBack className={styles.back}/>
+                        <IoIosArrowBack
+                            onClick={backHandler}
+                            className={styles.back}
+                        />
                         <p className={styles.chatPartner}>
                             {userData.id === chatDetail.customerInfo.customerId ?
                                 chatDetail.sellerInfo.sellerNickname :

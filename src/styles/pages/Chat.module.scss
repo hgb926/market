@@ -2,4 +2,63 @@
   width: 92%;
   margin: 0 auto;
   overflow: scroll;
+
+  .chatContainer {
+    width: 97%;
+    margin: 10px auto 0;
+    height: 230px;
+
+    .chat {
+      width: 100%;
+      display: flex;
+      padding: 10px 0 20px;
+
+      .sellerImage {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        min-width: 55px;
+        min-height: 55px;
+        max-width: 55px;
+        max-height: 55px;
+        position: relative;
+
+        .postImage {
+          width: 50px;
+          height: 50px;
+          border-radius: 12px;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+        }
+      }
+
+      .metaData {
+        font-size: 1rem;
+        margin-left: 40px;
+        color: #9F9E9E;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+
+        .partnerInfo {
+          display: flex;
+
+          .partnerNickname {
+            color: #cdcccc;
+            font-size: 1.1rem;
+          }
+
+          .time {
+            margin-left: 10px;
+          }
+        }
+
+        .lastChat {
+
+        }
+      }
+    }
+  }
 }

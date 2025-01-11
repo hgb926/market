@@ -32,9 +32,9 @@ const LoginPage = () => {
         });
 
         if (response.status === 200) {
-            const userData = await response.json();
-            console.log(userData)
-            // dispatch(userActions.setUser(userData))
+            const {user} = await response.json();
+            console.log(user)
+            dispatch(userActions.setUser(user))
             navi('/');
         } else {
             const { message } = await response.json();

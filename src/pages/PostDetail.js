@@ -117,7 +117,7 @@ const PostDetail = () => {
                                     <span className={styles.price}>나눔!</span>}
                             </div>
 
-                            {userData.id !== post.writerId &&
+                            {userData._id !== post.writerId &&
                                 <RequestChatBtn
                                 post={post}
                                 />

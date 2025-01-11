@@ -50,7 +50,7 @@ const ChatRoom = () => {
                             className={styles.back}
                         />
                         <p className={styles.chatPartner}>
-                            {userData.id === chatDetail.customerInfo.customerId ?
+                            {userData._id === chatDetail.customerInfo.customerId ?
                                 chatDetail.sellerInfo.sellerNickname :
                                 chatDetail.customerInfo.customerNickname}
                         </p>
@@ -80,7 +80,7 @@ const ChatRoom = () => {
                         <div
                             className={styles.sellerImage}
                             style={{
-                            backgroundImage: `url(${userData.id === chatDetail.customerInfo.customerId ?
+                            backgroundImage: `url(${userData._id === chatDetail.customerInfo.customerId ?
                                 chatDetail.sellerInfo.sellerImage :
                                 chatDetail.customerInfo.customerImage})`,
                             backgroundSize: 'cover',

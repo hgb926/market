@@ -43,7 +43,7 @@ const Chat = () => {
                         <div
                             className={styles.sellerImage}
                             style={{
-                                backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
+                                backgroundImage: `url(${userData._id === chat.customerInfo.customerId ?
                                         chat.sellerInfo.sellerImage :
                                         chat.customerInfo.customerImage})`,
                                 backgroundSize: 'cover',
@@ -62,7 +62,7 @@ const Chat = () => {
                         <div className={styles.metaData}>
                             <div className={styles.partnerInfo}>
                                 <p className={styles.partnerNickname}>
-                                    {userData.id === chat.customerInfo.customerId ?
+                                    {userData._id === chat.customerInfo.customerId ?
                                     chat.sellerInfo.sellerNickname :
                                     chat.customerInfo.customerNickname}</p>
                                 {/*<p>{chat.lastChatTime}</p>*/}

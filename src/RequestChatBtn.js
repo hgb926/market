@@ -12,11 +12,11 @@ const RequestChatBtn = ({post}) => {
     console.log(userData)
     console.log(post)
     const requestChatHandler = async () => {
-        console.log(userData.id);
-        if (userData.id === post.writerId) return;
+
+        if (userData._id === post.writerId) return;
         const payload = {
             customerInfo: {
-                customerId: userData.id,
+                customerId: userData._id,
                 customerNickname: userData.nickname,
                 customerImage: userData.profileUrl,
             },
@@ -46,7 +46,7 @@ const RequestChatBtn = ({post}) => {
                 let msg = await response.json();
                 navi(`/chat/${msg.chatId}`)
             } else {
-                throw new Error(`HTTP error! status: ${response.status}, userData.id : ${userData.id}`);
+                throw new Error(`HTTP error! status: ${response.status}, userData.id : ${userData._id}`);
             }
         } catch (error) {
             console.error("Fetch error:", error); // 에러 로그 출력

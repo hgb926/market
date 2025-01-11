@@ -35,7 +35,7 @@ const homeRouter = [
         element: <Chat/>,
     },
     {
-        path: 'chat/room', // id붙혀야함
+        path: 'chat/:id',
         element: <ChatRoom/>
     },
     {

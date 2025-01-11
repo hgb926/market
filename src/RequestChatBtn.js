@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./styles/pages/PostDetail.module.scss";
 import {CHAT_URL} from "./config/host-config";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const RequestChatBtn = ({post}) => {
 
     const userData = useSelector(state => state.userInfo.userData) || "";
+    const navi = useNavigate();
 
     console.log(userData)
     console.log(post)
@@ -41,7 +43,7 @@ const RequestChatBtn = ({post}) => {
 
             if (response.ok) {
                 let msg = await response.json();
-                console.log(msg.chatId)
+                navi(`/chat/${msg.chatId}`)
             } else {
                 throw new Error(`HTTP error! status: ${response.status}, userData.id : ${userData.id}`);
             }

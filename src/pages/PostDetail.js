@@ -71,7 +71,7 @@ const PostDetail = () => {
             const response = await fetch(`${CHAT_URL}/request`, {
                 method: "POST",
                 credentials: "include",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload),
             });
 
@@ -96,9 +96,10 @@ const PostDetail = () => {
                                      backgroundSize: 'cover',
                                      backgroundPosition: 'center'
                                  }}>
-                                <ControlArrow
-                                    changeImg={changeImage}
-                                />
+                                {post.images.length > 1 &&
+                                    <ControlArrow
+                                        changeImg={changeImage}
+                                    />}
                                 <Dots
                                     length={post.images.length}
                                     currentIdx={currentIndex}

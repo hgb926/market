@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import styles from '../styles/components/ImageSlider.module.scss';
 import ReactDOM from 'react-dom';
 import TimeStatus from '../layout/TimeStatus';
@@ -6,7 +6,7 @@ import XButton from './XButton';
 import ControlArrow from './ControlArrow';
 import Dots from "./Dots";
 
-const ImageSlider = ({ images, changeShowImage, currentIdx }) => {
+const ImageSlider = ({images, changeShowImage, currentIdx}) => {
     const imageRef = useRef();
     const [currentIndex, setCurrentIndex] = useState(currentIdx); // 현재 이미지 인덱스
 
@@ -26,7 +26,7 @@ const ImageSlider = ({ images, changeShowImage, currentIdx }) => {
 
     return ReactDOM.createPortal(
         <div className={styles.container}>
-            <TimeStatus />
+            <TimeStatus/>
             <XButton
                 changeShowImage={changeShowImage}
                 from={'imageSlider'}
@@ -46,9 +46,10 @@ const ImageSlider = ({ images, changeShowImage, currentIdx }) => {
                     }}
                 ></div>
             </div>
-            <ControlArrow
-                changeImg={changeImage}
-            />
+            {images.length > 1 &&
+                <ControlArrow
+                    changeImg={changeImage}
+                />}
             <Dots
                 length={images.length}
                 currentIdx={currentIndex}

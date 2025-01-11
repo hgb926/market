@@ -2,7 +2,7 @@
   width: 100%;
   position: fixed;
   background: #2A2A2A;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #3a3a3a;
   .subContainer {
     width: 90%;
     margin: 0 auto;
@@ -35,7 +35,7 @@
   display: flex;
   font-size: 1.1rem;
   gap: 10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #3a3a3a;
   padding-bottom: 15px;
 
   .postImg {
@@ -51,18 +51,75 @@
     justify-content: space-around;
     //margin-right: 10px;
     flex: 1 0 auto;
-    .status {
+    .topWrap {
       font-size: 1rem;
+      display: flex;
+      color: #9F9E9E;
+
+      .status {
+        margin-right: 10px;
+      }
+      .title {
+        color: #d3d3d3;
+      }
     }
     .price {
       font-weight: 600;
       font-size: 1rem;
+      color: #d3d3d3;
     }
   }
-  .title {
-    margin-top: 5px;
-    //margin-left: 10px;
-    flex: 9 0 auto;
-    font-size: 1rem;
+}
+
+.chatContainer {
+
+  width: 90%;
+  margin: 15px auto;
+
+  .sellerChat {
+    display: flex;
+    padding: 5px 0;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+    .sellerImage {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+    .sellerText {
+      color: #d3d3d3;
+      font-size: 0.95rem;
+      padding: 10px;
+      background: #3a3a3a;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+    .sellerSendTime {
+      color: #636363;
+      font-size: 0.8rem;
+      margin-left: 10px;
+      align-self: end;
+    }
+  }
+
+  .myChat {
+    display: flex;
+    padding: 5px 0;
+    justify-content: right;
+    align-items: center;
+    .myTime {
+      color: #636363;
+      font-size: 0.8rem;
+      margin-right: 10px;
+      align-self: end;
+    }
+    .myText {
+      color: #d3d3d3;
+      font-size: 0.95rem;
+      padding: 10px;
+      background: #F35A20;
+      border-radius:5px;
+    }
   }
 }

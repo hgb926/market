@@ -37,7 +37,7 @@ const ChatRoom = () => {
     }, []);
 
     const backHandler = () => {
-     navi('chat')
+     navi('/chat')
     }
 
     return (
@@ -67,14 +67,32 @@ const ChatRoom = () => {
                         }}
                     ></div>
                     <div className={styles.postMetaData}>
-                        <div className={styles.status}>{chatDetail.postInfo.tradeType === "sell" ? "판매 중" : "나눔"}</div>
+                        <div className={styles.topWrap}>
+                            <span className={styles.status}>{chatDetail.postInfo.tradeType === "sell" ? "판매 중" : "나눔"}</span>
+                            <p className={styles.title}>{chatDetail.postInfo.postTitle}</p>
+                        </div>
                         <div className={styles.price}>{chatDetail.postInfo.postPrice.toLocaleString('ko-KR')}원</div>
                     </div>
-                    <p className={styles.title}>{chatDetail.postInfo.postTitle}</p>
                 </div>
                 <div className={styles.chatContainer}>
-                    <p>ㅎㅇ</p>
-                    <p>ㅎㅇ</p>
+                    {/*날짜 해야함*/}
+                    <div className={styles.sellerChat}>
+                        <div
+                            className={styles.sellerImage}
+                            style={{
+                            backgroundImage: `url(${userData.id === chatDetail.customerInfo.customerId ?
+                                chatDetail.sellerInfo.sellerImage :
+                                chatDetail.customerInfo.customerImage})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}></div>
+                        <div className={styles.sellerText}>사양이 어떻게 되는건가요?</div>
+                        <div className={styles.sellerSendTime}>오후 8:51</div>
+                    </div>
+                    <div className={styles.myChat}>
+                        <div className={styles.myTime}>오후 8:54</div>
+                        <div className={styles.myText}>몰라요</div>
+                    </div>
                 </div>
             </>}
         </>

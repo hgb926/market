@@ -11,6 +11,7 @@ import WriteForm from "../pages/WriteForm";
 import Auth from "../pages/Auth";
 import Register from "../pages/Register";
 import LoginPage from "../pages/LoginPage";
+import ChatRoom from "../pages/ChatRoom";
 
 
 const authRouter = [
@@ -32,6 +33,10 @@ const homeRouter = [
     {
         path: 'chat',
         element: <Chat/>,
+    },
+    {
+        path: 'chat/room', // id붙혀야함
+        element: <ChatRoom/>
     },
     {
         path: 'map',

@@ -1,0 +1,68 @@
+.sellerContainer {
+  width: 100%;
+  position: fixed;
+  background: #2A2A2A;
+  border-bottom: 1px solid black;
+  .subContainer {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .back {
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
+    }
+
+    .chatPartner {
+      font-weight: 500;
+    }
+    .menu {
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+.postContainer {
+  margin-top: 65px;
+  width: 100%;
+  display: flex;
+  font-size: 1.1rem;
+  gap: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+
+  .postImg {
+    margin-left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    //flex: 1 0 auto;
+  }
+  .postMetaData {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    //margin-right: 10px;
+    flex: 1 0 auto;
+    .status {
+      font-size: 1rem;
+    }
+    .price {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+  .title {
+    margin-top: 5px;
+    //margin-left: 10px;
+    flex: 9 0 auto;
+    font-size: 1rem;
+  }
+}

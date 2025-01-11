@@ -12,6 +12,9 @@
       width: 100%;
       display: flex;
       padding: 10px 0 20px;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
 
       .sellerImage {
         width: 55px;
@@ -35,7 +38,7 @@
 
       .metaData {
         font-size: 1rem;
-        margin-left: 40px;
+        margin-left: 30px;
         color: #9F9E9E;
         width: 100%;
         display: flex;

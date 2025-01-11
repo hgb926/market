@@ -4,6 +4,7 @@ import HomeNavigation from "../components/HomeNavigation";
 import ChatSortBtn from "../components/ChatSortBtn";
 import {CHAT_URL} from "../config/host-config";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 
 const Chat = () => {
@@ -34,7 +35,11 @@ const Chat = () => {
             <ChatSortBtn/>
             <div className={styles.chatContainer}>
                 {chatList.map((chat) => (
-                    <div className={styles.chat} key={chat._id} >
+                    <Link
+                        className={styles.chat}
+                        key={chat._id}
+                        to={`/chat/${chat._id}`}
+                    >
                         <div
                             className={styles.sellerImage}
                             style={{
@@ -68,7 +73,7 @@ const Chat = () => {
                                 {chat.lastMsg || "아직 대화가 없습니다."}
                             </div>
                         </div>
-                    </div>))}
+                    </Link>))}
             </div>
         </div>
     )

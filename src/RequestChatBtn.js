@@ -24,10 +24,11 @@ const RequestChatBtn = ({post}) => {
                 sellerImage: post.writerInfo.profileUrl,
             },
             postInfo: {
+                postId: post._id,
                 postTitle: post.title,
                 postImage: post.images[0],
                 postPrice: post.price,
-                postSuggestFlag: post.suggesFlag
+                postSuggestFlag: post.suggestFlag
             },
         };
         try {

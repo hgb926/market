@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import styles from '../styles/pages/PostDetail.module.scss'
-import {Link, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
-import {FaHeart} from "react-icons/fa";
 import {CiHeart} from "react-icons/ci";
 import {useDispatch, useSelector} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
@@ -11,7 +10,7 @@ import ControlArrow from "../components/ControlArrow";
 import Dots from "../components/Dots";
 import {sliceAddress} from "../utils/sliceAddress";
 import ShowUserImage from "../components/ShowUserImage";
-import {CHAT_URL} from "../config/host-config";
+import RequestChatBtn from "../RequestChatBtn";
 
 const PostDetail = () => {
     const location = useLocation();
@@ -58,30 +57,6 @@ const PostDetail = () => {
         setShowImages(true)
     }
 
-    const requestChatHandler = async () => {
-        console.log(userData.id);
-        if (userData.id === post.writerId) return;
-        const payload = {
-            id: userData.id,
-            writerId: post.writerId,
-        };
-        console.log(payload);
-// 닉네임, 상품 정보,
-        try {
-            const response = await fetch(`${CHAT_URL}/request`, {
-                method: "POST",
-                credentials: "include",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-        } catch (error) {
-            console.error("Fetch error:", error); // 에러 로그 출력
-        }
-    };
 
     return (
         <>
@@ -143,12 +118,10 @@ const PostDetail = () => {
                             </div>
 
                             {userData.id !== post.writerId &&
-                                <div
-                                    className={styles.chat}
-                                    onClick={requestChatHandler}
-                                >
-                                    채팅하기
-                                </div>}
+                                <RequestChatBtn
+                                post={post}
+                                />
+                            }
                         </div>
                     </div>
                 </>) :

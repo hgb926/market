@@ -3,20 +3,33 @@ import styles from "./styles/pages/PostDetail.module.scss";
 import {CHAT_URL} from "./config/host-config";
 import {useSelector} from "react-redux";
 
-const RequestChatBtn = ({ post }) => {
+const RequestChatBtn = ({post}) => {
 
     const userData = useSelector(state => state.userInfo.userData) || "";
 
     console.log(userData)
+    console.log(post)
     const requestChatHandler = async () => {
         console.log(userData.id);
         if (userData.id === post.writerId) return;
         const payload = {
-            id: userData.id,
-            writerId: post.writerId,
+            customerInfo: {
+                customerId: userData.id,
+                customerNickname: userData.nickname,
+                customerImage: userData.profileUrl,
+            },
+            sellerInfo: {
+                sellerId: post.writerId,
+                sellerNickname: post.writerInfo.nickname,
+                sellerImage: post.writerInfo.profileUrl,
+            },
+            postInfo: {
+                postTitle: post.title,
+                postImage: post.images[0],
+                postPrice: post.price,
+                postSuggestFlag: post.suggesFlag
+            },
         };
-        console.log(payload);
-// 닉네임, 상품 정보,
         try {
             const response = await fetch(`${CHAT_URL}/request`, {
                 method: "POST",
@@ -25,7 +38,10 @@ const RequestChatBtn = ({ post }) => {
                 body: JSON.stringify(payload),
             });
 
-            if (!response.ok) {
+            if (response.ok) {
+                let msg = await response.json();
+                console.log(msg.chatId)
+            } else {
                 throw new Error(`HTTP error! status: ${response.status}, userData.id : ${userData.id}`);
             }
         } catch (error) {

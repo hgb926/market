@@ -32,6 +32,8 @@ const Chat = () => {
         getChatList()
     }, []);
 
+    console.log(chatList)
+
     return (
         <>
             {!loading && (<div className={styles.container}>
@@ -41,7 +43,7 @@ const Chat = () => {
                 />
                 <ChatSortBtn/>
                 <div className={styles.chatContainer}>
-                    {chatList.map((chat) => (
+                    {chatList.slice().reverse().map((chat) => (
                         <Link
                             className={styles.chat}
                             key={chat._id}
@@ -73,7 +75,7 @@ const Chat = () => {
                                             chat.sellerInfo.sellerNickname :
                                             chat.customerInfo.customerNickname}</p>
                                     {/*<p>{chat.lastChatTime}</p>*/}
-                                    <p className={styles.time}> · 3분 전</p>
+                                    <p className={styles.time}> · {chat.relativeTime || "방금 전"}</p>
 
                                 </div>
                                 <div className={styles.lastChat}>

@@ -21,6 +21,7 @@ const Chat = () => {
         });
         if (response.status === 200) {
             let result = await response.json();
+            console.log(result)
             setChatList(result)
             setLoading(false)
         } else {
@@ -45,6 +46,7 @@ const Chat = () => {
                             className={styles.chat}
                             key={chat._id}
                             to={`/chat/${chat._id}`}
+                            state={{ chat }}
                         >
                             <div
                                 className={styles.sellerImage}

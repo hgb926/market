@@ -13,14 +13,14 @@ const ChatMessages = ({ messages, userId, chat }) => {
 
     return (
         <div className={styles.chatContainer} ref={chatContainerRef}>
-            <div>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
+            <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
             {messages.map((msg) =>
                 msg.writer !== userId ? (
                     <div className={styles.sellerChat} key={msg.date}>
                         <div
                             className={styles.sellerImage}
                             style={{
-                                backgroundImage: `url(${userId !== chat.customerInfo.customerId
+                                backgroundImage: `url(${userId === chat.customerInfo.customerId
                                     ? chat.sellerInfo.sellerImage
                                     : chat.customerInfo.customerImage})`,
                                 backgroundSize: 'cover',

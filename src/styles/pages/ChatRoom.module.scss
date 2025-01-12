@@ -79,6 +79,16 @@
   margin: 160px auto 5px;
   overflow: scroll;
 
+  .systemNotice {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #9F9E9E;
+    margin: 10px 0;
+  }
+
   .sellerChat {
     display: flex;
     padding: 5px 0;

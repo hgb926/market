@@ -11,8 +11,6 @@ const ChatMessages = ({ messages, userId, chat }) => {
         }
     }, [messages]);
 
-    console.log(messages)
-
     return (
         <div className={styles.chatContainer} ref={chatContainerRef}>
             <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>

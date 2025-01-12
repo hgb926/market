@@ -77,7 +77,7 @@ const Chat = () => {
 
                                 </div>
                                 <div className={styles.lastChat}>
-                                    {chat.lastMsg || "아직 대화가 없습니다."}
+                                    {chat.lastMsg || `${chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.`}
                                 </div>
                             </div>
                         </Link>))}

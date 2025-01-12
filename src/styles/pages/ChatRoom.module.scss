@@ -89,6 +89,16 @@
     margin: 10px 0;
   }
 
+  .systemTime {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #9F9E9E;
+    margin: 30px 0;
+  }
+
   .sellerChat {
     display: flex;
     padding: 5px 0;
@@ -133,6 +143,7 @@
       padding: 10px;
       background: #F35A20;
       border-radius:5px;
+      margin: 2px 0;
     }
   }
 }

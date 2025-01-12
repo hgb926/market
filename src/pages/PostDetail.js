@@ -16,7 +16,6 @@ const PostDetail = () => {
     const location = useLocation();
     const {post} = location.state || {} // Link태그로 전달된 데이터를 받는 법
 
-    console.log(post)
     const dispatch = useDispatch();
     let {pathname} = useLocation();
     const userData = useSelector(state => state.userInfo.userData) || "";

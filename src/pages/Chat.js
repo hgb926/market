@@ -9,8 +9,8 @@ import {Link} from "react-router-dom";
 
 const Chat = () => {
 
-    let userData = useSelector(state => state.userInfo.userData);
-    console.log(userData)
+    const userId = localStorage.getItem('id')
+
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
     const getChatList = async () => {
@@ -18,11 +18,10 @@ const Chat = () => {
         const response = await fetch(`${CHAT_URL}/list`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({id: userData._id})
+            body: JSON.stringify({id: userId})
         });
         if (response.status === 200) {
             let result = await response.json();
-            console.log(result)
             setChatList(result)
             setLoading(false)
         } else {
@@ -51,7 +50,7 @@ const Chat = () => {
                             <div
                                 className={styles.sellerImage}
                                 style={{
-                                    backgroundImage: `url(${userData._id === chat.customerInfo.customerId ?
+                                    backgroundImage: `url(${userId === chat.customerInfo.customerId ?
                                         chat.sellerInfo.sellerImage :
                                         chat.customerInfo.customerImage})`,
                                     backgroundSize: 'cover',
@@ -70,7 +69,7 @@ const Chat = () => {
                             <div className={styles.metaData}>
                                 <div className={styles.partnerInfo}>
                                     <p className={styles.partnerNickname}>
-                                        {userData._id === chat.customerInfo.customerId ?
+                                        {userId === chat.customerInfo.customerId ?
                                             chat.sellerInfo.sellerNickname :
                                             chat.customerInfo.customerNickname}</p>
                                     {/*<p>{chat.lastChatTime}</p>*/}

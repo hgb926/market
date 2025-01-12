@@ -22,22 +22,40 @@ const ChatRoom = () => {
     let navi = useNavigate();
     const [socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([{clientId: '', text: ''}])
-    const [message, setMessage] = useState('')
+    const [text, setText] = useState('')
     const inputRef = useRef();
 
     useEffect(() => {
         const ws = new WebSocket("ws://localhost:8080");
         setSocket(ws);
 
-        ws.onmessage = e => {
-            const messageData = JSON.parse(e.data);
-            setMessages(prev => [...prev, messageData])
-        }
+        // 서버로부터 메시지를 수신
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
 
+            // 이벤트 타입이 'serverToClient'일 경우 처리
+            if (data.event === 'serverToClient') {
+                console.log('서버로부터 수신된 데이터:', data.message);
+                setMessages((prevMessages) => [...prevMessages, data.message]);
+            }
+        };
+
+        // 컴포넌트 언마운트 시 WebSocket 연결 닫기
         return () => {
-            ws.close()
-        }
+            ws.close();
+        };
     }, []);
+
+    // 메시지 전송 핸들러
+    const sendMessage = () => {
+        if (socket) {
+            const message = { event: 'clientToServer', text: `${text}` };
+            socket.send(JSON.stringify(message));
+            // setMessages(prev => [...prev, newMessage]); // 로컬 메시지 업데이트
+            setText(''); // 입력 초기화
+        }
+    };
+
 
     const getDetail = async () => {
 
@@ -63,16 +81,6 @@ const ChatRoom = () => {
      navi('/chat')
     }
 
-    const sendMessage = () => {
-        if (socket && message) {
-            console.log(message)
-            const newMessage = { text: message, clientId: userData.id }; // message를 newMessage로 변경
-            console.log(newMessage);
-            socket.send(JSON.stringify(newMessage));
-            setMessages(prev => [...prev, newMessage]); // 로컬 메시지 업데이트
-            setMessage(''); // 입력 초기화
-        }
-    };
 
     return (
         <>
@@ -84,7 +92,7 @@ const ChatRoom = () => {
                             className={styles.back}
                         />
                         <p className={styles.chatPartner}>
-                            {userData._id === chatDetail.customerInfo.customerId ?
+                            {userData.id === chatDetail.customerInfo.customerId ?
                                 chatDetail.sellerInfo.sellerNickname :
                                 chatDetail.customerInfo.customerNickname}
                         </p>
@@ -131,7 +139,7 @@ const ChatRoom = () => {
                 <div className={styles.inputContainer}>
                     <GoPlus className={styles.plus}/>
                     <div className={styles.inputWrap}>
-                        <input type={'text'}  onChange={(e) => setMessage(e.target.value)} className={styles.input} ref={inputRef} placeholder={'메시지 보내기'}/>
+                        <input type={'text'}  onChange={(e) => setText(e.target.value)} className={styles.input} ref={inputRef} placeholder={'메시지 보내기'}/>
                         <RiEmotionHappyLine className={styles.emotion}/>
                     </div>
                     <LuSendHorizontal className={styles.send} onClick={sendMessage}/>

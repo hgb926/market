@@ -12,7 +12,6 @@ const ChatRoom = () => {
     const [loading, setLoading] = useState(true);
     let {id} = useParams();
     let userData = useSelector(state => state.userInfo.userData);
-    console.log(id)
     let navi = useNavigate();
 
     const getDetail = async () => {
@@ -23,7 +22,6 @@ const ChatRoom = () => {
             const response = await fetch(`${CHAT_URL}/detail?id=${id}`);
             if (response.status === 200) {
                 let responseData = await response.json();
-                console.log(responseData)
                 setChatDetail(responseData)
                 setLoading(false)
             }

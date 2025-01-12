@@ -9,8 +9,8 @@ const RequestChatBtn = ({post}) => {
     const userData = useSelector(state => state.userInfo.userData) || "";
     const navi = useNavigate();
 
-    console.log(userData)
-    console.log(post)
+
+
     const requestChatHandler = async () => {
 
         if (userData._id === post.writerId) return;

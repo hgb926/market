@@ -23,11 +23,9 @@ const Posts = () => {
 
     const getPosts = async () => {
         if (isFinish) {
-            console.log('loading finished!');
             return;
         }
 
-        console.log('start loading...');
         setLoading(true);
 
         try {

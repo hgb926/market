@@ -33,7 +33,7 @@ const LoginPage = () => {
 
         if (response.status === 200) {
             const {user} = await response.json();
-            console.log(user)
+            localStorage.setItem('nickname', user.nickname)
             dispatch(userActions.setUser(user))
             navi('/');
         } else {

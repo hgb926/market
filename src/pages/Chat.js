@@ -11,6 +11,7 @@ const Chat = () => {
 
     let userData = useSelector(state => state.userInfo.userData);
     const [chatList, setChatList] = useState([])
+    console.log(userData)
     const getChatList = async () => {
         const response = await fetch(`${CHAT_URL}/list`, {
             method: "GET",
@@ -18,7 +19,6 @@ const Chat = () => {
         });
         if (response.status === 200) {
             let result = await response.json();
-            console.log(result)
             setChatList(result)
         }
     }
@@ -43,7 +43,7 @@ const Chat = () => {
                         <div
                             className={styles.sellerImage}
                             style={{
-                                backgroundImage: `url(${userData._id === chat.customerInfo.customerId ?
+                                backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
                                         chat.sellerInfo.sellerImage :
                                         chat.customerInfo.customerImage})`,
                                 backgroundSize: 'cover',

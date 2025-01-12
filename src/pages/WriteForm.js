@@ -43,7 +43,6 @@ const WriteForm = () => {
     };
 
     const getImages = (data) => {
-        console.log(data)
         setImages(data)
     }
 
@@ -74,7 +73,7 @@ const WriteForm = () => {
 
             if (response.ok) {
                 const responseData = await response.json();
-                console.log(responseData);
+
                 navi('/');
             } else {
                 const error = await response.text();

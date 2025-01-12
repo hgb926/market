@@ -71,14 +71,13 @@ const ChatRoom = () => {
         return () => ws.close();
     };
 
-    const handleSendMessage = () => {
+    const sendMessage = () => {
         if (socket && text.trim()) {
             const message = {
                 event: 'sendMessage',
                 room: roomId,
                 text,
                 writer: userId,
-                date: new Date(),
             };
             socket.send(JSON.stringify(message));
             setText('');
@@ -109,7 +108,7 @@ const ChatRoom = () => {
             <ChatInput
                 text={text}
                 onChange={setText}
-                onSend={handleSendMessage}
+                onSend={sendMessage}
                 inputRef={inputRef}
             />
         </>

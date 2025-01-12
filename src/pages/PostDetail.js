@@ -18,7 +18,7 @@ const PostDetail = () => {
 
     const dispatch = useDispatch();
     let {pathname} = useLocation();
-    const userData = useSelector(state => state.userInfo.userData) || "";
+    const userId = localStorage.getItem('id');
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
     const [showUserProfile, setShowUserProfile] = useState(false)
@@ -116,7 +116,7 @@ const PostDetail = () => {
                                     <span className={styles.price}>나눔!</span>}
                             </div>
 
-                            {userData._id !== post.writerId &&
+                            {userId !== post.writerId &&
                                 <RequestChatBtn
                                 post={post}
                                 />

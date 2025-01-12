@@ -10,15 +10,21 @@ import {Link} from "react-router-dom";
 const Chat = () => {
 
     let userData = useSelector(state => state.userInfo.userData);
+    const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
     const getChatList = async () => {
+        setLoading(true)
         const response = await fetch(`${CHAT_URL}/list`, {
-            method: "GET",
-            credentials: 'include'
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({id: userData.id})
         });
         if (response.status === 200) {
             let result = await response.json();
             setChatList(result)
+            setLoading(false)
+        } else {
+            setLoading(true)
         }
     }
     useEffect(() => {
@@ -26,58 +32,57 @@ const Chat = () => {
     }, []);
 
     return (
-
-        <div className={styles.container}>
-            <HomeNavigation
-                mainText={'채팅'}
-                bell={true}
-            />
-            <ChatSortBtn/>
-            <script src="https://cdn.jsdelivr.net/npm/socket.io@4.7.2/client-dist/socket.io.min.js"></script>
-            <div className={styles.chatContainer}>
-                {chatList.map((chat) => (
-                    <Link
-                        className={styles.chat}
-                        key={chat._id}
-                        to={`/chat/${chat._id}`}
-                    >
-                        <div
-                            className={styles.sellerImage}
-                            style={{
-                                backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
-                                    chat.sellerInfo.sellerImage :
-                                    chat.customerInfo.customerImage})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
-                            }}
+        <>
+            {!loading && (<div className={styles.container}>
+                <HomeNavigation
+                    mainText={'채팅'}
+                    bell={true}
+                />
+                <ChatSortBtn/>
+                <div className={styles.chatContainer}>
+                    {chatList.map((chat) => (
+                        <Link
+                            className={styles.chat}
+                            key={chat._id}
+                            to={`/chat/${chat._id}`}
                         >
                             <div
-                                className={styles.postImage}
+                                className={styles.sellerImage}
                                 style={{
-                                    backgroundImage: `url(${chat.postInfo.postImage})`,
+                                    backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
+                                        chat.sellerInfo.sellerImage :
+                                        chat.customerInfo.customerImage})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center'
                                 }}
-                            ></div>
-                        </div>
-                        <div className={styles.metaData}>
-                            <div className={styles.partnerInfo}>
-                                <p className={styles.partnerNickname}>
-                                    {userData._id === chat.customerInfo.customerId ?
-                                        chat.sellerInfo.sellerNickname :
-                                        chat.customerInfo.customerNickname}</p>
-                                {/*<p>{chat.lastChatTime}</p>*/}
-                                <p className={styles.time}> · 3분 전</p>
+                            >
+                                <div
+                                    className={styles.postImage}
+                                    style={{
+                                        backgroundImage: `url(${chat.postInfo.postImage})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center'
+                                    }}
+                                ></div>
+                            </div>
+                            <div className={styles.metaData}>
+                                <div className={styles.partnerInfo}>
+                                    <p className={styles.partnerNickname}>
+                                        {userData._id === chat.customerInfo.customerId ?
+                                            chat.sellerInfo.sellerNickname :
+                                            chat.customerInfo.customerNickname}</p>
+                                    {/*<p>{chat.lastChatTime}</p>*/}
+                                    <p className={styles.time}> · 3분 전</p>
 
+                                </div>
+                                <div className={styles.lastChat}>
+                                    {chat.lastMsg || "아직 대화가 없습니다."}
+                                </div>
                             </div>
-                            <div className={styles.lastChat}>
-                                {chat.lastMsg || "아직 대화가 없습니다."}
-                            </div>
-                        </div>
-                    </Link>))}
-            </div>
-        </div>
-    )
+                        </Link>))}
+                </div>
+            </div>)}
+        </>)
         ;
 };
 

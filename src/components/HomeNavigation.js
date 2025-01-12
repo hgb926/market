@@ -13,7 +13,7 @@ const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) =
         // 500ms 후 로딩 완료
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 800);
+        }, 500);
 
         return () => clearTimeout(timer);
     }, []);

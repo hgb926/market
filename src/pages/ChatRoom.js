@@ -4,8 +4,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import {CHAT_URL} from "../config/host-config";
 import {IoIosArrowBack} from "react-icons/io";
 import {HiOutlineDotsVertical} from "react-icons/hi";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {io} from "socket.io-client";
+import {uiActions} from "../components/store/ui/UiSlice";
+import {GoPlus} from "react-icons/go";
+import {LuSendHorizontal} from "react-icons/lu";
+import {RiEmotionHappyLine} from "react-icons/ri";
 
 const ChatRoom = () => {
 
@@ -13,8 +17,9 @@ const ChatRoom = () => {
     const [loading, setLoading] = useState(true);
     let {id} = useParams();
     let userData = useSelector(state => state.userInfo.userData);
+    const dispatch = useDispatch();
+    dispatch(uiActions.changeRenderStatus(false))
     let navi = useNavigate();
-    // const socket = io('http://localhost:5000');
 
     const getDetail = async () => {
 
@@ -93,6 +98,14 @@ const ChatRoom = () => {
                         <div className={styles.myTime}>오후 8:54</div>
                         <div className={styles.myText}>몰라요</div>
                     </div>
+                </div>
+                <div className={styles.inputContainer}>
+                    <GoPlus className={styles.plus}/>
+                    <div className={styles.inputWrap}>
+                        <input type={'text'} className={styles.input} placeholder={'메시지 보내기'}/>
+                        <RiEmotionHappyLine className={styles.emotion}/>
+                    </div>
+                    <LuSendHorizontal className={styles.send}/>
                 </div>
             </>}
         </>

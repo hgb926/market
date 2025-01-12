@@ -20,7 +20,6 @@ const PostDetail = () => {
     const userData = useSelector(state => state.userInfo.userData) || "";
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
-    // const [images, setImages] = useState(post.image)
     const [showUserProfile, setShowUserProfile] = useState(false)
     const urls = [
         '/', '/chat', '/map', '/info'
@@ -30,7 +29,6 @@ const PostDetail = () => {
     }
 
 
-    // Spring에서 api로 받아와야함
     const {writerInfo: seller} = post
 
     const changeShowImage = (flag) => {

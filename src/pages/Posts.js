@@ -36,7 +36,7 @@ const Posts = () => {
                 setTimeout(() => {
                     setPosts(posts);
                     setLoading(false); // 스켈레톤 화면 종료
-                }, 800); // 500ms 딜레이
+                }, 500); // 500ms 딜레이
             } else {
                 setLoading(false);
             }

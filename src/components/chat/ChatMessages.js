@@ -11,6 +11,8 @@ const ChatMessages = ({ messages, userId, chat }) => {
         }
     }, [messages]);
 
+    console.log(messages)
+
     return (
         <div className={styles.chatContainer} ref={chatContainerRef}>
             <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
@@ -28,11 +30,11 @@ const ChatMessages = ({ messages, userId, chat }) => {
                             }}
                         />
                         <div className={styles.sellerText}>{msg.text}</div>
-                        <div className={styles.sellerSendTime}>오후 3시</div>
+                        <div className={styles.sellerSendTime}>{msg.formatTime[1]}</div>
                     </div>
                 ) : (
                     <div className={styles.myChat} key={msg.date}>
-                        <div className={styles.myTime}></div>
+                        <div className={styles.myTime}>{msg.formatTime[1]}</div>
                         <div className={styles.myText}>{msg.text}</div>
                     </div>
                 )

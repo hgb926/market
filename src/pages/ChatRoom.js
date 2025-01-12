@@ -64,6 +64,7 @@ const ChatRoom = () => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.event === 'serverToClient') {
+                console.log(data)
                 setMessages((prev) => [...prev, data]);
             }
         };

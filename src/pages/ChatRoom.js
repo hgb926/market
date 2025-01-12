@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from '../styles/pages/ChatRoom.module.scss'
 import {useNavigate, useParams} from "react-router-dom";
 import {CHAT_URL} from "../config/host-config";
@@ -20,6 +20,24 @@ const ChatRoom = () => {
     const dispatch = useDispatch();
     dispatch(uiActions.changeRenderStatus(false))
     let navi = useNavigate();
+    const [socket, setSocket] = useState(null);
+    const [messages, setMessages] = useState([{clientId: '', text: ''}])
+    const [message, setMessage] = useState('')
+    const inputRef = useRef();
+
+    useEffect(() => {
+        const ws = new WebSocket("ws://localhost:8080");
+        setSocket(ws);
+
+        ws.onmessage = e => {
+            const messageData = JSON.parse(e.data);
+            setMessages(prev => [...prev, messageData])
+        }
+
+        return () => {
+            ws.close()
+        }
+    }, []);
 
     const getDetail = async () => {
 
@@ -44,6 +62,17 @@ const ChatRoom = () => {
     const backHandler = () => {
      navi('/chat')
     }
+
+    const sendMessage = () => {
+        if (socket && message) {
+            console.log(message)
+            const newMessage = { text: message, clientId: userData.id }; // message를 newMessage로 변경
+            console.log(newMessage);
+            socket.send(JSON.stringify(newMessage));
+            setMessages(prev => [...prev, newMessage]); // 로컬 메시지 업데이트
+            setMessage(''); // 입력 초기화
+        }
+    };
 
     return (
         <>
@@ -102,10 +131,10 @@ const ChatRoom = () => {
                 <div className={styles.inputContainer}>
                     <GoPlus className={styles.plus}/>
                     <div className={styles.inputWrap}>
-                        <input type={'text'} className={styles.input} placeholder={'메시지 보내기'}/>
+                        <input type={'text'}  onChange={(e) => setMessage(e.target.value)} className={styles.input} ref={inputRef} placeholder={'메시지 보내기'}/>
                         <RiEmotionHappyLine className={styles.emotion}/>
                     </div>
-                    <LuSendHorizontal className={styles.send}/>
+                    <LuSendHorizontal className={styles.send} onClick={sendMessage}/>
                 </div>
             </>}
         </>

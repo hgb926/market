@@ -6,7 +6,8 @@ import {useNavigate} from "react-router-dom";
 
 const RequestChatBtn = ({post}) => {
 
-    const userData = useSelector(state => state.userInfo.userData) || "";
+    const userId = localStorage.getItem('id');
+    const userData = useSelector(state => state.userInfo.userData);
     const navi = useNavigate();
 
     // 1. 유저가 채팅하기 누르면 채팅방 하나 생성
@@ -14,10 +15,10 @@ const RequestChatBtn = ({post}) => {
 
     const requestChatHandler = async () => {
 
-        if (userData._id === post.writerId) return;
+        if (userId=== post.writerId) return;
         const payload = {
             customerInfo: {
-                customerId: userData._id,
+                customerId: userId,
                 customerNickname: userData.nickname,
                 customerImage: userData.profileUrl,
             },

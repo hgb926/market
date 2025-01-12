@@ -35,7 +35,7 @@ const MyPage = () => {
             >logout
             </div>
             <div>{userData.nickname}</div>
-            <img src={userData.profileUrl} style={
+            <img alt={""} src={userData.profileUrl} style={
                 {
                     objectFit: 'cover',
                     width: '300px',

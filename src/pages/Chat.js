@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 const Chat = () => {
 
     let userData = useSelector(state => state.userInfo.userData);
+    console.log(userData)
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
     const getChatList = async () => {
@@ -17,7 +18,7 @@ const Chat = () => {
         const response = await fetch(`${CHAT_URL}/list`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({id: userData.id})
+            body: JSON.stringify({id: userData._id})
         });
         if (response.status === 200) {
             let result = await response.json();
@@ -46,12 +47,11 @@ const Chat = () => {
                             className={styles.chat}
                             key={chat._id}
                             to={`/chat/${chat._id}`}
-                            state={{ chat }}
                         >
                             <div
                                 className={styles.sellerImage}
                                 style={{
-                                    backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
+                                    backgroundImage: `url(${userData._id === chat.customerInfo.customerId ?
                                         chat.sellerInfo.sellerImage :
                                         chat.customerInfo.customerImage})`,
                                     backgroundSize: 'cover',

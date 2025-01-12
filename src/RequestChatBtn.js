@@ -9,7 +9,8 @@ const RequestChatBtn = ({post}) => {
     const userData = useSelector(state => state.userInfo.userData) || "";
     const navi = useNavigate();
 
-
+    // 1. 유저가 채팅하기 누르면 채팅방 하나 생성
+    // 2. 그 채팅방으로 이동까지
 
     const requestChatHandler = async () => {
 
@@ -44,6 +45,7 @@ const RequestChatBtn = ({post}) => {
 
             if (response.ok) {
                 let msg = await response.json();
+                console.log(msg)
                 navi(`/chat/${msg.chatId}`)
             } else {
                 throw new Error(`HTTP error! status: ${response.status}, userData.id : ${userData._id}`);

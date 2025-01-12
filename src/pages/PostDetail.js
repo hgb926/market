@@ -10,7 +10,7 @@ import ControlArrow from "../components/ControlArrow";
 import Dots from "../components/Dots";
 import {sliceAddress} from "../utils/sliceAddress";
 import ShowUserImage from "../components/ShowUserImage";
-import RequestChatBtn from "../RequestChatBtn";
+import RequestChatBtn from "../components/chat/RequestChatBtn.js";
 
 const PostDetail = () => {
     const location = useLocation();

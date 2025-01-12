@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import styles from "./styles/pages/PostDetail.module.scss";
-import {CHAT_URL} from "./config/host-config";
+import styles from "../../styles/pages/PostDetail.module.scss";
+import {CHAT_URL} from "../../config/host-config";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 

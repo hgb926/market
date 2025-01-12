@@ -5,6 +5,7 @@ import {CHAT_URL} from "../config/host-config";
 import {IoIosArrowBack} from "react-icons/io";
 import {HiOutlineDotsVertical} from "react-icons/hi";
 import {useSelector} from "react-redux";
+import {io} from "socket.io-client";
 
 const ChatRoom = () => {
 
@@ -13,6 +14,7 @@ const ChatRoom = () => {
     let {id} = useParams();
     let userData = useSelector(state => state.userInfo.userData);
     let navi = useNavigate();
+    // const socket = io('http://localhost:5000');
 
     const getDetail = async () => {
 

@@ -11,7 +11,6 @@ const Chat = () => {
 
     let userData = useSelector(state => state.userInfo.userData);
     const [chatList, setChatList] = useState([])
-    console.log(userData)
     const getChatList = async () => {
         const response = await fetch(`${CHAT_URL}/list`, {
             method: "GET",
@@ -27,12 +26,14 @@ const Chat = () => {
     }, []);
 
     return (
+
         <div className={styles.container}>
             <HomeNavigation
                 mainText={'채팅'}
                 bell={true}
             />
             <ChatSortBtn/>
+            <script src="https://cdn.jsdelivr.net/npm/socket.io@4.7.2/client-dist/socket.io.min.js"></script>
             <div className={styles.chatContainer}>
                 {chatList.map((chat) => (
                     <Link
@@ -44,8 +45,8 @@ const Chat = () => {
                             className={styles.sellerImage}
                             style={{
                                 backgroundImage: `url(${userData.id === chat.customerInfo.customerId ?
-                                        chat.sellerInfo.sellerImage :
-                                        chat.customerInfo.customerImage})`,
+                                    chat.sellerInfo.sellerImage :
+                                    chat.customerInfo.customerImage})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center'
                             }}
@@ -63,8 +64,8 @@ const Chat = () => {
                             <div className={styles.partnerInfo}>
                                 <p className={styles.partnerNickname}>
                                     {userData._id === chat.customerInfo.customerId ?
-                                    chat.sellerInfo.sellerNickname :
-                                    chat.customerInfo.customerNickname}</p>
+                                        chat.sellerInfo.sellerNickname :
+                                        chat.customerInfo.customerNickname}</p>
                                 {/*<p>{chat.lastChatTime}</p>*/}
                                 <p className={styles.time}> · 3분 전</p>
 

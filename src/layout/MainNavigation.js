@@ -9,8 +9,8 @@ import { useSelector } from "react-redux";
 
 const MainNavigation = () => {
     const { pathname } = useLocation();
-    const userData = useSelector(state => state.userInfo.userData) || undefined;
-    console.log(userData)
+    const userData = useSelector(state => state.userInfo.userData) || "";
+
 
     return (
         <div className={styles.container}>

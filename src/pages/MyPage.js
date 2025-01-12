@@ -8,7 +8,8 @@ import {useSelector} from "react-redux";
 const MyPage = () => {
 
     const navi = useNavigate();
-    let userData = useSelector(state => state.userInfo.userData);
+    const userData = useSelector(state => state.userInfo.userData);
+
 
 
     // 테스트코드 (정상작동, credentials를 보내면 서버에서 req.user가 가능

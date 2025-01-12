@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 const RootLayout = () => {
 
     const dispatch = useDispatch();
-    const nickname = localStorage.getItem('nickname');
+    const id = localStorage.getItem('id');
 
     // 자동로그인 체크
     const checkLogin = async () => {
@@ -20,6 +20,7 @@ const RootLayout = () => {
 
             if (response.ok) {
                 const userData = await response.json();
+                console.log('로그인 성공 : ', userData)
                 dispatch(userActions.setUser(userData));
             } else {
                 const { message } = await response.json();
@@ -32,7 +33,7 @@ const RootLayout = () => {
         }
     };
     useEffect(() => {
-        if (nickname) checkLogin();
+        if (id) checkLogin();
     }, []);
 
 

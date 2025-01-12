@@ -1,15 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from '../styles/pages/ChatRoom.module.scss'
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {CHAT_URL} from "../config/host-config";
 import {IoIosArrowBack} from "react-icons/io";
 import {HiOutlineDotsVertical} from "react-icons/hi";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import {GoPlus} from "react-icons/go";
 import {LuSendHorizontal} from "react-icons/lu";
 import {RiEmotionHappyLine} from "react-icons/ri";
-import MyPage from "./MyPage";
 import PostsSkeleton from "./PostsSkeleton";
 
 const ChatRoom = () => {
@@ -23,6 +22,7 @@ const ChatRoom = () => {
     let {id: roomId} = useParams();
     const userId = localStorage.getItem('id');
     const dispatch = useDispatch();
+    const chatContainerRef = useRef(null);
     dispatch(uiActions.changeRenderStatus(false))
     let navi = useNavigate();
     const [socket, setSocket] = useState(null);
@@ -41,6 +41,12 @@ const ChatRoom = () => {
             setLoading(false)
         }
     }
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     useEffect(() => {
         getChatInfo()
@@ -124,10 +130,6 @@ const ChatRoom = () => {
         navi('/chat')
     }
 
-    useEffect(() => {
-
-    }, [messages]);
-
     return (
         <>
             {!loading ?
@@ -164,7 +166,7 @@ const ChatRoom = () => {
                             <div className={styles.price}>{chat.postInfo.postPrice.toLocaleString('ko-KR')}원</div>
                         </div>
                     </div>
-                    <div className={styles.chatContainer}>
+                    <div className={styles.chatContainer} ref={chatContainerRef}>
                         {/*날짜 해야함*/}
 
 

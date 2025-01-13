@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from '../../styles/components/ChatAlarm.module.scss'
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const ChatAlarm = ({loginFlag, message, setShowAlarm}) => {
     let userData = useSelector(state => state.userInfo.userData);
@@ -27,7 +28,10 @@ const ChatAlarm = ({loginFlag, message, setShowAlarm}) => {
     // }
 
     return (
-        <div className={styles.container}>
+        <Link
+            className={styles.container}
+            to={`/chat/${message.room}`}
+        >
             <div className={styles.msgWrap}>
                 <div
                     className={styles.image}
@@ -45,7 +49,7 @@ const ChatAlarm = ({loginFlag, message, setShowAlarm}) => {
             {/*  제목 7글자 이상이면 ... 처리  */}
             <div className={styles.postTitle}>{message.postTitle}</div>
             </div>
-        </div>
+        </Link>
     );
 };
 

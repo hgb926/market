@@ -16,6 +16,7 @@ const RootLayout = () => {
 
 
     useEffect(() => {
+        console.log(loginFlag)
         if (!loginFlag) return
         console.log(`요청 시작, ${id}`)
         const eventSource = new EventSource(`${CHAT_URL}/sse?userId=${id}`)

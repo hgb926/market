@@ -6,7 +6,7 @@ import {FaWifi} from "react-icons/fa";
 
 const TimeStatus = () => {
     const [time, setTime] = useState('');
-    const [battery, setBattery] = useState(58)
+    const [battery, setBattery] = useState(100)
 
     // 시간 업데이트
     useEffect(() => {

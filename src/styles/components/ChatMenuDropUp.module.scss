@@ -1,0 +1,47 @@
+.container {
+  z-index: 5000;
+  position: absolute;
+  bottom: -202px;  // -100px을 20px로 변경하여 위치를 상단으로 올립니다.
+  right: 10px;   // right를 10px로 추가하여 좀 더 중앙에 가까운 위치로 설정
+  width: 160px;  // 고정된 너비로 변경하여 크기를 조정
+  background: linear-gradient(135deg, #1e1e1e, #333);  // 배경을 그라데이션으로 변경
+  opacity: 0.9;  // 조금 더 투명도를 줄여서 배경을 부드럽게
+  border-radius: 15px;  // 둥근 모서리 더 부드럽게
+  color: white;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);  // 부드러운 그림자 효과
+  padding: 20px;
+  transition: all 0.3s ease;  // 애니메이션 효과 추가
+
+
+  .menuWrap {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+
+    .menu {
+      padding: 15px;
+      background: #444;  // 어두운 회색 배경
+      border-radius: 8px;  // 각 메뉴에 둥근 모서리 추가
+      cursor: pointer;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #ddd;
+      transition: background 0.3s, color 0.3s;  // 배경색과 텍스트 색이 부드럽게 변경되도록 추가
+
+
+      &:hover {
+        background: #6a6a6a;  // 메뉴 hover 시 밝은 회색으로 변환
+        color: #fff;  // 텍스트 색상도 밝게
+      }
+    }
+
+    .exit {
+      color: red;
+    }
+  }
+}

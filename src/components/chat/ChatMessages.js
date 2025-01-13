@@ -15,6 +15,7 @@ const ChatMessages = ({messages, userId, chat}) => {
         <div className={styles.chatContainer} ref={chatContainerRef}>
             <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
             {messages.map((msg, idx) => {
+                console.log(msg)
                 const isDifferentDate = idx === 0 || msg.formatTime[0] !== messages[idx - 1]?.formatTime[0];
                 const isDifferentTime = idx === 0 || msg.formatTime[1] !== messages[idx - 1]?.formatTime[1];
 

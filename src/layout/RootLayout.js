@@ -1,14 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/RootLayout.module.scss'
 import {Outlet} from "react-router-dom";
 import {AUTH_URL} from "../config/host-config";
 import {userActions} from "../components/store/user/UserSlice";
 import {useDispatch} from "react-redux";
+import ChatAlarm from "../components/chat/ChatAlarm";
 
 const RootLayout = () => {
 
     const dispatch = useDispatch();
     const id = localStorage.getItem('id');
+    const [loginFlag, setLoginFlag] = useState(false)
 
     // 자동로그인 체크
     const checkLogin = async () => {
@@ -21,6 +23,7 @@ const RootLayout = () => {
             if (response.ok) {
                 const userData = await response.json();
                 console.log('로그인 성공 : ', userData)
+                setLoginFlag(true)
                 dispatch(userActions.setUser(userData));
             } else {
                 const { message } = await response.json();
@@ -39,6 +42,7 @@ const RootLayout = () => {
 
     return (
         <div className={styles.container}>
+            <ChatAlarm loginFlag={loginFlag}/>
             <Outlet/>
         </div>
     );

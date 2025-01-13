@@ -32,8 +32,6 @@ const Chat = () => {
         getChatList()
     }, []);
 
-    console.log(chatList)
-
     return (
         <>
             {!loading && (<div className={styles.container}>

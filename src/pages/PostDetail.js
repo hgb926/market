@@ -12,6 +12,7 @@ import {sliceAddress} from "../utils/sliceAddress";
 import ShowUserImage from "../components/ShowUserImage";
 import RequestChatBtn from "../components/chat/RequestChatBtn.js";
 import {POST_URL} from "../config/host-config";
+import PostDetailSkeleton from "../skeleton/PostDetailSkeleton";
 
 const PostDetail = () => {
 
@@ -35,13 +36,15 @@ const PostDetail = () => {
         try {
             const response = await fetch(`${POST_URL}/detail`, {
                 method: 'POST',
-                headers: {"Content-Type" : "application/json"},
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({id: postId})
             });
             if (response.status === 200) {
                 const responseData = await response.json();
-                setPost(responseData)
-                setLoading(false)
+                setTimeout(() => {
+                    setPost(responseData)
+                    setLoading(false)
+                }, 300)
             } else {
 
             }
@@ -77,7 +80,7 @@ const PostDetail = () => {
         }
         setShowImages(true)
     }
-    if (loading) return <div>로딩중</div>;
+    if (loading) return <PostDetailSkeleton/>;
 
     return (
         <>

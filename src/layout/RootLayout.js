@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/RootLayout.module.scss'
 import {Outlet} from "react-router-dom";
-import {AUTH_URL} from "../config/host-config";
+import {AUTH_URL, CHAT_URL} from "../config/host-config";
 import {userActions} from "../components/store/user/UserSlice";
 import {useDispatch} from "react-redux";
 import ChatAlarm from "../components/chat/ChatAlarm";
@@ -11,6 +11,32 @@ const RootLayout = () => {
     const dispatch = useDispatch();
     const id = localStorage.getItem('id');
     const [loginFlag, setLoginFlag] = useState(false)
+    const [message, setMessage] = useState([])
+    const [showAlarm, setShowAlarm] = useState(false)
+
+
+    useEffect(() => {
+        if (!loginFlag) return
+        console.log(`요청 시작, ${id}`)
+        const eventSource = new EventSource(`${CHAT_URL}/sse?userId=${id}`)
+
+        eventSource.onmessage = (event) => {
+            const newMessage = JSON.parse(event.data);
+            console.log('새 메시지:', newMessage);
+            setMessage(newMessage)
+            setShowAlarm(true)
+        };
+
+        // SSE 연결 종료 시
+        eventSource.onerror = () => {
+            console.error('SSE 연결에 문제가 발생했습니다.');
+            setShowAlarm(false)
+        };
+
+        return () => {
+            eventSource.close();
+        };
+    }, [id]);
 
     // 자동로그인 체크
     const checkLogin = async () => {
@@ -37,12 +63,12 @@ const RootLayout = () => {
     };
     useEffect(() => {
         if (id) checkLogin();
-    }, []);
+    }, [showAlarm]);
 
 
     return (
         <div className={styles.container}>
-            {/*<ChatAlarm loginFlag={loginFlag}/>*/}
+            {showAlarm && <ChatAlarm loginFlag={loginFlag} message={message}/>}
             <Outlet/>
         </div>
     );

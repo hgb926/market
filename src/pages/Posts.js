@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import Button from "../ui/Button";
 import {POST_URL} from "../config/host-config";
-import PostsSkeleton from "./PostsSkeleton";
+import PostsSkeleton from "../skeleton/PostsSkeleton";
 
 
 const Posts = () => {

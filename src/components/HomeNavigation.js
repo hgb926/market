@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoMdSearch } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { LuBell } from 'react-icons/lu';
 import { IoSettingsOutline } from 'react-icons/io5';
-import HomeNavigationSkeleton from './HomeNavigationSkeleton';
+import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
 
 const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) => {
     const [loading, setLoading] = useState(true);

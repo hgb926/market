@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/HomeNavigationSkeleton.module.scss';
+import styles from '../styles/skeleton/HomeNavigationSkeleton.module.scss';
 
 const HomeNavigationSkeleton = () => {
     return (

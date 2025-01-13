@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/pages/PostsSkeleton.module.scss';
+import styles from '../styles/skeleton/PostsSkeleton.module.scss';
 
 const PostsSkeleton = () => {
     const skeletonItems = Array.from({ length: 5 }); // 스켈레톤 아이템 개수 설정

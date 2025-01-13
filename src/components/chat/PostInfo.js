@@ -7,9 +7,10 @@ const PostInfo = ({chat}) => {
     const navi = useNavigate();
 
     return (
-        <div className={styles.postContainer} onClick={() => navi(`/post/${chat.postInfo.postId}`)}>
+        <div className={styles.postContainer}>
             <div
                 className={styles.postImg}
+                onClick={() => navi(`/post/${chat.postInfo.postId}`)}
                 style={{
                     backgroundImage: `url(${chat.postInfo.postImage})`,
                     backgroundSize: 'cover',
@@ -21,7 +22,7 @@ const PostInfo = ({chat}) => {
         <span className={styles.status}>
           {chat.postInfo.tradeType === 'sell' ? '판매 중' : '나눔'}
         </span>
-                    <p className={styles.title}>{chat.postInfo.postTitle}</p>
+                    <p className={styles.title}  onClick={() => navi(`/post/${chat.postInfo.postId}`)}>{chat.postInfo.postTitle}</p>
                 </div>
                 <div className={styles.price}>
                     {chat.postInfo.postPrice.toLocaleString('ko-KR')}원

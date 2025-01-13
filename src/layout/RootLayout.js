@@ -65,10 +65,10 @@ const RootLayout = () => {
         if (id) checkLogin();
     }, [showAlarm]);
 
-
+// 데이터 채워넣어야함, 근데 왜 한방향이지?
     return (
         <div className={styles.container}>
-            {showAlarm && <ChatAlarm loginFlag={loginFlag} message={message}/>}
+            {showAlarm && <ChatAlarm loginFlag={loginFlag} message={message} setShowAlarm={setShowAlarm}/>}
             <Outlet/>
         </div>
     );

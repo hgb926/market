@@ -82,7 +82,7 @@ const ChatRoom = () => {
                 room: roomId,
                 text,
                 writer: userId,
-                taker: chat.customerInfo.customerId === userId ? chat.sellerInfo.sellerId : userId
+                taker: chat.customerInfo.customerId === userId ? chat.sellerInfo.sellerId : chat.customerInfo.customerId
             };
             socket.send(JSON.stringify(message));
             setText('');

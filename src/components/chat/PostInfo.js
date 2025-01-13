@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 
 const PostInfo = ({chat}) => {
 
-    console.log(chat)
     const navi = useNavigate();
 
     return (

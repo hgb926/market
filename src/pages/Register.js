@@ -46,9 +46,6 @@ const Register = () => {
                 body: formData
             });
 
-            let responseData = await response.json();
-
-
             alert('회원가입이 완료되었습니다.');
             navigate('/auth');
             return;

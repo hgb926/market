@@ -4,7 +4,6 @@ import {CHAT_URL} from '../config/host-config';
 import ChatRoomHeader from '../components/chat/ChatRoomHeader'
 import ChatMessages from '../components/chat/ChatMessages';
 import ChatInput from '../components/chat/ChatInput';
-import PostsSkeleton from '../skeleton/PostsSkeleton';
 import PostInfo from "../components/chat/PostInfo";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
@@ -67,7 +66,6 @@ const ChatRoom = () => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.event === 'serverToClient') {
-                console.log(data)
                 setMessages((prev) => [...prev, data]);
             }
         };

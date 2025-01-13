@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { uiActions } from '../components/store/ui/UiSlice';
 import styles from '../styles/pages/WriteForm.module.scss';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { AiFillCamera } from 'react-icons/ai';
 import ImageUpload from "../components/ImageUpload";
 import CategoryDropdown from "../components/CategoryDropdown";
 import {sliceDetailAddress} from "../utils/sliceAddress";

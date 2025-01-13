@@ -19,7 +19,6 @@ const Posts = () => {
     const [isFinish, setIsFinish] = useState(false);
 
     // 로딩 스켈레톤 스크린을 보여줄 개수
-    const [skeletonCount, setSkeletonCount] = useState(4);
 
     const getPosts = async () => {
         if (isFinish) {

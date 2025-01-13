@@ -3,7 +3,7 @@ import styles from '../styles/pages/PostDetail.module.scss'
 import {useLocation, useParams} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
 import {CiHeart} from "react-icons/ci";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
 import ControlArrow from "../components/ControlArrow";

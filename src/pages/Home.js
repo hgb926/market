@@ -2,10 +2,7 @@ import React, {useEffect, useState} from 'react';
 import HomeNavigation from "../components/HomeNavigation";
 import styles from '../styles/pages/Home.module.scss'
 import Posts from "./Posts";
-import {useNavigate} from "react-router-dom";
-import {AUTH_URL} from "../config/host-config";
-import {useDispatch, useSelector} from "react-redux";
-import {userActions} from "../components/store/user/UserSlice";
+import {useSelector} from "react-redux";
 import {sliceAddress} from "../utils/sliceAddress";
 
 const Home = () => {

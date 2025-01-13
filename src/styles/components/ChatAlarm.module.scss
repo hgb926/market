@@ -15,6 +15,11 @@
   cursor: pointer;
   color: #a1a1a1;
   text-decoration: none;
+  animation: fadeIn 0.5s forwards; // 렌더링 시 애니메이션
+
+  &.fadeOut {
+    animation: fadeOut 0.5s forwards; // 사라질 때 애니메이션
+  }
   .msgWrap {
     width: 85%;
     height: 50px;
@@ -51,5 +56,23 @@
       top: 7px;
       color: #a1a1a1;
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

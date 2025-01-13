@@ -99,7 +99,7 @@ const ChatRoom = () => {
         }
     }, [messages]);
 
-    if (loading || !chat) return <PostsSkeleton />;
+    if (loading || !chat) return <div>로딩중</div>;
 
     return (
         <>

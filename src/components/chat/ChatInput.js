@@ -20,7 +20,7 @@ const ChatInput = ({ text, onChange, onSend, inputRef }) => {
                     type="text"
                     value={text}
                     onChange={(e) => onChange(e.target.value)}
-                    onKeyDown={enterHandler} // Enter 핸들러 연결
+                    onKeyUp={enterHandler} // Enter 핸들러 연결
                     className={styles.input}
                     ref={inputRef}
                     placeholder="메시지 보내기"

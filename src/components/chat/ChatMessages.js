@@ -33,7 +33,11 @@ const ChatMessages = ({messages, userId, chat}) => {
                                 }}
                             />
                             <div className={styles.sellerText}>{msg.text}</div>
-                            <div className={styles.sellerSendTime}>{msg.formatTime[1]}</div>
+                            <div className={styles.sellerSendTime}>
+                                {idx === 0 || msg.formatTime[1] !== messages[idx - 1]?.formatTime[1]
+                                    ? ""
+                                    : msg.formatTime[1]
+                            }</div>
                         </div>
                     </>
                 ) : (
@@ -42,7 +46,11 @@ const ChatMessages = ({messages, userId, chat}) => {
                         <div className={styles.myChat} key={msg.date}>
 
                             <div className={styles.myTime}>
-                                {isDifferentTime ? msg.formatTime[1] : ""}
+                                {
+                                    idx === 0 || msg.formatTime[1] !== messages[idx - 1]?.formatTime[1]
+                                        ? ""
+                                        : msg.formatTime[1]
+                                }
                             </div>
                             <div className={styles.myText}>{msg.text}</div>
                         </div>

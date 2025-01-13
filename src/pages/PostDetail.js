@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/PostDetail.module.scss'
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
 import {CiHeart} from "react-icons/ci";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,17 +11,19 @@ import Dots from "../components/Dots";
 import {sliceAddress} from "../utils/sliceAddress";
 import ShowUserImage from "../components/ShowUserImage";
 import RequestChatBtn from "../components/chat/RequestChatBtn.js";
+import {POST_URL} from "../config/host-config";
 
 const PostDetail = () => {
-    const location = useLocation();
-    const {post} = location.state || {} // Link태그로 전달된 데이터를 받는 법
 
+    const {id: postId} = useParams();
     const dispatch = useDispatch();
     let {pathname} = useLocation();
     const userId = localStorage.getItem('id');
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
     const [showUserProfile, setShowUserProfile] = useState(false)
+    const [post, setPost] = useState('')
+    const [loading, setLoading] = useState(true)
     const urls = [
         '/', '/chat', '/map', '/info'
     ]
@@ -29,8 +31,28 @@ const PostDetail = () => {
         dispatch(uiActions.changeRenderStatus(false))
     }
 
+    const getPost = async () => {
+        try {
+            const response = await fetch(`${POST_URL}/detail`, {
+                method: 'POST',
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({id: postId})
+            });
+            if (response.status === 200) {
+                const responseData = await response.json();
+                setPost(responseData)
+                setLoading(false)
+            } else {
 
-    const {writerInfo: seller} = post
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    useEffect(() => {
+        getPost()
+    }, []);
+
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -55,11 +77,11 @@ const PostDetail = () => {
         }
         setShowImages(true)
     }
-
+    if (loading) return <div>로딩중</div>;
 
     return (
         <>
-            {!showImages ? (<>
+            {!showImages && post ? (<>
                     <div className={styles.container}>
                         <PostDetailNavigation/>
                         <div>
@@ -86,10 +108,10 @@ const PostDetail = () => {
                                     alt={'프로필'}
                                     onClick={() => setShowUserProfile(true)}
                                     className={styles.userImage}
-                                    src={seller.profileUrl}/>
+                                    src={post.writerInfo.profileUrl}/>
                                 <div className={styles.sellerInfo}>
-                                    <div className={styles.sellerName}>{seller.nickname}</div>
-                                    <div className={styles.location}>{sliceAddress(seller.address)}</div>
+                                    <div className={styles.sellerName}>{post.writerInfo.nickname}</div>
+                                    <div className={styles.location}>{sliceAddress(post.writerInfo.address)}</div>
                                 </div>
                             </div>
                             <div className={styles.descriptWrap}>
@@ -118,7 +140,7 @@ const PostDetail = () => {
 
                             {userId !== post.writerId &&
                                 <RequestChatBtn
-                                post={post}
+                                    post={post}
                                 />
                             }
                         </div>
@@ -130,7 +152,7 @@ const PostDetail = () => {
                     currentIdx={currentIndex}
                 />)}
             {showUserProfile && (<ShowUserImage
-                image={seller.profileUrl}
+                image={post.writerInfo.profileUrl}
                 changeShowUserImage={changeShowUserImage}
             />)}
         </>

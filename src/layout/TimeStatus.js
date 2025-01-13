@@ -6,6 +6,7 @@ import {FaWifi} from "react-icons/fa";
 
 const TimeStatus = () => {
     const [time, setTime] = useState('');
+    const [battery, setBattery] = useState(58)
 
     // 시간 업데이트
     useEffect(() => {
@@ -19,6 +20,16 @@ const TimeStatus = () => {
 
         updateTime();
         const timer = setInterval(updateTime, 1000); // 매 초마다 업데이트
+
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        const updateBattery = () => {
+            setBattery(prevBattery => prevBattery > 1 ? prevBattery - 1 : 1);  // 배터리가 0 미만으로 내려가지 않도록 처리
+        };
+
+        const timer = setInterval(updateBattery, 60000); // 매 100ms마다 배터리 업데이트
 
         return () => clearInterval(timer);
     }, []);
@@ -38,7 +49,15 @@ const TimeStatus = () => {
                 <div className={styles.iconWrap}>
                     <BsBarChartFill className={styles.signal}/>
                     <FaWifi className={styles.wifi}/>
-                    <CgBatteryFull className={styles.battery}/>
+                    {/*<CgBatteryFull className={styles.battery}/>*/}
+                    <div className={styles.batteryContainer}>
+                        <div
+                            className={styles.dynamicBattery}
+                            style={{
+                                width: `${battery}%`
+                            }}
+                        ></div>
+                    </div>
                 </div>
             </div>
         </div>

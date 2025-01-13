@@ -42,7 +42,7 @@ const RootLayout = () => {
 
     return (
         <div className={styles.container}>
-            <ChatAlarm loginFlag={loginFlag}/>
+            {/*<ChatAlarm loginFlag={loginFlag}/>*/}
             <Outlet/>
         </div>
     );

@@ -33,6 +33,7 @@ const ChatRoom = () => {
                 const data = await response.json();
                 setTimeout(() => {
                     setChat(data);
+                    console.log(data)
                     setLoading(false);
                 }, 200)
             }
@@ -73,6 +74,7 @@ const ChatRoom = () => {
         return () => ws.close();
     };
 
+
     const sendMessage = () => {
         if (socket && text.trim()) {
             const message = {
@@ -80,6 +82,7 @@ const ChatRoom = () => {
                 room: roomId,
                 text,
                 writer: userId,
+                taker: chat.customerInfo.customerId === userId ? chat.sellerInfo.sellerId : userId
             };
             socket.send(JSON.stringify(message));
             setText('');

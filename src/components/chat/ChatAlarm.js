@@ -15,7 +15,7 @@ const ChatAlarm = ({loginFlag}) => {
                 <div
                     className={styles.image}
                     style={{
-                        backgroundImage: `url(${userData.profileUrl})`,
+                        // backgroundImage: `url(${userData.profileUrl})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         cursor: 'pointer',

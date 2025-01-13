@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { CHAT_URL } from '../config/host-config';
+import React, {useEffect, useRef, useState} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+import {CHAT_URL} from '../config/host-config';
 import ChatRoomHeader from '../components/chat/ChatRoomHeader'
 import ChatMessages from '../components/chat/ChatMessages';
 import ChatInput from '../components/chat/ChatInput';
@@ -8,6 +8,7 @@ import PostsSkeleton from '../skeleton/PostsSkeleton';
 import PostInfo from "../components/chat/PostInfo";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
+import ChatSpinner from "../skeleton/ChatSpinner";
 
 const ChatRoom = () => {
     const [chat, setChat] = useState(null);
@@ -20,7 +21,7 @@ const ChatRoom = () => {
     const chatContainerRef = useRef(null);
     const inputRef = useRef();
     const navigate = useNavigate();
-    const { id: roomId } = useParams();
+    const {id: roomId} = useParams();
     const userId = localStorage.getItem('id');
 
     dispatch(uiActions.changeRenderStatus(false))
@@ -31,8 +32,10 @@ const ChatRoom = () => {
             const response = await fetch(`${CHAT_URL}/detail?id=${roomId}`);
             if (response.status === 200) {
                 const data = await response.json();
-                setChat(data);
-                setLoading(false);
+                setTimeout(() => {
+                    setChat(data);
+                    setLoading(false);
+                }, 200)
             }
         } catch (e) {
             console.error('Error fetching chat info:', e);
@@ -49,7 +52,7 @@ const ChatRoom = () => {
         } catch (e) {
             console.error('Error fetching messages:', e);
         } finally {
-            setLoading(false);
+            setLoading(true);
         }
     };
 
@@ -58,7 +61,7 @@ const ChatRoom = () => {
         setSocket(ws);
 
         ws.onopen = () => {
-            ws.send(JSON.stringify({ event: 'joinRoom', room: roomId }));
+            ws.send(JSON.stringify({event: 'joinRoom', room: roomId}));
         };
 
         ws.onmessage = (event) => {
@@ -99,13 +102,13 @@ const ChatRoom = () => {
         }
     }, [messages]);
 
-    if (loading || !chat) return <div>로딩중</div>;
+    if (loading || !chat) return <ChatSpinner/>
 
     return (
         <>
-            <ChatRoomHeader chat={chat} userId={userId} onBack={() => navigate('/chat')} />
-            <PostInfo chat={chat} />
-            <ChatMessages messages={messages} userId={userId} chat={chat} />
+            <ChatRoomHeader chat={chat} userId={userId} onBack={() => navigate('/chat')}/>
+            <PostInfo chat={chat}/>
+            <ChatMessages messages={messages} userId={userId} chat={chat}/>
             <ChatInput
                 text={text}
                 onChange={setText}

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/RootLayout.module.scss'
-import {Outlet} from "react-router-dom";
+import {Outlet, useLocation, useParams} from "react-router-dom";
 import {AUTH_URL, CHAT_URL} from "../config/host-config";
 import {userActions} from "../components/store/user/UserSlice";
 import {useDispatch} from "react-redux";
@@ -10,6 +10,7 @@ const RootLayout = () => {
 
     const dispatch = useDispatch();
     const id = localStorage.getItem('id');
+    const {id: roomId} = useParams();
     const [loginFlag, setLoginFlag] = useState(false)
     const [message, setMessage] = useState([])
     const [showAlarm, setShowAlarm] = useState(false)
@@ -23,6 +24,8 @@ const RootLayout = () => {
 
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
+            console.log(newMessage.room === roomId)
+            if (newMessage.room === roomId) return
             console.log('새 메시지:', newMessage);
             setMessage(newMessage)
             setShowAlarm(true)
@@ -66,7 +69,7 @@ const RootLayout = () => {
         if (id) checkLogin();
     }, [showAlarm]);
 
-// 데이터 채워넣어야함, 근데 왜 한방향이지?
+
     return (
         <div className={styles.container}>
             {showAlarm && <ChatAlarm loginFlag={loginFlag} message={message} setShowAlarm={setShowAlarm}/>}

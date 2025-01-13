@@ -43,8 +43,7 @@ const ChatAlarm = ({ loginFlag, message, setShowAlarm }) => {
                     <p className={styles.name}>{message.nickname}</p>
                     <p className={styles.text}>{message.text}</p>
                 </div>
-                {/* 제목 7글자 이상이면 ... 처리 */}
-                <div className={styles.postTitle}>{message.postTitle}</div>
+                <div className={styles.postTitle}>{message.postTitle.length > 9 ? message.postTitle.slice(0, 10) + "..." : message.postTitle}</div>
             </div>
         </Link>
     );

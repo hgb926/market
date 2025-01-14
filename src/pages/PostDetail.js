@@ -13,6 +13,7 @@ import ShowUserImage from "../components/ShowUserImage";
 import RequestChatBtn from "../components/chat/RequestChatBtn.js";
 import {POST_URL} from "../config/host-config";
 import PostDetailSkeleton from "../skeleton/PostDetailSkeleton";
+import {FaHeart} from "react-icons/fa";
 
 const PostDetail = () => {
 
@@ -23,6 +24,7 @@ const PostDetail = () => {
     const [showImages, setShowImages] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
     const [showUserProfile, setShowUserProfile] = useState(false)
+    const [isLike, setIsLike] = useState(false)
     const [post, setPost] = useState('')
     const [loading, setLoading] = useState(true)
     const urls = [
@@ -41,6 +43,9 @@ const PostDetail = () => {
             });
             if (response.status === 200) {
                 const responseData = await response.json();
+
+                if (responseData.likes.includes(userId)) setIsLike(true)
+
                 setTimeout(() => {
                     setPost(responseData)
                     setLoading(false)
@@ -56,6 +61,9 @@ const PostDetail = () => {
         getPost()
     }, []);
 
+    useEffect(() => {
+
+    }, [isLike]);
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -80,6 +88,24 @@ const PostDetail = () => {
         }
         setShowImages(true)
     }
+
+    const reactionHandler = async () => {
+        const payload = {
+            userId,
+            postId
+        }
+        const response = await fetch(`${POST_URL}/reaction`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(payload)
+        });
+        if (response.status === 200) {
+            let responseText = await response.text();
+            responseText === "추가" ? setIsLike(true) : setIsLike(false)
+        }
+
+    }
+
     if (loading) return <PostDetailSkeleton/>;
 
     return (
@@ -130,7 +156,19 @@ const PostDetail = () => {
                     </div>
                     <div className={styles.bottomBar}>
                         <div className={styles.bottomMain}>
-                            <div className={styles.heart}><CiHeart className={styles.icon}/>️</div>
+                            <div className={styles.heart}>
+                                {isLike ?
+                                    <FaHeart
+                                        className={styles.liked}
+                                        onClick={reactionHandler}
+                                    />
+                                    :
+                                    <CiHeart
+                                        className={styles.unlike}
+                                        onClick={reactionHandler}
+                                    />
+                                }
+                            </div>
                             <div className={styles.descript}>
                                 {post.tradeType === "sell" ?
                                     <>

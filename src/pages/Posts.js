@@ -87,7 +87,7 @@ const Posts = () => {
                     </div>
                     <div className={styles.icons}>
                         <span><IoChatbubbleEllipsesSharp/> {post.chats}</span>
-                        <span><FaHeart/>️ {post.likes}</span>
+                        <span><FaHeart/>️ {post.likes.length || 0}</span>
                     </div>
                 </Link>
             ))}

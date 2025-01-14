@@ -20,8 +20,10 @@ const API_BASE_URL = backendHostName;
 const AUTH = "/auth"
 const POST = '/post'
 const CHAT = '/chat'
+const NOTICE = '/notice'
 
 export const WEBSOCKET_URL = websocketUrl;
 export const AUTH_URL = API_BASE_URL + AUTH;
 export const POST_URL = API_BASE_URL + POST;
 export const CHAT_URL = API_BASE_URL + CHAT;
+export const NOTICE_URL = API_BASE_URL + NOTICE;

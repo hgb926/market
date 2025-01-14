@@ -3,16 +3,42 @@ import styles from '../styles/pages/Chat.module.scss'
 import HomeNavigation from "../components/HomeNavigation";
 import ChatSortBtn from "../components/ChatSortBtn";
 import {CHAT_URL} from "../config/host-config";
-import {useSelector} from "react-redux";
+
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {sseActions} from "../components/store/user/SseSlice";
 
 
 const Chat = () => {
 
     const userId = localStorage.getItem('id')
-
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
+
+
+    useEffect(() => {
+        if (!userId) return
+        console.log(`room sse 요청 시작, ${userId}`)
+        const eventSource = new EventSource(`${CHAT_URL}/sse/room?userId=${userId}`)
+
+        eventSource.onmessage = (event) => {
+            const newMessage = JSON.parse(event.data);
+            setChatList(prev => [...prev, newMessage])
+            console.log('newMessage\n', newMessage)
+        };
+
+        // SSE 연결 종료 시
+        eventSource.onerror = () => {
+            console.log('연결 끊김, 재연결 시도 중...');
+        };
+
+        return () => {
+            eventSource.close();
+        };
+    }, [userId, chatList]);
+
+
+
     const getChatList = async () => {
         setLoading(true)
         const response = await fetch(`${CHAT_URL}/list`, {
@@ -22,6 +48,7 @@ const Chat = () => {
         });
         if (response.status === 200) {
             let result = await response.json();
+            console.log(result)
             setChatList(result)
             setLoading(false)
         } else {
@@ -31,6 +58,8 @@ const Chat = () => {
     useEffect(() => {
         getChatList()
     }, []);
+
+
 
     return (
         <>

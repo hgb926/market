@@ -1,31 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/RootLayout.module.scss'
-import {Outlet, useLocation, useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {AUTH_URL, CHAT_URL} from "../config/host-config";
 import {userActions} from "../components/store/user/UserSlice";
 import {useDispatch} from "react-redux";
 import ChatAlarm from "../components/chat/ChatAlarm";
+import {sseActions} from "../components/store/user/SseSlice";
 
 const RootLayout = () => {
 
     const dispatch = useDispatch();
     const id = localStorage.getItem('id');
     const {id: roomId} = useParams();
-    const [loginFlag, setLoginFlag] = useState(false)
     const [message, setMessage] = useState([])
     const [showAlarm, setShowAlarm] = useState(false)
 
 
     useEffect(() => {
-        console.log(loginFlag)
-        if (!loginFlag) return
+        if (!id) return
         console.log(`요청 시작, ${id}`)
         const eventSource = new EventSource(`${CHAT_URL}/sse?userId=${id}`)
 
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
             if (newMessage.room === roomId) return
-            console.log('새 메시지:', newMessage);
+            dispatch(sseActions.setMessage(newMessage))
             setMessage(newMessage)
             setShowAlarm(true)
         };
@@ -51,7 +50,6 @@ const RootLayout = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                setLoginFlag(true)
                 dispatch(userActions.setUser(userData));
             } else {
                 const { message } = await response.json();
@@ -70,7 +68,7 @@ const RootLayout = () => {
 
     return (
         <div className={styles.container}>
-            {showAlarm && <ChatAlarm loginFlag={loginFlag} message={message} setShowAlarm={setShowAlarm}/>}
+            {showAlarm && <ChatAlarm id={id} message={message} setShowAlarm={setShowAlarm}/>}
             <Outlet/>
         </div>
     );

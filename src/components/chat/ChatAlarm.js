@@ -3,7 +3,7 @@ import styles from '../../styles/components/ChatAlarm.module.scss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ChatAlarm = ({ loginFlag, message, setShowAlarm }) => {
+const ChatAlarm = ({ message, setShowAlarm }) => {
     const userData = useSelector((state) => state.userInfo.userData);
     const [isFadingOut, setIsFadingOut] = useState(false);
 

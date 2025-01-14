@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../styles/components/ChatMenuDropUp.module.scss'
 import {useParams} from "react-router-dom";
+import {CHAT_URL} from "../../config/host-config";
 
 
 const ChatMenuDropDown = ({ setMenuDrop }) => {
@@ -8,8 +9,11 @@ const ChatMenuDropDown = ({ setMenuDrop }) => {
     let {id: roomId} = useParams();
     console.log(roomId)
 
-    const deleteHandler = () => {
-        console.log("ghcnf")
+    const deleteHandler = async () => {
+        await fetch(`${CHAT_URL}/delete/${roomId}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
     }
 
     return (

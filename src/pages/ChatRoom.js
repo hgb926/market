@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {CHAT_URL} from '../config/host-config';
+import {CHAT_URL, WEBSOCKET_URL} from '../config/host-config';
 import ChatRoomHeader from '../components/chat/ChatRoomHeader'
 import ChatMessages from '../components/chat/ChatMessages';
 import ChatInput from '../components/chat/ChatInput';
@@ -57,7 +57,7 @@ const ChatRoom = () => {
     };
 
     const setupWebSocket = () => {
-        const ws = new WebSocket('ws://localhost:8080');
+        const ws = new WebSocket(`${WEBSOCKET_URL}`);
         setSocket(ws);
 
         ws.onopen = () => {

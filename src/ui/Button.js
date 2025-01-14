@@ -1,15 +1,26 @@
 import React from 'react';
 import styles from '../styles/ui/Button.module.scss'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const Button = ({text, url}) => {
+const Button = ({text, url, userId}) => {
+
+    const navi = useNavigate();
+
+    const urlControlHandler = () => {
+
+        if (!userId) {
+            navi('/auth')
+            return
+        }
+        navi(url)
+    }
     return (
-        <Link
-            to={url}
+        <div
+            onClick={urlControlHandler}
             className={styles.container}
         >
             + {text}
-        </Link>
+        </div>
     );
 };
 

@@ -24,7 +24,6 @@ const RootLayout = () => {
 
         eventSource.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
-            console.log(newMessage.room === roomId)
             if (newMessage.room === roomId) return
             console.log('새 메시지:', newMessage);
             setMessage(newMessage)
@@ -33,7 +32,7 @@ const RootLayout = () => {
 
         // SSE 연결 종료 시
         eventSource.onerror = () => {
-            console.error('SSE 연결에 문제가 발생했습니다.');
+            console.log('연결 끊김, 재연결 시도 중...');
             setShowAlarm(false)
         };
 
@@ -52,7 +51,6 @@ const RootLayout = () => {
 
             if (response.ok) {
                 const userData = await response.json();
-                console.log('로그인 성공 : ', userData)
                 setLoginFlag(true)
                 dispatch(userActions.setUser(userData));
             } else {

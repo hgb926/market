@@ -15,6 +15,12 @@ const RequestChatBtn = ({post}) => {
 
     const requestChatHandler = async () => {
 
+        if (!userId) {
+            navi('/auth')
+            return
+        }
+
+
         if (userId=== post.writerId) return;
         const payload = {
             customerInfo: {

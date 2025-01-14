@@ -18,6 +18,8 @@ const Posts = () => {
     // 더이상 가져올 데이터가 있는지 확인
     const [isFinish, setIsFinish] = useState(false);
 
+    const userId = localStorage.getItem('id');
+
     // 로딩 스켈레톤 스크린을 보여줄 개수
 
     const getPosts = async () => {
@@ -92,6 +94,7 @@ const Posts = () => {
             <Button
                 text={'글쓰기'}
                 url={'write'}
+                userId={userId}
             />
         </div>
         }

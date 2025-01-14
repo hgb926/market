@@ -9,10 +9,11 @@
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
   z-index: 9998; /* 모달 배경이 모달보다 뒤로 가도록 */
+  cursor: pointer;
 
   .container {
     width: 400px;
-    height: 400px;
+    height: 550px;
     position: absolute;
     left: 50%;
     top: 15%;

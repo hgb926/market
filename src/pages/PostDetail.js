@@ -14,6 +14,9 @@ import RequestChatBtn from "../components/chat/RequestChatBtn.js";
 import {POST_URL} from "../config/host-config";
 import PostDetailSkeleton from "../skeleton/PostDetailSkeleton";
 import {FaHeart} from "react-icons/fa";
+import PostDetailImages from "../components/post/PostDetailImages";
+import PostDetailInfo from "../components/post/PostDetailInfo";
+import PostBottomSection from "../components/post/PostBottomSection";
 
 const PostDetail = () => {
 
@@ -44,7 +47,6 @@ const PostDetail = () => {
             if (response.status === 200) {
                 const responseData = await response.json();
 
-                if (responseData.likes.includes(userId)) setIsLike(true)
 
                 setTimeout(() => {
                     setPost(responseData)
@@ -61,9 +63,6 @@ const PostDetail = () => {
         getPost()
     }, []);
 
-    useEffect(() => {
-
-    }, [isLike]);
 
     const changeShowImage = (flag) => {
         setShowImages(flag)
@@ -89,22 +88,6 @@ const PostDetail = () => {
         setShowImages(true)
     }
 
-    const reactionHandler = async () => {
-        const payload = {
-            userId,
-            postId
-        }
-        const response = await fetch(`${POST_URL}/reaction`, {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(payload)
-        });
-        if (response.status === 200) {
-            let responseText = await response.text();
-            responseText === "추가" ? setIsLike(true) : setIsLike(false)
-        }
-
-    }
 
     if (loading) return <PostDetailSkeleton/>;
 
@@ -113,79 +96,20 @@ const PostDetail = () => {
             {!showImages && post ? (<>
                     <div className={styles.container}>
                         <PostDetailNavigation/>
-                        <div>
-                            <div className={styles.pic}
-                                 onClick={(e) => checkClickTarget(e)}
-                                 style={{
-                                     backgroundImage: `url(${post.images[currentIndex]})`,
-                                     backgroundSize: 'cover',
-                                     backgroundPosition: 'center'
-                                 }}>
-                                {post.images.length > 1 &&
-                                    <ControlArrow
-                                        changeImg={changeImage}
-                                    />}
-                                <Dots
-                                    length={post.images.length}
-                                    currentIdx={currentIndex}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.subContainer}>
-                            <div className={styles.sellerWrap}>
-                                <img
-                                    alt={'프로필'}
-                                    onClick={() => setShowUserProfile(true)}
-                                    className={styles.userImage}
-                                    src={post.writerInfo.profileUrl}/>
-                                <div className={styles.sellerInfo}>
-                                    <div className={styles.sellerName}>{post.writerInfo.nickname}</div>
-                                    <div className={styles.location}>{sliceAddress(post.writerInfo.address)}</div>
-                                </div>
-                            </div>
-                            <div className={styles.descriptWrap}>
-                                <h1 className={styles.title}>{post.title}</h1>
-                                <span className={styles.category}>{post.category}</span>
-                                <span style={{color: '#9f9e9e'}}> · </span>
-                                <span className={styles.time}>{post.createdAt}</span>
-                                <div className={styles.content}>{post.content}</div>
-                                <p className={styles.wantLocation}>거래 희망 장소</p>
-                                <div className={styles.map}>{post.wantPlace}</div>
-                            </div>
-                        </div>
+                        <PostDetailImages
+                            checkClickTarget={checkClickTarget}
+                            changeImage={changeImage}
+                            post={post}
+                            currentIndex={currentIndex}
+                        />
+                        <PostDetailInfo
+                            post={post}
+                            setShowUserProfile={setShowUserProfile}
+                        />
                     </div>
-                    <div className={styles.bottomBar}>
-                        <div className={styles.bottomMain}>
-                            <div className={styles.heart}>
-                                {isLike ?
-                                    <FaHeart
-                                        className={styles.liked}
-                                        onClick={reactionHandler}
-                                    />
-                                    :
-                                    <CiHeart
-                                        className={styles.unlike}
-                                        onClick={reactionHandler}
-                                    />
-                                }
-                            </div>
-                            <div className={styles.descript}>
-                                {post.tradeType === "sell" ?
-                                    <>
-                                        <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
-                                        <span className={styles.flag}>{post.suggestFlag ? '가격 제안 불가' : '가격 제한 가능'}</span>
-                                    </>
-                                    :
-                                    <span className={styles.price}>나눔!</span>}
-                            </div>
-
-                            {userId !== post.writerId &&
-                                <RequestChatBtn
-                                    post={post}
-                                />
-                            }
-                        </div>
-                    </div>
+                    <PostBottomSection
+                        post={post}
+                    />
                 </>) :
                 (<ImageSlider
                     images={post.images}

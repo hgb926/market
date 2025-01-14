@@ -45,11 +45,10 @@
 
     .noticeContainer {
       width: 90%;
-      margin: 15px auto;
       padding: 15px 20px;
       border-radius: 16px;
-      background: #1f1f1f; /* 어두운 배경 */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+      background: #2e2e2e; /* 어두운 배경 */
+      //box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
       display: flex;
       align-items: center;
       transition: transform 0.2s, box-shadow 0.2s;

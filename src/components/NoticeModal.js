@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/components/NoticeModal.module.scss';
 import ReactDOM from 'react-dom';
 import {NOTICE_URL} from "../config/host-config";
+import {useNavigate} from "react-router-dom";
 
 const NoticeModal = ({setOpenNotice}) => {
 
     const userId = localStorage.getItem('id');
-
+    const navi = useNavigate();
     const [noticeList, setNoticeList] = useState([])
 
     const getNoticeList = async () => {
@@ -38,12 +39,17 @@ const NoticeModal = ({setOpenNotice}) => {
         e.stopPropagation(); // 이벤트가 더 이상 전파되지 않도록 함
     };
 
+    const urlControlHandler = (id) => {
+        navi(`post/${id}`)
+    }
+
+    // 알림 없을때 처리도 해야함
     return ReactDOM.createPortal(
         <div className={styles.overlay} onClick={outerClickHandler}>
             <div className={styles.container} onClick={innerClickHandler}>
                 <p className={styles.allRead}>모두 읽기</p>
                 {noticeList.slice().reverse().map((notice) => (
-                    <div className={styles.noticeContainer} key={notice._id}>
+                    <div className={styles.noticeContainer} key={notice._id} onClick={() => urlControlHandler(notice.postId)}>
                         <div
                             className={styles.image}
                             style={{

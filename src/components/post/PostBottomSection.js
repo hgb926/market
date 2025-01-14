@@ -5,20 +5,25 @@ import {CiHeart} from "react-icons/ci";
 import RequestChatBtn from "../chat/RequestChatBtn";
 import {POST_URL} from "../../config/host-config";
 import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const PostBottomSection = ({post }) => {
 
     const userId = localStorage.getItem('id') || "";
+    const userData = useSelector(state => state.userInfo.userData);
     const [isLike, setIsLike] = useState(post.likes.includes(userId))
     const {id: postId} = useParams();
+    console.log(post)
 
 
     const reactionHandler = async () => {
 
         const payload = {
-            userId,
             postId,
+            postImage: post.images[0],
+            postTitle: post.title,
             writerId: post.writerId,
+            senderNickname: userData.nickname
         }
         const response = await fetch(`${POST_URL}/reaction`, {
             method: 'POST',

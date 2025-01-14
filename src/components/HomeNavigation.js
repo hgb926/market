@@ -5,9 +5,11 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { LuBell } from 'react-icons/lu';
 import { IoSettingsOutline } from 'react-icons/io5';
 import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
+import NoticeModal from "./NoticeModal";
 
 const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) => {
     const [loading, setLoading] = useState(true);
+    const [openNotice, setOpenNotice] = useState(false)
 
     useEffect(() => {
         // 500ms 후 로딩 완료
@@ -23,18 +25,21 @@ const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) =
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.town}>
-                {mainText}
-                {arrow && <IoIosArrowDown className={styles.arrow} />}
+        <>
+            <div className={styles.container}>
+                <div className={styles.town}>
+                    {mainText}
+                    {arrow && <IoIosArrowDown className={styles.arrow}/>}
+                </div>
+                <div className={styles.menus}>
+                    {hamburger && <RxHamburgerMenu/>}
+                    {search && <IoMdSearch/>}
+                    {bell && <LuBell onClick={() => setOpenNotice(!openNotice)}/>}
+                    {setting && <IoSettingsOutline/>}
+                </div>
             </div>
-            <div className={styles.menus}>
-                {hamburger && <RxHamburgerMenu />}
-                {search && <IoMdSearch />}
-                {bell && <LuBell />}
-                {setting && <IoSettingsOutline />}
-            </div>
-        </div>
+            {openNotice && <NoticeModal setOpenNotice={setOpenNotice}/>}
+        </>
     );
 };
 

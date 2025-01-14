@@ -3,31 +3,30 @@ import styles from '../styles/pages/Chat.module.scss'
 import HomeNavigation from "../components/HomeNavigation";
 import ChatSortBtn from "../components/ChatSortBtn";
 import {CHAT_URL} from "../config/host-config";
-
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {sseActions} from "../components/store/user/SseSlice";
+
 
 
 const Chat = () => {
 
     const userId = localStorage.getItem('id')
+    const newMessage = useSelector(state => state.sse.message);
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
-
+    console.log(chatList)
 
     useEffect(() => {
-        if (!userId) return
-        console.log(`room sse 요청 시작, ${userId}`)
-        const eventSource = new EventSource(`${CHAT_URL}/sse/room?userId=${userId}`)
+        if (!userId) return;
+
+        console.log(`room sse 요청 시작, ${userId}`);
+        const eventSource = new EventSource(`${CHAT_URL}/sse/room?userId=${userId}`);
 
         eventSource.onmessage = (event) => {
-            const newMessage = JSON.parse(event.data);
-            setChatList(prev => [...prev, newMessage])
-            console.log('newMessage\n', newMessage)
+            const newRoomData = JSON.parse(event.data);
+            setChatList((prev) => [...prev, newRoomData]);
         };
 
-        // SSE 연결 종료 시
         eventSource.onerror = () => {
             console.log('연결 끊김, 재연결 시도 중...');
         };
@@ -35,7 +34,19 @@ const Chat = () => {
         return () => {
             eventSource.close();
         };
-    }, [userId, chatList]);
+    }, [userId]); // `chatList`와 `newMessage`를 제외
+
+    useEffect(() => {
+        if (!newMessage) return;
+        console.log("새 메시지:", newMessage);
+        setChatList((prev) =>
+            prev.map((chat) =>
+                chat._id === newMessage.room // roomId가 일치하는지 확인
+                    ? { ...chat, lastMsg: newMessage.text, lastChatTime: newMessage.date } // 갱신
+                    : chat // 그대로 유지
+            )
+        );
+    }, [newMessage]); // `newMessage`가 변경될 때만 실행
 
 
 

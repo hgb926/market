@@ -14,10 +14,12 @@ const RootLayout = () => {
     const {id: roomId} = useParams();
     const [message, setMessage] = useState([])
     const [showAlarm, setShowAlarm] = useState(false)
+    const [isConnect, setIsConnect] = useState(false)
 
 
     useEffect(() => {
         if (!id) return
+        setIsConnect(true)
         console.log(`요청 시작, ${id}`)
         const eventSource = new EventSource(`${CHAT_URL}/sse?userId=${id}`)
 
@@ -33,12 +35,13 @@ const RootLayout = () => {
         eventSource.onerror = () => {
             console.log('연결 끊김, 재연결 시도 중...');
             setShowAlarm(false)
+            setIsConnect(true)
         };
 
         return () => {
             eventSource.close();
         };
-    }, [id]);
+    }, [id, isConnect]);
 
     // 자동로그인 체크
     const checkLogin = async () => {

@@ -6,14 +6,9 @@ import {CiHeart} from "react-icons/ci";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
-import ControlArrow from "../components/ControlArrow";
-import Dots from "../components/Dots";
-import {sliceAddress} from "../utils/sliceAddress";
 import ShowUserImage from "../components/ShowUserImage";
-import RequestChatBtn from "../components/chat/RequestChatBtn.js";
 import {POST_URL} from "../config/host-config";
 import PostDetailSkeleton from "../skeleton/PostDetailSkeleton";
-import {FaHeart} from "react-icons/fa";
 import PostDetailImages from "../components/post/PostDetailImages";
 import PostDetailInfo from "../components/post/PostDetailInfo";
 import PostBottomSection from "../components/post/PostBottomSection";
@@ -47,9 +42,10 @@ const PostDetail = () => {
             if (response.status === 200) {
                 const responseData = await response.json();
 
-
+                console.log(responseData)
                 setTimeout(() => {
                     setPost(responseData)
+                    setIsLike(responseData.likes.includes(userId))
                     setLoading(false)
                 }, 300)
             } else {
@@ -109,6 +105,8 @@ const PostDetail = () => {
                     </div>
                     <PostBottomSection
                         post={post}
+                        isLike={isLike}
+                        setIsLike={setIsLike}
                     />
                 </>) :
                 (<ImageSlider

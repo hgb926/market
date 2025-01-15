@@ -7,12 +7,12 @@ import {POST_URL} from "../../config/host-config";
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const PostBottomSection = ({post }) => {
+const PostBottomSection = ({post, isLike, setIsLike}) => {
 
     const userId = localStorage.getItem('id') || "";
     const userData = useSelector(state => state.userInfo.userData);
-    const [isLike, setIsLike] = useState(post.likes.includes(userId))
     const {id: postId} = useParams();
+    console.log(isLike)
 
 
     const reactionHandler = async () => {

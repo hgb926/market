@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from '../styles/components/HomeNavigation.module.scss';
-import { IoIosArrowDown, IoMdSearch } from 'react-icons/io';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { LuBell } from 'react-icons/lu';
-import { IoSettingsOutline } from 'react-icons/io5';
+import {IoIosArrowDown, IoMdSearch} from 'react-icons/io';
+import {RxHamburgerMenu} from 'react-icons/rx';
+import {LuBell} from 'react-icons/lu';
+import {IoSettingsOutline} from 'react-icons/io5';
 import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
 import NoticeModal from "./NoticeModal";
-import { useLocation } from "react-router-dom";
-import {NOTICE_URL} from "../config/host-config";
+import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) => {
+
+const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => {
     const [loading, setLoading] = useState(true);
     const [openNotice, setOpenNotice] = useState(false);
-    const { pathname } = useLocation();
-    const id = localStorage.getItem('id') || '';
+    const {pathname} = useLocation();
+    const isNewNotice = useSelector(state => state.sse.isNewNotice);
 
+    useEffect(() => {
+        console.log(`isNewNotice : `,isNewNotice )
+    }, [isNewNotice]);
 
     useEffect(() => {
         if (pathname === '/') {
@@ -30,7 +33,7 @@ const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) =
     }, [pathname]);
 
     if (loading) {
-        return <HomeNavigationSkeleton />;
+        return <HomeNavigationSkeleton/>;
     }
 
     return (
@@ -38,18 +41,32 @@ const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) =
             <div className={styles.container}>
                 <div className={styles.town}>
                     {mainText}
-                    {arrow && <IoIosArrowDown className={styles.arrow} />}
+                    {arrow && <IoIosArrowDown className={styles.arrow}/>}
                 </div>
                 <div className={styles.menus}>
-                    {hamburger && <RxHamburgerMenu />}
-                    {search && <IoMdSearch />}
-                    {bell && <LuBell onClick={() => setOpenNotice(!openNotice)} />}
-                    {setting && <IoSettingsOutline />}
+                    {hamburger && <RxHamburgerMenu/>}
+                    {search && <IoMdSearch/>}
+                    {bell &&
+                        <>
+                            <LuBell
+                                onClick={() => setOpenNotice(!openNotice)}
+                            />
+                            { isNewNotice && <div className={styles.circle}></div>}
+                        </>
+
+                    }
+                    {setting && <IoSettingsOutline/>}
                 </div>
             </div>
-            {openNotice && <NoticeModal setOpenNotice={setOpenNotice} />}
+            {
+                openNotice &&
+                <NoticeModal
+                    setOpenNotice={setOpenNotice}
+                />
+            }
         </>
-    );
+    )
+        ;
 };
 
 export default HomeNavigation;

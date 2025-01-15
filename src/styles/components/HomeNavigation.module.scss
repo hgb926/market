@@ -22,11 +22,33 @@
   .menus {
     display: flex;
     cursor: pointer;
+    position: relative;
+
+
+    .circle {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #F35A20;
+      position: absolute;
+      right: 0;
+      top: -4px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
   }
 
   .menus > * {
     width: 28px;
     height: 28px;
     margin-left: 12px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

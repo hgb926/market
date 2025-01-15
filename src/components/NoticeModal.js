@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {NOTICE_URL} from "../config/host-config";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import ChatSpinner from "../skeleton/ChatSpinner";
+
 
 const NoticeModal = ({setOpenNotice}) => {
 
@@ -17,7 +17,7 @@ const NoticeModal = ({setOpenNotice}) => {
     const getNoticeList = async () => {
         if (!userId) return
         setLoading(true)
-        let response = await fetch(`${NOTICE_URL}/${userId}`);
+        const response = await fetch(`${NOTICE_URL}/${userId}`);
         if (response.status === 200) {
             let responseData = await response.json();
             console.log(responseData)

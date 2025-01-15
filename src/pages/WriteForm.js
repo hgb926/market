@@ -12,7 +12,8 @@ import {POST_URL} from "../config/host-config";
 const WriteForm = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
-    let {id, address, profileUrl, nickname} = useSelector(state => state.userInfo.userData) || "하아";
+    const id = localStorage.getItem('id');
+    let {address, profileUrl, nickname} = useSelector(state => state.userInfo.userData) || "하아";
     address = sliceDetailAddress(address)
 
     const [images, setImages] = useState([]); // 이미지 목록

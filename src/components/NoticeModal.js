@@ -11,9 +11,7 @@ const NoticeModal = ({setOpenNotice}) => {
     const [noticeList, setNoticeList] = useState([])
 
     const getNoticeList = async () => {
-        console.log('호출1')
         if (!userId) return
-        console.log('호출2')
         let response = await fetch(`${NOTICE_URL}/${userId}`);
         if (response.status === 200) {
             let responseData = await response.json();
@@ -59,7 +57,14 @@ const NoticeModal = ({setOpenNotice}) => {
                             }}
                         ></div>
                         <div className={styles.description}>
-                            <p className={styles.title}><span className={styles.userName}>{notice.senderNickname}</span>님께서 {notice.postTitle.length > 9 ? notice.postTitle.slice(0,10) + "..." : notice.postTitle}글을 좋아합니다.</p>
+                            <p className={styles.title}>
+                                <span className={styles.userName}>{notice.senderNickname}</span>
+                                님께서
+                                <span className={styles.postTitle}>
+                                    "{notice.postTitle.length > 9 ? notice.postTitle.slice(0,10) + "..." : notice.postTitle}"
+                                </span>
+                                글을 좋아합니다.
+                            </p>
                             <p className={styles.time}>{notice.createdAt}</p>
                         </div>
                     </div>

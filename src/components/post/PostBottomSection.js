@@ -12,9 +12,7 @@ const PostBottomSection = ({post }) => {
     const userId = localStorage.getItem('id') || "";
     const userData = useSelector(state => state.userInfo.userData);
     const [isLike, setIsLike] = useState(post.likes.includes(userId))
-    console.log(isLike)
     const {id: postId} = useParams();
-    console.log(post)
 
 
     const reactionHandler = async () => {

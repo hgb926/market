@@ -3,7 +3,8 @@ import styles from '../styles/components/NoticeModal.module.scss';
 import ReactDOM from 'react-dom';
 import {NOTICE_URL} from "../config/host-config";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {sseActions} from "./store/user/SseSlice";
 
 
 const NoticeModal = ({setOpenNotice}) => {
@@ -13,6 +14,9 @@ const NoticeModal = ({setOpenNotice}) => {
     const [noticeList, setNoticeList] = useState([])
     const newNotice = useSelector(state => state.sse.notice);
     const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch();
+
+    dispatch(sseActions.clearNewNotice())
 
     const getNoticeList = async () => {
         if (!userId) return

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/PostDetail.module.scss'
 import {useLocation, useParams} from "react-router-dom";
 import PostDetailNavigation from "../components/PostDetailNavigation";
-import {CiHeart} from "react-icons/ci";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";
@@ -45,6 +44,7 @@ const PostDetail = () => {
                 console.log(responseData)
                 setTimeout(() => {
                     setPost(responseData)
+                    console.log(responseData)
                     setIsLike(responseData.likes.includes(userId))
                     setLoading(false)
                 }, 300)

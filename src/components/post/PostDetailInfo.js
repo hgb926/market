@@ -13,7 +13,7 @@ const PostDetailInfo = ({ post,setShowUserProfile  }) => {
                     src={post.writerInfo.profileUrl}/>
                 <div className={styles.sellerInfo}>
                     <div className={styles.sellerName}>{post.writerInfo.nickname}</div>
-                    <div className={styles.location}>{sliceAddress(post.writerInfo.address)}</div>
+                    <div className={styles.location}>{post.writerInfo.address}</div>
                 </div>
             </div>
             <div className={styles.descriptWrap}>
@@ -22,6 +22,10 @@ const PostDetailInfo = ({ post,setShowUserProfile  }) => {
                 <span style={{color: '#9f9e9e'}}> · </span>
                 <span className={styles.time}>{post.createdAt}</span>
                 <div className={styles.content}>{post.content}</div>
+                <div className={styles.reactions}>
+                    채팅 {post.chats || 0} · 관심 {post.likes.length || 0} · 조회 {post.viewCount || 0}
+                </div>
+                <div className={styles.report}>이 게시글 신고하기</div>
                 <p className={styles.wantLocation}>거래 희망 장소</p>
                 <div className={styles.map}>{post.wantPlace}</div>
             </div>

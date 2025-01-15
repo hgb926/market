@@ -43,9 +43,27 @@ const NoticeModal = ({setOpenNotice}) => {
         e.stopPropagation(); // 이벤트가 더 이상 전파되지 않도록 함
     };
 
-    const urlControlHandler = (id) => {
-        navi(`post/${id}`)
-    }
+    const noticeClickHandler = async (postId, noticeId, clickStatus) => {
+        if (!clickStatus) { // 아직 클릭하지 않았다면
+            let response = await fetch(`${NOTICE_URL}/click`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ noticeId }), // JSON 형태로 변환
+            });
+
+            if (response.status === 200) {
+
+                setNoticeList((prevList) =>
+                    prevList.map((notice) =>
+                        notice._id === noticeId ? { ...notice, isClicked: true } : notice
+                    )
+                );
+            }
+        }
+
+        // 해당 게시글로 이동
+        navi(`post/${postId}`);
+    };
     useEffect(() => {
         setNoticeList(prev => [...prev, newNotice])
     }, [newNotice]);
@@ -58,7 +76,11 @@ const NoticeModal = ({setOpenNotice}) => {
             <div className={styles.container} onClick={innerClickHandler}>
                 <p className={styles.allRead}>모두 읽기</p>
                 {noticeList.slice().reverse().map((notice) => (
-                    <div className={styles.noticeContainer} key={notice._id} onClick={() => urlControlHandler(notice.postId)}>
+                    <div
+                        className={`${styles.noticeContainer} ${notice.isClicked ? styles.isClicked : ""}`}
+                        key={notice._id}
+                        onClick={() => noticeClickHandler(notice.postId, notice._id, notice.isClicked)}
+                    >
                         <div
                             className={styles.image}
                             style={{

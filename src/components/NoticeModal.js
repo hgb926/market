@@ -3,20 +3,26 @@ import styles from '../styles/components/NoticeModal.module.scss';
 import ReactDOM from 'react-dom';
 import {NOTICE_URL} from "../config/host-config";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import ChatSpinner from "../skeleton/ChatSpinner";
 
 const NoticeModal = ({setOpenNotice}) => {
 
     const userId = localStorage.getItem('id');
     const navi = useNavigate();
     const [noticeList, setNoticeList] = useState([])
+    const newNotice = useSelector(state => state.sse.notice);
+    const [loading, setLoading] = useState(true)
 
     const getNoticeList = async () => {
         if (!userId) return
+        setLoading(true)
         let response = await fetch(`${NOTICE_URL}/${userId}`);
         if (response.status === 200) {
             let responseData = await response.json();
             console.log(responseData)
             setNoticeList(responseData)
+            setLoading(false)
         }
     }
 
@@ -40,6 +46,11 @@ const NoticeModal = ({setOpenNotice}) => {
     const urlControlHandler = (id) => {
         navi(`post/${id}`)
     }
+    useEffect(() => {
+        setNoticeList(prev => [...prev, newNotice])
+    }, [newNotice]);
+
+    if (loading) return <div>로딩중</div>
 
     // 알림 없을때 처리도 해야함
     return ReactDOM.createPortal(

@@ -7,11 +7,15 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
 import NoticeModal from "./NoticeModal";
 import { useLocation } from "react-router-dom";
+import {NOTICE_URL} from "../config/host-config";
+import {useSelector} from "react-redux";
 
 const HomeNavigation = ({ mainText, arrow, bell, hamburger, search, setting }) => {
     const [loading, setLoading] = useState(true);
     const [openNotice, setOpenNotice] = useState(false);
     const { pathname } = useLocation();
+    const id = localStorage.getItem('id') || '';
+
 
     useEffect(() => {
         if (pathname === '/') {

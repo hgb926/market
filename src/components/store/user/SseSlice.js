@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     message: null,
+    notice: null,
 }
 
 const sseSlice = createSlice({
@@ -11,6 +12,10 @@ const sseSlice = createSlice({
         setMessage: (state, action) => {
             state.message = action.payload;
             console.log('redux가 관리하는 메세지\n',state.message)
+        },
+        setNotice: (state, action) => {
+            state.notice = action.payload;
+            console.log(`redux가 관라히는 알림\n${state.notice}`)
         }
     }
 })

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/RootLayout.module.scss'
 import {Outlet, useParams} from "react-router-dom";
-import {AUTH_URL, CHAT_URL} from "../config/host-config";
+import {AUTH_URL, CHAT_URL, NOTICE_URL} from "../config/host-config";
 import {userActions} from "../components/store/user/UserSlice";
 import {useDispatch} from "react-redux";
 import ChatAlarm from "../components/chat/ChatAlarm";
@@ -42,6 +42,26 @@ const RootLayout = () => {
             eventSource.close();
         };
     }, [id, isConnect]);
+
+    useEffect(() => {
+        if (!id) return
+        console.log(`notice sse 요청 시작, ${id}`)
+        const eventSource = new EventSource(`${NOTICE_URL}/sse?userId=${id}`);
+
+        eventSource.onmessage = (e) => {
+            const newNotice = JSON.parse(e.data)
+            dispatch(sseActions.setNotice(newNotice))
+            console.log(`newNotice\n${newNotice}`)
+        }
+
+        // SSE 연결 종료시
+        eventSource.onerror = () => {
+            console.log('notice 연결 끊김')
+        }
+        return () => {
+            eventSource.close()
+        }
+    }, [id]);
 
     // 자동로그인 체크
     const checkLogin = async () => {

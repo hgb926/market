@@ -72,13 +72,38 @@ const NoticeModal = ({setOpenNotice}) => {
         setNoticeList(prev => [...prev, newNotice])
     }, [newNotice]);
 
+    const allReadHandler = async () => {
+        try {
+            let response = await fetch(`${NOTICE_URL}/click-all`,{
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({writerId: userId})
+            });
+            if (response.status === 200) {
+        setNoticeList((prevList) =>
+            prevList.map((notice) => ({
+                ...notice, // 기존 notice 객체 복사
+                isClicked: true, // isClicked만 업데이트
+            }))
+        );
+            }
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     if (loading) return <div>로딩중</div>
 
     // 알림 없을때 처리도 해야함
     return ReactDOM.createPortal(
         <div className={styles.overlay} onClick={outerClickHandler}>
             <div className={styles.container} onClick={innerClickHandler}>
-                <p className={styles.allRead}>모두 읽기</p>
+                <p
+                    className={styles.allRead}
+                    onClick={allReadHandler}
+                >
+                    모두 읽기
+                </p>
                 {noticeList.slice().reverse().map((notice) => (
                     <div
                         className={`${styles.noticeContainer} ${notice.isClicked ? styles.isClicked : ""}`}
@@ -97,9 +122,9 @@ const NoticeModal = ({setOpenNotice}) => {
                             <p className={styles.title}>
                                 <span className={styles.userName}>{notice.senderNickname}</span>
                                 님께서
-                                <span className={styles.postTitle}>
-                                    "{notice.postTitle.length > 9 ? notice.postTitle.slice(0,10) + "..." : notice.postTitle}"
-                                </span>
+                                {notice.postTitle && <span className={styles.postTitle}>
+                                    "{notice.postTitle.length > 9 ? notice.postTitle.slice(0, 10) + "..." : notice.postTitle}"
+                                </span>}
                                 글을 좋아합니다.
                             </p>
                             <p className={styles.time}>{notice.createdAt}</p>

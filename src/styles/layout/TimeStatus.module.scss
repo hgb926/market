@@ -92,5 +92,12 @@
     .notchWrap {
       display: none;
     }
+
+    .batteryContainer {
+      display: none !important;
+      .dynamicBattery {
+        display: none !important;
+      }
+    }
   }
 }

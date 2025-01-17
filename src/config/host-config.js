@@ -11,8 +11,8 @@ if (clientHostName === "localhost") {
     backendHostName = "http://localhost:" + LOCAL_PORT;
     // frontendHostName = "http://localhost:" + LOCAL_FRONT;
 } else {
-    // websocketUrl =
-    // backendHostName = `http://43.201.20.29:${LOCAL_PORT}`;
+    websocketUrl = `ws://54.180.8.145:${LOCAL_PORT}`
+    backendHostName = `http://54.180.8.145:${LOCAL_PORT}`;
 }
 
 const API_BASE_URL = backendHostName;

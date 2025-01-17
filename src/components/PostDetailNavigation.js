@@ -10,7 +10,7 @@ import {uiActions} from "./store/ui/UiSlice";
 import MenuListModal from "./MenuListModal";
 
 
-const PostDetailNavigation = () => {
+const PostDetailNavigation = ({ writerId, postId }) => {
 
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false)
@@ -41,7 +41,13 @@ const PostDetailNavigation = () => {
                     <BsThreeDotsVertical onClick={() => setOpenModal(!openModal)}/>
                 </div>
             </div>
-            {openModal && <MenuListModal setOpenModal={setOpenModal}/>}
+            {openModal &&
+                <MenuListModal
+                    setOpenModal={setOpenModal}
+                    writerId={writerId}
+                    postId={postId}
+                />
+            }
         </>
     );
 };

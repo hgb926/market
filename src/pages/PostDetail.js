@@ -91,7 +91,10 @@ const PostDetail = () => {
         <>
             {!showImages && post ? (<>
                     <div className={styles.container}>
-                        <PostDetailNavigation/>
+                        <PostDetailNavigation
+                            writerId={post.writerId}
+                            postId={post._id}
+                        />
                         <PostDetailImages
                             checkClickTarget={checkClickTarget}
                             changeImage={changeImage}

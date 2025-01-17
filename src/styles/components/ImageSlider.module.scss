@@ -21,11 +21,20 @@
   align-items: center; /* 수직 중앙 정렬 */
   height: calc(100% - 100px); /* TimeStatus 높이를 제외한 전체 높이 */
   width: 100%;
+  overflow: hidden; /* 슬라이더 범위 밖은 숨김 */
+  position: relative;
 }
 
-/* 이미지 박스 */
-.image {
+/* 슬라이더 래퍼 */
+.sliderWrapper {
+  display: flex;
+  transition: transform 0.3s ease-in-out; /* 슬라이드 전환 효과 */
   width: 100%;
+}
+
+/* 각 슬라이드 */
+.slide {
+  flex-shrink: 0; /* 슬라이드 크기를 고정 */
+  width: 100%; /* 부모 요소의 너비 */
   height: 450px;
-  transition: background-image 0.3s ease-in-out;
 }

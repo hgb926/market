@@ -1,0 +1,72 @@
+.overlay {
+  position: absolute;
+  width: 400px;
+  height: 844px;
+  left: 50%;
+  top: 50%;
+  border-radius: 42px; /* 적용됨 */
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  z-index: 9998; /* 모달 배경이 모달보다 뒤로 가도록 */
+  cursor: pointer;
+
+  .modalContainer {
+    width: 370px;
+    border-radius: 20px;
+    position: relative;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    animation: fadeIn 0.3s ease-in-out;
+
+    .reportAndDelete {
+      width: 100%;
+      color: dodgerblue;
+      border-radius: 12px; /* 적용됨 */
+      overflow: hidden; /* 자식 요소가 부모의 둥근 모서리를 따라감 */
+
+      .menus {
+        display: flex;
+        border-bottom: 1px solid #acabab;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px 0;
+        background: #3c3c3c;
+        opacity: 0.9;
+        cursor: pointer;
+
+        &:last-child {
+          border-bottom: none; /* 마지막 요소의 border-bottom 제거 */
+        }
+      }
+    }
+
+    .cancel {
+      opacity: 0.9;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: dodgerblue;
+      font-weight: 700;
+      width: 100%;
+      padding: 20px 0;
+      background: #3c3c3c;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

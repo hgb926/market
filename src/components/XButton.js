@@ -3,17 +3,27 @@ import {useNavigate} from "react-router-dom";
 import styles from '../styles/components/XButton.module.scss'
 import {IoIosArrowRoundBack} from "react-icons/io";
 import {LiaTimesSolid} from "react-icons/lia";
+import {MdArrowBackIos} from "react-icons/md";
 
 const XButton = ({changeShowImage, changeShowUserImage, from, ui}) => {
 
     const navi = useNavigate();
+
+
     const backHandler = () => {
-        if (from === 'imageSlider') {
-            changeShowImage(false)
-        } else if (from === 'showUserImage') {
-            changeShowUserImage(false)
-        } else if (from === 'auth') {
-            navi(-1)
+        switch (from) {
+            case "imageSlider":
+                changeShowImage(false)
+                break;
+            case "showUserImage" :
+                changeShowUserImage(false)
+                break;
+            case 'auth' :
+                navi(-1)
+                break
+            case 'setting':
+                navi(-1)
+                break;
         }
     }
 
@@ -25,8 +35,11 @@ const XButton = ({changeShowImage, changeShowUserImage, from, ui}) => {
         case "<-":
             button = <IoIosArrowRoundBack style={{ fontSize:"2.5rem"}}/>
             break;
+        case '<':
+            button = <MdArrowBackIos style={{ fontSize:'1.5rem' }}/>
+            break;
         default :
-        button = 'x'
+        button = <MdArrowBackIos />
     }
 
     return (

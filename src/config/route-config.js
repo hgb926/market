@@ -12,6 +12,7 @@ import Auth from "../pages/Auth";
 import Register from "../pages/Register";
 import LoginPage from "../pages/LoginPage";
 import ChatRoom from "../pages/ChatRoom";
+import Settings from "../pages/Settings";
 
 
 const authRouter = [
@@ -53,6 +54,10 @@ const homeRouter = [
     {
         path: 'write',
         element: <WriteForm/>
+    },
+    {
+        path: 'setting',
+        element: <Settings/>
     }
 ]
 

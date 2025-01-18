@@ -19,7 +19,11 @@ const ChatRoomHeader = ({chat, userId, onBack}) => {
                         : chat.customerInfo.customerNickname}
                 </p>
                 <HiOutlineDotsVertical className={styles.menu} onClick={() => setMenuDrop(!menuDrop)}/>
-                {menuDrop && <ChatMenuDropDown setMenuDrop={setMenuDrop}/>}
+                {menuDrop &&
+                    <ChatMenuDropDown
+                        setMenuDrop={setMenuDrop}
+                    />
+                }
             </div>
         </div>
     );

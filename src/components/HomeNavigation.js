@@ -6,7 +6,7 @@ import {LuBell} from 'react-icons/lu';
 import {IoSettingsOutline} from 'react-icons/io5';
 import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
 import NoticeModal from "./NoticeModal";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 
@@ -15,9 +15,10 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
     const [openNotice, setOpenNotice] = useState(false);
     const {pathname} = useLocation();
     const isNewNotice = useSelector(state => state.sse.isNewNotice);
+    const navi = useNavigate();
 
     useEffect(() => {
-        console.log(`isNewNotice : `,isNewNotice )
+        console.log(`isNewNotice : `, isNewNotice)
     }, [isNewNotice]);
 
     useEffect(() => {
@@ -51,11 +52,15 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
                             <LuBell
                                 onClick={() => setOpenNotice(!openNotice)}
                             />
-                            { isNewNotice && <div className={styles.circle}></div>}
+                            {isNewNotice && <div className={styles.circle}></div>}
                         </>
 
                     }
-                    {setting && <IoSettingsOutline/>}
+                    {setting &&
+                        <IoSettingsOutline
+                            onClick={() => navi('/setting')}
+                        />
+                    }
                 </div>
             </div>
             {

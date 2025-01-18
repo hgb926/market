@@ -36,16 +36,16 @@ const MenuListModal = ({setOpenModal, writerId, postId}) => {
         <div className={styles.overlay} onClick={outerClickHandler}>
             <div className={styles.modalContainer}>
                 <div className={styles.reportAndDelete}>
+                    {writerId === userId &&
+                    <div
+                        className={styles.menus}
+                        onClick={deleteHandler}
+                    >
+                        게시글 삭제
+                    </div>
+                    }
                     <div className={styles.menus}>신고</div>
                     <div className={styles.menus}>이 사용자의 글 보지 않기</div>
-                    {/*{writerId === userId &&*/}
-                        <div
-                            className={styles.menus}
-                            onClick={deleteHandler}
-                        >
-                            게시글 삭제
-                        </div>
-                    {/*}*/}
                 </div>
                 <div className={styles.cancel} onClick={() => setOpenModal(false)}>취소</div>
             </div>

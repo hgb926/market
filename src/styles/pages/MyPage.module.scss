@@ -2,4 +2,108 @@
   width: 92%;
   margin: 0 auto;
   overflow: scroll;
+
+
+  .margin {
+    margin-top: 80px;
+  }
+
+  .section {
+    width: 95%;
+    margin: 0 auto 15px;
+    background: #313131;
+    border-radius: 20px;
+
+
+    .userInfoContainer {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #3a3a3a;
+      box-sizing: border-box;
+      padding: 13px 15px;
+
+      .userImage {
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+
+      .nickname {
+        font-weight: 600;
+      }
+
+      .arrow {
+        position: absolute;
+        right: 40px;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+    }
+
+    .paymentContainer {
+      padding: 13px 15px;
+
+      .paymentTop {
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .point {
+          font-size: 1.1rem;
+        }
+      }
+      .paymentOptions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .paymentOptions > * {
+        flex: 1 0 auto;
+        font-size: 0.9rem;
+        padding: 15px 0;
+        border-radius: 10px;
+        background: #212121;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #9F9E9E;
+        cursor: pointer;
+      }
+    }
+
+    .category {
+      padding: 20px 15px ;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .menuContainer {
+      font-size: 1.15rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px 30px;
+      align-items: center;
+      .menuSubContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon {
+          font-size: 1.5rem;
+          margin-right: 10px;
+          font-weight: bold;
+        }
+        .menu {
+
+        }
+      }
+      .arrow {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
 }

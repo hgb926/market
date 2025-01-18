@@ -5,11 +5,21 @@ import styles from '../styles/pages/Settings.module.scss';
 import {MdArrowBackIos} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import RadioButton from "../ui/RadioButton";
+import {AUTH_URL} from "../config/host-config";
 
 const Settings = () => {
     const dispatch = useDispatch();
     dispatch(uiActions.changeRenderStatus(false));
     const navi = useNavigate();
+
+    const logoutHandler = async () => {
+        await fetch(`${AUTH_URL}/logout`, {
+            method: 'GET',
+            credentials: 'include'
+        })
+
+        navi('/auth')
+    }
 
     return (
         <div className={styles.container}>
@@ -53,7 +63,7 @@ const Settings = () => {
                         <div className={styles.option}>한국어</div>
                     </div>
                     <div className={styles.menus}>캐시 데이터 삭제</div>
-                    <div className={styles.menus}>로그아웃</div>
+                    <div className={styles.menus} onClick={logoutHandler}>로그아웃</div>
                     <div className={styles.menus}>탈퇴하기</div>
                 </div>
             </div>

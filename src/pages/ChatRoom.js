@@ -7,7 +7,7 @@ import ChatInput from '../components/chat/ChatInput';
 import PostInfo from "../components/chat/PostInfo";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
-import ChatSpinner from "../skeleton/ChatSpinner";
+import Spinner from "../skeleton/Spinner";
 
 const ChatRoom = () => {
     const [chat, setChat] = useState(null);
@@ -103,7 +103,7 @@ const ChatRoom = () => {
         }
     }, [messages]);
 
-    if (loading || !chat) return <ChatSpinner/>
+    if (loading || !chat) return <Spinner text={"대화"}/>
 
     return (
         <>

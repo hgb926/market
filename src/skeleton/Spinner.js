@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import {BarLoader, BeatLoader, FadeLoader} from "react-spinners";
+import {BarLoader} from "react-spinners";
 
-const ChatSpinner = () => {
+const Spinner = ({ text }) => {
     return (
         <Container>
             <LoadingBox>
                 <BarLoader color="#4D607B" />
             </LoadingBox>
             <TextBox>
-                <div className="textTop"> 대화 불러오는 중 .. </div>
+                <div className="textTop"> {text || "데이터"} 불러오는 중 .. </div>
             </TextBox>
         </Container>
     );
 };
 
-export default ChatSpinner;
+export default Spinner;
 
 const Container = styled.div`
   width: 100%;

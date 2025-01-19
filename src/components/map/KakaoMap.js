@@ -1,176 +1,132 @@
-import React, {useEffect, useRef, useState} from 'react';
-import styles from '../../styles/components/KakaoMap.module.scss'
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import styles from '../../styles/components/KakaoMap.module.scss';
 
-const KakaoMap = ({search}) => {
-
+const KakaoMap = ({ search }) => {
+    const mapRef = useRef(null); // 지도 컨테이너 참조
     const inputRef = useRef();
-    const [inputValue, setInputValue] = useState('')
-    const [loading, setLoading] = useState(true)
-    const navi = useNavigate();
+    const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
+        const loadKakaoMap = () => {
+            const script = document.createElement('script');
+            script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&libraries=services&autoload=false`;
+            script.async = true;
 
-        const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&libraries=services&autoload=false`;
-        script.async = true;
+            script.onload = () => {
+                if (window.kakao && window.kakao.maps) {
+                    window.kakao.maps.load(() => initializeMap());
+                } else {
+                    console.error('Kakao Map API not available');
+                }
+            };
 
-        script.onload = () => {
-            if (window.kakao && window.kakao.maps) {
-                window.kakao.maps.load(() => {
-                    const mapContainer = document.getElementById('map'); // 지도 표시 영역
-                    let map;
+            script.onerror = () => console.error('Failed to load Kakao Map script');
+            document.head.appendChild(script);
 
-                    // 현재 위치 가져오기
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(
-                            (position) => {
-                                const lat = position.coords.latitude; // 위도
-                                const lng = position.coords.longitude; // 경도
+            return () => document.head.removeChild(script); // Clean up script
+        };
 
-                                const mapOptions = {
-                                    center: new window.kakao.maps.LatLng(lat, lng), // 현재 위치로 중심 좌표 설정
-                                    level: 4, // 확대 수준
-                                };
+        const initializeMap = () => {
+            if (!mapRef.current) return;
 
-                                map = new window.kakao.maps.Map(mapContainer, mapOptions);
+            const mapOptions = {
+                center: new window.kakao.maps.LatLng(37.5665, 126.9780), // 기본 서울 좌표
+                level: 4, // 지도 확대 수준
+            };
 
-                                // 마커 설정
-                                const markerPosition = new window.kakao.maps.LatLng(lat, lng); // 마커 위치
-                                const marker = new window.kakao.maps.Marker({
-                                    position: markerPosition,
-                                });
-                                marker.setMap(map);
-                            },
-                            (error) => {
-                                console.error('Error getting location:', error);
+            const map = new window.kakao.maps.Map(mapRef.current, mapOptions);
 
-                                // 위치 정보 사용 거부 시 기본 좌표 설정 (서울)
-                                const defaultLat = 37.5665;
-                                const defaultLng = 126.9780;
-
-                                const mapOptions = {
-                                    center: new window.kakao.maps.LatLng(defaultLat, defaultLng),
-                                    level: 4,
-                                };
-
-                                map = new window.kakao.maps.Map(mapContainer, mapOptions);
-
-                                // 기본 좌표에 마커 설정
-                                const markerPosition = new window.kakao.maps.LatLng(defaultLat, defaultLng);
-                                const marker = new window.kakao.maps.Marker({
-                                    position: markerPosition,
-                                });
-                                marker.setMap(map);
-                            }
+            // 현재 위치 기반 지도 설정
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const currentPos = new window.kakao.maps.LatLng(
+                            position.coords.latitude,
+                            position.coords.longitude
                         );
-                    } else {
-                        console.error('Geolocation not supported by this browser');
+                        map.setCenter(currentPos);
 
-                        // 위치 정보를 지원하지 않는 브라우저일 경우 기본 좌표 설정
-                        const defaultLat = 37.5665;
-                        const defaultLng = 126.9780;
-
-                        const mapOptions = {
-                            center: new window.kakao.maps.LatLng(defaultLat, defaultLng),
-                            level: 3,
-                        };
-
-                        map = new window.kakao.maps.Map(mapContainer, mapOptions);
-
-                        // 기본 좌표에 마커 설정
-                        const markerPosition = new window.kakao.maps.LatLng(defaultLat, defaultLng);
-                        const marker = new window.kakao.maps.Marker({
-                            position: markerPosition,
+                        new window.kakao.maps.Marker({
+                            position: currentPos,
+                            map: map,
                         });
-                        marker.setMap(map);
-                    }
-                });
-            } else {
-                console.error('Kakao Map API not available');
+                    },
+                    () => console.error('Unable to retrieve your location')
+                );
+            }
+
+            // Search 기능이 있다면 핸들러를 바인딩
+            if (search) {
+                const searchHandler = () => handleSearch(map);
+                inputRef.current?.addEventListener('click', searchHandler);
+
+                return () => inputRef.current?.removeEventListener('click', searchHandler);
             }
         };
 
-        script.onerror = () => {
-            console.error('Failed to load Kakao Map script');
-        };
+        loadKakaoMap();
+    }, [search]);
 
-        document.head.appendChild(script);
+    const handleSearch = (map) => {
+        if (!inputValue.trim() || !map) return;
 
-        return () => {
-            document.head.removeChild(script);
-        };
-    }, []);
-
-    const searchHandler = (map) => {
-        if (!inputValue.trim()) return;
-
-        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
         const ps = new window.kakao.maps.services.Places();
-
-        // 지도 범위 가져오기
         const bounds = map.getBounds();
-        const options = {
-            bounds: bounds, // 현재 지도 범위를 기준으로 검색
-        };
+        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
 
-        ps.keywordSearch(inputValue, (data, status) => {
-            if (status === window.kakao.maps.services.Status.OK) {
-                // 검색 결과 마커 생성 및 지도 범위 설정
-                data.forEach((place) => {
-                    const marker = new window.kakao.maps.Marker({
-                        map,
-                        position: new window.kakao.maps.LatLng(place.y, place.x),
+        ps.keywordSearch(
+            inputValue,
+            (data, status) => {
+                if (status === window.kakao.maps.services.Status.OK) {
+                    const newBounds = new window.kakao.maps.LatLngBounds();
+
+                    data.forEach((place) => {
+                        const marker = new window.kakao.maps.Marker({
+                            map,
+                            position: new window.kakao.maps.LatLng(place.y, place.x),
+                        });
+
+                        window.kakao.maps.event.addListener(marker, 'click', () => {
+                            infowindow.setContent(
+                                `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
+                            );
+                            infowindow.open(map, marker);
+                        });
+
+                        newBounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
                     });
 
-                    window.kakao.maps.event.addListener(marker, "click", () => {
-                        infowindow.setContent(
-                            `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
-                        );
-                        infowindow.open(map, marker);
-                    });
-                });
-
-                // 검색 결과 기준으로 지도 범위 확장
-                const bounds = new window.kakao.maps.LatLngBounds();
-                data.forEach((place) => {
-                    bounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
-                });
-                map.setBounds(bounds);
-            } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-                console.log("No places found in the current map bounds.");
-            } else {
-                console.error("Places search failed:", status);
-            }
-        }, options); // 검색 옵션으로 현재 지도 범위 전달
+                    map.setBounds(newBounds);
+                } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+                    console.log('No results found');
+                } else {
+                    console.error('Search failed:', status);
+                }
+            },
+            { bounds }
+        );
     };
-
 
     return (
         <>
-            {search &&
+            {search && (
                 <>
                     <input
+                        type="text"
                         ref={inputRef}
+                        value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         className={styles.input}
-                        placeholder={`여기서 검색`}
+                        placeholder="검색어를 입력하세요"
                     />
-                    <span
-                        className={styles.searchBtn}
-                        onClick={() => {
-                            const mapContainer = document.getElementById("map");
-                            const map = new window.kakao.maps.Map(mapContainer, {
-                                center: new window.kakao.maps.LatLng(37.5665, 126.9780),
-                                level: 4,
-                            });
-                            searchHandler(map);
-                        }}
-                    >검색</span>
+                    <span className={styles.searchBtn} onClick={() => handleSearch(mapRef.current)}>
+                        검색
+                    </span>
                 </>
-            }
+            )}
             <div
                 id="map"
+                ref={mapRef}
                 style={{
                     width: '100%',
                     height: '500px',

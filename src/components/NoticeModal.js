@@ -51,15 +51,15 @@ const NoticeModal = ({setOpenNotice}) => {
         if (!clickStatus) { // 아직 클릭하지 않았다면
             let response = await fetch(`${NOTICE_URL}/click`, {
                 method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ noticeId }), // JSON 형태로 변환
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({noticeId}), // JSON 형태로 변환
             });
 
             if (response.status === 200) {
 
                 setNoticeList((prevList) =>
                     prevList.map((notice) =>
-                        notice._id === noticeId ? { ...notice, isClicked: true } : notice
+                        notice._id === noticeId ? {...notice, isClicked: true} : notice
                     )
                 );
             }
@@ -74,64 +74,69 @@ const NoticeModal = ({setOpenNotice}) => {
 
     const allReadHandler = async () => {
         try {
-            let response = await fetch(`${NOTICE_URL}/click-all`,{
+            let response = await fetch(`${NOTICE_URL}/click-all`, {
                 method: "POST",
-                headers: {"Content-Type" : "application/json"},
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({writerId: userId})
             });
             if (response.status === 200) {
-        setNoticeList((prevList) =>
-            prevList.map((notice) => ({
-                ...notice, // 기존 notice 객체 복사
-                isClicked: true, // isClicked만 업데이트
-            }))
-        );
+                setNoticeList((prevList) =>
+                    prevList.map((notice) => ({
+                        ...notice, // 기존 notice 객체 복사
+                        isClicked: true, // isClicked만 업데이트
+                    }))
+                );
             }
         } catch (e) {
             console.error(e)
         }
     }
-
+    console.log(noticeList)
     if (loading) return <div>로딩중</div>
 
     // 알림 없을때 처리도 해야함
     return ReactDOM.createPortal(
         <div className={styles.overlay} onClick={outerClickHandler}>
-            <div className={styles.container} onClick={innerClickHandler}>
-                <p
-                    className={styles.allRead}
-                    onClick={allReadHandler}
-                >
-                    모두 읽기
-                </p>
-                {noticeList.slice().reverse().map((notice) => (
-                    <div
-                        className={`${styles.noticeContainer} ${notice.isClicked ? styles.isClicked : ""}`}
-                        key={notice._id}
-                        onClick={() => noticeClickHandler(notice.postId, notice._id, notice.isClicked)}
+            {noticeList.length ?
+                <div className={styles.container} onClick={innerClickHandler}>
+                    <p
+                        className={styles.allRead}
+                        onClick={allReadHandler}
                     >
+                        모두 읽기
+                    </p>
+                    {noticeList.slice().reverse().map((notice) => (
                         <div
-                            className={styles.image}
-                            style={{
-                                backgroundImage: `url(${notice.postImage})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center'
-                            }}
-                        ></div>
-                        <div className={styles.description}>
-                            <p className={styles.title}>
-                                <span className={styles.userName}>{notice.senderNickname}</span>
-                                님께서
-                                {notice.postTitle && <span className={styles.postTitle}>
+                            className={`${styles.noticeContainer} ${notice.isClicked ? styles.isClicked : ""}`}
+                            key={notice._id}
+                            onClick={() => noticeClickHandler(notice.postId, notice._id, notice.isClicked)}
+                        >
+                            <div
+                                className={styles.image}
+                                style={{
+                                    backgroundImage: `url(${notice.postImage})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center'
+                                }}
+                            ></div>
+                            <div className={styles.description}>
+                                <p className={styles.title}>
+                                    <span className={styles.userName}>{notice.senderNickname}</span>
+                                    님께서
+                                    {notice.postTitle && <span className={styles.postTitle}>
                                     "{notice.postTitle.length > 9 ? notice.postTitle.slice(0, 10) + "..." : notice.postTitle}"
                                 </span>}
-                                글을 좋아합니다.
-                            </p>
-                            <p className={styles.time}>{notice.createdAt}</p>
+                                    글을 좋아합니다.
+                                </p>
+                                <p className={styles.time}>{notice.createdAt}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div> :
+                <div className={styles.container} onClick={outerClickHandler}>
+                    <div className={styles.empty}>알림이 없습니다.</div>
+                </div>
+            }
         </div>,
         document.getElementById('modal-root')
     );

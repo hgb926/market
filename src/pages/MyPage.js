@@ -54,13 +54,13 @@ const MyPage = () => {
                     </div>
                     <div className={styles.section}>
                         <p className={styles.category}>나의 거래</p>
-                        <div className={styles.menuContainer}>
+                        <Link to={'liked'} className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
                                 <CiHeart className={styles.icon}/>
-                                <Link to={'liked'} className={styles.menu}>관심목록</Link>
+                                <div className={styles.menu}>관심목록</div>
                             </div>
                             <SlArrowRight className={styles.arrow}/>
-                        </div>
+                        </Link>
                         <div className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
                                 <RiPagesLine className={styles.icon}/>

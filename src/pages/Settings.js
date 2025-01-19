@@ -6,6 +6,8 @@ import {MdArrowBackIos} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import RadioButton from "../ui/RadioButton";
 import {AUTH_URL} from "../config/host-config";
+import MyPage from "./MyPage";
+import MyPageHeader from "../components/auth/MyPageHeader";
 
 const Settings = () => {
     const dispatch = useDispatch();
@@ -23,15 +25,7 @@ const Settings = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.top}>
-                <div className={styles.subContainer}>
-                    <MdArrowBackIos
-                        className={styles.back}
-                        onClick={() => navi(-1)}
-                    />
-                    <h1 className={styles.title}>설정</h1>
-                </div>
-            </div>
+            <MyPageHeader title={'설정'}/>
             <div className={styles.mainContainer}>
                 <div className={styles.menuWrap}>
                     <p className={styles.category}>알림설정</p>

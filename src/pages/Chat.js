@@ -14,7 +14,7 @@ const Chat = () => {
     const newMessage = useSelector(state => state.sse.message);
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
-    console.log(chatList)
+
 
     useEffect(() => {
         if (!userId) return;
@@ -59,7 +59,6 @@ const Chat = () => {
         });
         if (response.status === 200) {
             let result = await response.json();
-            console.log(result)
             setChatList(result)
             setLoading(false)
         } else {

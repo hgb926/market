@@ -18,7 +18,7 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
     const navi = useNavigate();
 
     useEffect(() => {
-        console.log(`isNewNotice : `, isNewNotice)
+        
     }, [isNewNotice]);
 
     useEffect(() => {

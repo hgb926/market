@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/components/ControlArrow.module.scss';
+import styles from '../styles/components/ControlArrow.module.scss';
 import {SlArrowLeft, SlArrowRight} from "react-icons/sl";
 
 const ControlArrow = ({changeImg}) => {

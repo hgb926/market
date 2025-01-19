@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import styles from "../../styles/pages/WriteForm.module.scss";
+import styles from "../styles/pages/WriteForm.module.scss";
 import { AiFillCamera } from "react-icons/ai";
 
 const ImageUpload = ({ getImages }) => {

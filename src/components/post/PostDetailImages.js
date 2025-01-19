@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
-import ControlArrow from "../others/ControlArrow";
-import Dots from "../others/Dots";
+import ControlArrow from "../../ui/ControlArrow";
+import Dots from "../../ui/Dots";
 
 const PostDetailImages = ({ post, checkClickTarget, currentIndex, changeImage }) => {
     return (

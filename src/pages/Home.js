@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import HomeNavigation from "../components/HomeNavigation";
+import HomeNavigation from "../components/navigations/HomeNavigation";
 import styles from '../styles/pages/Home.module.scss'
 import Posts from "./Posts";
 import {useSelector} from "react-redux";

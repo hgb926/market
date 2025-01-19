@@ -2,7 +2,7 @@ import React from 'react';
 import TimeStatus from "../layout/TimeStatus";
 import styles from '../styles/pages/MainPage.module.scss'
 import MainSection from "../layout/MainSection";
-import MainNavigation from "../layout/MainNavigation";
+import MainNavigation from "../components/navigations/MainNavigation";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {uiActions} from "../components/store/ui/UiSlice";

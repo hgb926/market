@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/PostDetail.module.scss'
 import {useLocation, useParams} from "react-router-dom";
-import PostDetailNavigation from "../components/PostDetailNavigation";
+import PostDetailNavigation from "../components/navigations/PostDetailNavigation";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import ImageSlider from "../components/ImageSlider";

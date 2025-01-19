@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/Chat.module.scss'
-import HomeNavigation from "../components/HomeNavigation";
+import HomeNavigation from "../components/navigations/HomeNavigation";
 import ChatSortBtn from "../components/ChatSortBtn";
 import {CHAT_URL} from "../config/host-config";
 import {Link} from "react-router-dom";

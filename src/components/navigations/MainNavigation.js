@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/layout/MainNavigation.module.scss';
+import styles from '../../styles/layout/MainNavigation.module.scss';
 import { HiMiniHome } from "react-icons/hi2";
 import { RiMapPin2Fill } from "react-icons/ri";
 import { BsChatDotsFill } from "react-icons/bs";

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styles from '../styles/components/CategoryDropdown.module.scss';
+import styles from '../../styles/components/CategoryDropdown.module.scss';
 
 const categories = [
     '전자제품', '의류', '신발', '가방', '악세사리', '가구', '생활용품', '도서', '음반/영상', '스포츠', '취미/여행',

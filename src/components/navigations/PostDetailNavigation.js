@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import styles from '../styles/components/PostDetailNavigation.module.scss'
+import styles from '../../styles/components/PostDetailNavigation.module.scss'
 import {IoIosArrowBack} from "react-icons/io";
 import {MdIosShare} from "react-icons/md";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import {HiOutlineHome} from "react-icons/hi";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {uiActions} from "./store/ui/UiSlice";
-import MenuListModal from "./MenuListModal";
+import {uiActions} from "../store/ui/UiSlice";
+import MenuListModal from "../MenuListModal";
 
 
 const PostDetailNavigation = ({ writerId, postId }) => {

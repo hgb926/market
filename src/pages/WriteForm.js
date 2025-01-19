@@ -5,7 +5,7 @@ import styles from '../styles/pages/WriteForm.module.scss';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import ImageUpload from "../components/ImageUpload";
-import CategoryDropdown from "../components/CategoryDropdown";
+import CategoryDropdown from "../components/navigations/CategoryDropdown";
 import {sliceDetailAddress} from "../utils/sliceAddress";
 import {POST_URL} from "../config/host-config";
 

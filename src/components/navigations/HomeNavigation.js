@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import styles from '../styles/components/HomeNavigation.module.scss';
+import styles from '../../styles/components/HomeNavigation.module.scss';
 import {IoIosArrowDown, IoMdSearch} from 'react-icons/io';
 import {RxHamburgerMenu} from 'react-icons/rx';
 import {LuBell} from 'react-icons/lu';
 import {IoSettingsOutline} from 'react-icons/io5';
-import HomeNavigationSkeleton from '../skeleton/HomeNavigationSkeleton';
-import NoticeModal from "./NoticeModal";
+import HomeNavigationSkeleton from '../../skeleton/HomeNavigationSkeleton';
+import NoticeModal from "../NoticeModal";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 

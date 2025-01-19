@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/pages/MyPage.module.scss'
-import HomeNavigation from "../components/HomeNavigation";
+import HomeNavigation from "../components/navigations/HomeNavigation";
 import {useSelector} from "react-redux";
 import {SlArrowRight} from "react-icons/sl";
 import {CiHeart} from "react-icons/ci";

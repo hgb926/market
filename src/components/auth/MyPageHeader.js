@@ -15,6 +15,7 @@ const MyPageHeader = ({ title }) => {
                     onClick={() => navi(-1)}
                 />
                 <h1 className={styles.title}>{title}</h1>
+                <div className={styles.empty}></div>
             </div>
         </div>
     );

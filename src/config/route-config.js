@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 import LoginPage from "../pages/LoginPage";
 import ChatRoom from "../pages/ChatRoom";
 import Settings from "../pages/Settings";
+import LikedPosts from "../pages/LikedPosts";
 
 
 const authRouter = [
@@ -44,10 +45,6 @@ const homeRouter = [
         element: <MapPage/>,
     },
     {
-        path: 'info',
-        element: <MyPage/>
-    },
-    {
         path: 'post/:id',
         element: <PostDetail/>
     },
@@ -58,7 +55,17 @@ const homeRouter = [
     {
         path: 'setting',
         element: <Settings/>
-    }
+    },
+    {
+        path: 'info',
+        element: <MyPage/>,
+        children: [
+            {
+                path: 'liked',
+                element: <LikedPosts/>
+            }
+        ]
+    },
 ]
 
 export const router = createBrowserRouter([

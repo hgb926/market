@@ -2,11 +2,9 @@ import React from 'react';
 import {uiActions} from "../components/store/ui/UiSlice";
 import {useDispatch} from "react-redux";
 import styles from '../styles/pages/Settings.module.scss';
-import {MdArrowBackIos} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import RadioButton from "../ui/RadioButton";
 import {AUTH_URL} from "../config/host-config";
-import MyPage from "./MyPage";
 import MyPageHeader from "../components/auth/MyPageHeader";
 
 const Settings = () => {

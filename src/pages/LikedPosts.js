@@ -56,7 +56,7 @@ const LikedPosts = () => {
                                 <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
                             <span
                                 className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}`}>
-                                {post.tradeType === "sell" ? '판매' : "나눔"}
+                                {post.tradeType === "sell" ? '' : "나눔"}
                             </span>
                         </div>
                     </div>

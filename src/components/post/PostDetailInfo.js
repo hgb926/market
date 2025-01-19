@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
 import {sliceAddress} from "../../utils/sliceAddress";
+import KakaoMap from "../map/KakaoMap";
 
 const PostDetailInfo = ({ post,setShowUserProfile  }) => {
     return (
@@ -27,7 +28,7 @@ const PostDetailInfo = ({ post,setShowUserProfile  }) => {
                 </div>
                 <div className={styles.report}>이 게시글 신고하기</div>
                 <p className={styles.wantLocation}>거래 희망 장소</p>
-                <div className={styles.map}>{post.wantPlace}</div>
+                <KakaoMap />
             </div>
         </div>
     );

@@ -6,11 +6,13 @@ const KakaoMap = ({search}) => {
 
     const inputRef = useRef();
     const [inputValue, setInputValue] = useState('')
+    const [loading, setLoading] = useState(true)
     const navi = useNavigate();
 
     useEffect(() => {
+
         const script = document.createElement('script');
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&autoload=false`;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&libraries=services&autoload=false`;
         script.async = true;
 
         script.onload = () => {
@@ -100,6 +102,49 @@ const KakaoMap = ({search}) => {
         };
     }, []);
 
+    const searchHandler = (map) => {
+        if (!inputValue.trim()) return;
+
+        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+        const ps = new window.kakao.maps.services.Places();
+
+        // 지도 범위 가져오기
+        const bounds = map.getBounds();
+        const options = {
+            bounds: bounds, // 현재 지도 범위를 기준으로 검색
+        };
+
+        ps.keywordSearch(inputValue, (data, status) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+                // 검색 결과 마커 생성 및 지도 범위 설정
+                data.forEach((place) => {
+                    const marker = new window.kakao.maps.Marker({
+                        map,
+                        position: new window.kakao.maps.LatLng(place.y, place.x),
+                    });
+
+                    window.kakao.maps.event.addListener(marker, "click", () => {
+                        infowindow.setContent(
+                            `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
+                        );
+                        infowindow.open(map, marker);
+                    });
+                });
+
+                // 검색 결과 기준으로 지도 범위 확장
+                const bounds = new window.kakao.maps.LatLngBounds();
+                data.forEach((place) => {
+                    bounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
+                });
+                map.setBounds(bounds);
+            } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+                console.log("No places found in the current map bounds.");
+            } else {
+                console.error("Places search failed:", status);
+            }
+        }, options); // 검색 옵션으로 현재 지도 범위 전달
+    };
+
 
     return (
         <>
@@ -113,7 +158,14 @@ const KakaoMap = ({search}) => {
                     />
                     <span
                         className={styles.searchBtn}
-
+                        onClick={() => {
+                            const mapContainer = document.getElementById("map");
+                            const map = new window.kakao.maps.Map(mapContainer, {
+                                center: new window.kakao.maps.LatLng(37.5665, 126.9780),
+                                level: 4,
+                            });
+                            searchHandler(map);
+                        }}
                     >검색</span>
                 </>
             }

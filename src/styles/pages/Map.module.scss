@@ -3,4 +3,126 @@
   margin: 0 auto;
   overflow: scroll;
   position: relative;
+
+  .bottomContainer {
+    background: #343434;
+    padding: 24px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    overflow: scroll;
+
+    .location {
+      display: flex;
+      align-items: center;
+      .icon {
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+      & p {
+        font-size: 1rem;
+      }
+
+    }
+    .categoryContainer {
+
+      .location {
+        margin-top: 35px;
+        font-weight: 600;
+        font-size: 1.15rem;
+        color: white;
+      }
+      .categories {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        margin-top: 25px;
+
+        & > * {
+          flex: 1;
+          font-size: 1rem;
+          cursor: pointer;
+          color: #9F9E9E;
+          padding-bottom: 10px;
+          border-bottom: 1.5px solid #484848;
+        }
+
+        .active {
+          font-weight: 600;
+          color: white;
+          border-bottom: 1.5px solid white;
+        }
+      }
+
+    }
+  }
+}
+
+
+
+.postsContainer {
+  margin-top: 20px;
+  border-radius: 10px;
+
+
+  .post {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    padding: 10px;
+    border-radius: 10px;
+
+    .image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .location {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-bottom: 6px;
+      }
+
+      .title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .description {
+        font-size: 0.9rem;
+        color: #ddd;
+        margin-top: 5px;
+      }
+
+      .date {
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: auto;
+      }
+    }
+  }
+
+  .moreButton {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+  }
 }

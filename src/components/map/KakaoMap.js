@@ -1,6 +1,13 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import styles from '../../styles/components/KakaoMap.module.scss'
+import {useNavigate} from "react-router-dom";
 
-const KakaoMap = () => {
+const KakaoMap = ({search}) => {
+
+    const inputRef = useRef();
+    const [inputValue, setInputValue] = useState('')
+    const navi = useNavigate();
+
     useEffect(() => {
         const script = document.createElement('script');
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&autoload=false`;
@@ -64,7 +71,7 @@ const KakaoMap = () => {
 
                         const mapOptions = {
                             center: new window.kakao.maps.LatLng(defaultLat, defaultLng),
-                            level: 4,
+                            level: 3,
                         };
 
                         map = new window.kakao.maps.Map(mapContainer, mapOptions);
@@ -93,14 +100,31 @@ const KakaoMap = () => {
         };
     }, []);
 
+
     return (
-        <div
-            id="map"
-            style={{
-                width: '100%',
-                height: '400px',
-            }}
-        ></div>
+        <>
+            {search &&
+                <>
+                    <input
+                        ref={inputRef}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        className={styles.input}
+                        placeholder={`여기서 검색`}
+                    />
+                    <span
+                        className={styles.searchBtn}
+
+                    >검색</span>
+                </>
+            }
+            <div
+                id="map"
+                style={{
+                    width: '100%',
+                    height: '500px',
+                }}
+            ></div>
+        </>
     );
 };
 

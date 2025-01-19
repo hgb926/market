@@ -7,7 +7,7 @@ const MapPage = () => {
 
     return (
         <div className={styles.container}>
-            <KakaoMap/>
+            <KakaoMap search={true}/>
         </div>
     );
 };

@@ -18,7 +18,7 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
     const navi = useNavigate();
 
     useEffect(() => {
-        
+
     }, [isNewNotice]);
 
     useEffect(() => {
@@ -46,7 +46,11 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
                 </div>
                 <div className={styles.menus}>
                     {hamburger && <RxHamburgerMenu/>}
-                    {search && <IoMdSearch/>}
+                    {search &&
+                        <IoMdSearch
+                            onClick={() => navi('search')}
+                        />
+                    }
                     {bell &&
                         <>
                             <LuBell

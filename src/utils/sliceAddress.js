@@ -5,4 +5,4 @@ export const sliceDetailAddress = (str) => {
 
 export const sliceAddress = str => str.split(" ", 1).join('');
 
-export const sliceTownName = (str) => str.split(" ", 3)[2]
+export const sliceTownName = (str) => str.split(" ", 3)[2].slice(0, -1)

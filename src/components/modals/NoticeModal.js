@@ -24,9 +24,11 @@ const NoticeModal = ({setOpenNotice}) => {
         const response = await fetch(`${NOTICE_URL}/${userId}`);
         if (response.status === 200) {
             let responseData = await response.json();
-            console.log(responseData)
             setNoticeList(responseData)
             setLoading(false)
+        } else {
+
+            // throw new Response(JSON.stringify())
         }
     }
 

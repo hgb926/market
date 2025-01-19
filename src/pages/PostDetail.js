@@ -49,7 +49,11 @@ const PostDetail = () => {
                     setLoading(false)
                 }, 300)
             } else {
-
+                const errorData = await response.json();
+                throw new Response(JSON.stringify(errorData), {
+                    status: response.status,
+                    statusText: response.statusText
+                });
             }
         } catch (e) {
             console.log(e)

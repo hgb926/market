@@ -8,7 +8,7 @@ const HomeNavigationSkeleton = () => {
                 <div className={styles.text} />
             </div>
             <div className={styles.menus}>
-                {Array.from({ length: 4 }).map((_, index) => (
+                {Array.from({ length: 3 }).map((_, index) => (
                     <div key={index} className={styles.icon} />
                 ))}
             </div>

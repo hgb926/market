@@ -1,15 +1,21 @@
 import React from 'react';
-import {useRouteError} from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
-import MainPage from "./MainPage";
 
 const ErrorPage = () => {
-
     const error = useRouteError();
 
-    let errorMessage;
+    let errorMessage = "문제가 발생했습니다. 다시 시도해 주세요.";
+
     if (error.status === 404) {
-        errorMessage = "페이지를 찾을 수 없습니다. URL을 확인하세요."
+        errorMessage = "페이지를 찾을 수 없습니다. URL을 확인하세요.";
+    } else if (error.status === 400) {
+        try {
+            const errorData = JSON.parse(error.data);
+            errorMessage = errorData.message || "잘못된 요청입니다. 다시 시도해 주세요.";
+        } catch (parseError) {
+            errorMessage = "잘못된 요청입니다. 다시 시도해 주세요.";
+        }
     }
 
     return (

@@ -62,6 +62,8 @@ const Chat = () => {
             setChatList(result)
             setLoading(false)
         } else {
+            let newVar = await response.json();
+            console.log(newVar)
             setLoading(true)
         }
     }

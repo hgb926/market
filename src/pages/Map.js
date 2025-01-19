@@ -14,8 +14,7 @@ const MapPage = () => {
         setActiveCategory(category);
     };
 
-    const townName = sliceTownName(userData.address).slice(0, -1)
-    console.log(townName)
+    const townName = sliceTownName(userData.address)
 
     const dummyPosts = [
         {

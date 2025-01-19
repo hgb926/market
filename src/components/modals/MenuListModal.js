@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import styles from '../styles/components/MenuListModal.module.scss'
-import {POST_URL} from "../config/host-config";
+import styles from '../../styles/components/MenuListModal.module.scss'
+import {POST_URL} from "../../config/host-config";
 import {useNavigate} from "react-router-dom";
 
 const MenuListModal = ({setOpenModal, writerId, postId}) => {

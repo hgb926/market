@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from '../styles/components/ChatSortBtn.module.scss'
+import styles from '../../styles/components/ChatSortBtn.module.scss'
 
 const ChatSortBtn = () => {
 

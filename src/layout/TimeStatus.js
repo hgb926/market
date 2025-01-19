@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/layout/TimeStatus.module.scss';
 import {BsBarChartFill} from 'react-icons/bs';
-import {CgBatteryFull} from 'react-icons/cg';
 import {FaWifi} from "react-icons/fa";
 
 const TimeStatus = () => {

@@ -7,7 +7,7 @@ import {HiOutlineHome} from "react-icons/hi";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../store/ui/UiSlice";
-import MenuListModal from "../MenuListModal";
+import MenuListModal from "../modals/MenuListModal";
 
 
 const PostDetailNavigation = ({ writerId, postId }) => {

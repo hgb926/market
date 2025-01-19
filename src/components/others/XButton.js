@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import styles from '../styles/components/XButton.module.scss'
+import styles from '../../styles/components/XButton.module.scss'
 import {IoIosArrowRoundBack} from "react-icons/io";
 import {LiaTimesSolid} from "react-icons/lia";
 import {MdArrowBackIos} from "react-icons/md";

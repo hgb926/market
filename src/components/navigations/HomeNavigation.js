@@ -5,7 +5,7 @@ import {RxHamburgerMenu} from 'react-icons/rx';
 import {LuBell} from 'react-icons/lu';
 import {IoSettingsOutline} from 'react-icons/io5';
 import HomeNavigationSkeleton from '../../skeleton/HomeNavigationSkeleton';
-import NoticeModal from "../NoticeModal";
+import NoticeModal from "../modals/NoticeModal";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 

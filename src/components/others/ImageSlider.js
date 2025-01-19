@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import styles from '../styles/components/ImageSlider.module.scss';
+import styles from '../../styles/components/ImageSlider.module.scss';
 import ReactDOM from 'react-dom';
-import TimeStatus from '../layout/TimeStatus';
+import TimeStatus from '../../layout/TimeStatus';
 import XButton from './XButton';
 import ControlArrow from './ControlArrow';
 import Dots from './Dots';

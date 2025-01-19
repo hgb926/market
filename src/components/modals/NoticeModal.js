@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import styles from '../styles/components/NoticeModal.module.scss';
+import styles from '../../styles/components/NoticeModal.module.scss';
 import ReactDOM from 'react-dom';
-import {NOTICE_URL} from "../config/host-config";
+import {NOTICE_URL} from "../../config/host-config";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {sseActions} from "./store/user/SseSlice";
+import {sseActions} from "../store/user/SseSlice";
 
 
 const NoticeModal = ({setOpenNotice}) => {

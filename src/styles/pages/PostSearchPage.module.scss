@@ -40,11 +40,6 @@
     width: 90%;
     margin: 20px auto;
 
-    .title {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
     .recommendKeywordContainer {
       display: flex;
       flex-direction: row;
@@ -62,6 +57,69 @@
         border-radius: 12px;
         flex-shrink: 0;
         cursor: pointer;
+      }
+    }
+  }
+
+  .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  // ========== recently section ========= //
+  .recentlyContainer {
+    width: 90%;
+    margin: 30px auto;
+
+    .recentlyTopWrap {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      align-items: center;
+      .allDelete {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #a1a1a1;
+        cursor: pointer;
+      }
+    }
+
+    .keywordContainer {
+      width: 95%;
+      margin: 10px auto 0;
+      overflow: scroll;
+
+      .keywordBox {
+        display: flex;
+        width: 100%;
+        align-items: center; /* 수직 중앙 정렬 */
+        padding: 15px 0; /* 수직 정렬을 위한 패딩 추가 */
+
+        .clock {
+          width: 10%;
+          color: #a1a1a1;
+          margin-right: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .keyword {
+          width: 80%;
+          font-size: 1.1rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+
+        .xBtn {
+          width: 10%;
+          color: #a1a1a1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
       }
     }
   }

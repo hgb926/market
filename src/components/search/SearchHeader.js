@@ -15,7 +15,7 @@ const SearchHeader = () => {
         <div className={styles.searchContainer}>
             <SlArrowLeft className={styles.icon} onClick={() => navi(-1)}/>
             <input className={styles.searchInput} placeholder={`${townName} 근처에서 검색`}/>
-            <span className={styles.close}>닫기</span>
+            <span className={styles.close} onClick={() => navi(-1)}>닫기</span>
         </div>
     );
 };

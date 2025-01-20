@@ -1,32 +1,68 @@
 .container {
 
+  // ========== header section ========= //
   .searchContainer {
     width: 92%;
     margin: 5px auto 0;
     display: flex;
     align-items: center;
     gap: 20px;
+
     .icon {
       width: 10%;
       font-weight: 700;
       cursor: pointer;
     }
+
     .searchInput {
       width: 74%;
-      padding:12px 0;
+      padding: 12px 0;
       background: #343434;
       border-radius: 12px;
       border: none;
       color: white;
       text-indent: 20px;
     }
+
     .searchInput:focus {
       outline: none;
     }
+
     .close {
       width: 10%;
       font-size: 1.1rem;
       cursor: pointer;
+    }
+  }
+
+  // ========== recommend section ========= //
+  .recommendContainer {
+    width: 90%;
+    margin: 20px auto;
+
+    .title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .recommendKeywordContainer {
+      display: flex;
+      flex-direction: row;
+      overflow: scroll;
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-top: 10px;
+      gap: 8px;
+      overflow-x: auto; /* 가로 스크롤 활성화 */
+      white-space: nowrap; /* 줄 바꿈 방지 */
+
+      .recommendKeyword {
+        border: 1px solid #393939;
+        padding: 8px 13px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        cursor: pointer;
+      }
     }
   }
 }

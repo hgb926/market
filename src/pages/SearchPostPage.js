@@ -4,11 +4,9 @@ import {uiActions} from "../components/store/ui/UiSlice";
 import {useDispatch, useSelector} from "react-redux";
 import SearchHeader from "../components/search/SearchHeader";
 import RecommendSection from "../components/search/RecommendSection";
-import {FiClock} from "react-icons/fi";
-import {LiaTimesSolid} from "react-icons/lia";
 import SearchedKeywords from "../components/search/SearchedKeywords";
 
-const PostSearchPage = () => {
+const SearchPostPage = () => {
 
     const dispatch = useDispatch();
     dispatch(uiActions.changeRenderStatus(false))
@@ -24,4 +22,4 @@ const PostSearchPage = () => {
     );
 };
 
-export default PostSearchPage;
+export default SearchPostPage;

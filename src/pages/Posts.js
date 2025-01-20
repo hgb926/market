@@ -16,38 +16,31 @@ const Posts = () => {
 
     const [loading, setLoading] = useState(false);
     // 더이상 가져올 데이터가 있는지 확인
-    const [isFinish, setIsFinish] = useState(false);
 
     const userId = localStorage.getItem('id');
 
-    // 로딩 스켈레톤 스크린을 보여줄 개수
-
-    const getPosts = async () => {
-        if (isFinish) {
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            const response = await fetch(`${POST_URL}`);
-            const posts = await response.json();
-
-            if (response.status === 200) {
-                setTimeout(() => {
-                    setPosts(posts);
-                    setLoading(false); // 스켈레톤 화면 종료
-                }, 500); // 500ms 딜레이
-            } else {
-                setLoading(false);
-            }
-        } catch (e) {
-            console.error(e);
-            setLoading(false); // 에러 발생 시 로딩 종료
-        }
-    };
     useEffect(() => {
-        getPosts()
+
+        (async () => {
+            setLoading(true);
+
+            try {
+                const response = await fetch(`${POST_URL}`);
+                const posts = await response.json();
+
+                if (response.status === 200) {
+                    setTimeout(() => {
+                        setPosts(posts);
+                        setLoading(false); // 스켈레톤 화면 종료
+                    }, 500); // 500ms 딜레이
+                } else {
+                    setLoading(false);
+                }
+            } catch (e) {
+                console.error(e);
+                setLoading(false); // 에러 발생 시 로딩 종료
+            }
+        })()
     }, []);
 
 

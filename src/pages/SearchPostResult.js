@@ -48,7 +48,7 @@ const SearchPostResult = () => {
         <div className={styles.container}>
             <SearchHeader keyword={keyword}/>
             {loading ? <PostsSkeleton/> : <div className={styles.container}>
-                {posts.map((post) => (
+                {posts.length ? posts.map((post) => (
                     <Link
                         to={`/post/${post._id}`}
                         key={post._id}
@@ -76,7 +76,9 @@ const SearchPostResult = () => {
                             <span><FaHeart/>️ {post.likes.length || 0}</span>
                         </div>
                     </Link>
-                ))}
+                )) :
+                    <div className={styles.noContent}>"{keyword}" 검색 결과 0건</div>
+                }
             </div>
             }
         </div>

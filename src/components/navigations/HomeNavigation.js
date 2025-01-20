@@ -25,7 +25,7 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
         if (pathname === '/') {
             const timer = setTimeout(() => {
                 setLoading(false);
-            }, 500);
+            }, 300);
 
             return () => clearTimeout(timer);
         } else {

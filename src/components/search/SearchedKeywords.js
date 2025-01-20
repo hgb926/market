@@ -3,15 +3,17 @@ import styles from "../../styles/pages/PostSearchPage.module.scss";
 import {FiClock} from "react-icons/fi";
 import {LiaTimesSolid} from "react-icons/lia";
 import {SEARCH_URL} from "../../config/host-config";
+import {useNavigate} from "react-router-dom";
 
 const SearchedKeywords = () => {
 
     const [searchedList, setSearchedList] = useState([])
-    const id = localStorage.getItem('id');
+    const userId = localStorage.getItem('id');
+    const navi = useNavigate();
     useEffect(() => {
-
+        // 검색 기록 가져오는 함수
         (async () => {
-            const response = await fetch(`${SEARCH_URL}/${id}`);
+            const response = await fetch(`${SEARCH_URL}/${userId}`);
             const jsonData = await response.json();
             setSearchedList(jsonData)
         })()
@@ -21,6 +23,23 @@ const SearchedKeywords = () => {
     const removeKeywordHandler = (id) => {
         setSearchedList((prev) => prev.filter(search => search.id !== id));
     };
+
+    const searchHandler = async (word) => {
+        try {
+            await fetch(`${SEARCH_URL}`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    word,
+                    userId,
+                })
+            })
+        } catch (e) {
+            console.error(e)
+        }
+        navi(`/search/${word}`)
+    }
 
 
     return (
@@ -38,7 +57,12 @@ const SearchedKeywords = () => {
                 {searchedList.length ? searchedList.map((searched) =>
                     <div className={styles.keywordBox} key={searched.id}>
                         <FiClock className={styles.clock}/>
-                        <div className={styles.keyword}>{searched.keyword}</div>
+                        <div
+                            className={styles.keyword}
+                            onClick={() => searchHandler(searched.keyword)}
+                        >
+                            {searched.keyword}
+                        </div>
                         <LiaTimesSolid
                             className={styles.xBtn}
                             onClick={() => removeKeywordHandler(searched.id)}

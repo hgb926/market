@@ -20,8 +20,13 @@ const SearchedKeywords = () => {
 
     }, []);
 
-    const removeKeywordHandler = (id) => {
-        setSearchedList((prev) => prev.filter(search => search.id !== id));
+    const removeKeywordHandler = async (id) => {
+
+        await fetch(`${SEARCH_URL}/${id}`, {
+            method: "DELETE",
+            headers: {'Content-Type': 'application/json'},
+        })
+        setSearchedList((prev) => prev.filter(search => search._id !== id));
     };
 
     const searchHandler = async (word) => {
@@ -41,6 +46,18 @@ const SearchedKeywords = () => {
         navi(`/search/${word}`)
     }
 
+    const deleteAllHandler = async () => {
+        try {
+            await fetch(`${SEARCH_URL}/all/${userId}`, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+            })
+            setSearchedList([])
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
 
     return (
         <div className={styles.recentlyContainer}>
@@ -48,14 +65,14 @@ const SearchedKeywords = () => {
                 <p className={styles.title}>최근 검색</p>
                 <p
                     className={styles.allDelete}
-                    onClick={() => setSearchedList({})}
+                    onClick={deleteAllHandler}
                 >
                     전체 삭제
                 </p>
             </div>
             <div className={styles.keywordContainer}>
                 {searchedList.length ? searchedList.map((searched) =>
-                    <div className={styles.keywordBox} key={searched.id}>
+                    <div className={styles.keywordBox} key={searched._id}>
                         <FiClock className={styles.clock}/>
                         <div
                             className={styles.keyword}
@@ -68,7 +85,7 @@ const SearchedKeywords = () => {
                         </p>
                         <LiaTimesSolid
                             className={styles.xBtn}
-                            onClick={() => removeKeywordHandler(searched.id)}
+                            onClick={() => removeKeywordHandler(searched._id)}
                         />
                     </div>
                 ) : <div className={styles.noContent}>검색 기록이 없습니다.</div>}

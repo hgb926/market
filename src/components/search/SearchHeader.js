@@ -10,14 +10,25 @@ const SearchHeader = ({ keyword }) => {
 
     const [word, setWord] = useState('');
     const userData = useSelector(state => state.userInfo?.userData);
+    const userId = localStorage.getItem('id');
     const townName = userData?.address ? sliceTownName(userData.address) : '';
     const navi = useNavigate();
     const inputRef = useRef(null);
 
     const enterHandler = (e) => {
         if (e.key === 'Enter' && word.trim()) {
-            navi(`/search/${word}`)
+            searchHandler()
         }
+    }
+
+    const searchHandler = () => {
+
+        try {
+
+        } catch (e) {
+            console.error(e)
+        }
+        navi(`/search/${word}`)
     }
 
     return (
@@ -38,7 +49,7 @@ const SearchHeader = ({ keyword }) => {
                     }}
                 />
             ) : null}
-            <span className={styles.close} onClick={() => navi(`/search/${word}`)}>검색</span>
+            <span className={styles.close} onClick={searchHandler}>검색</span>
         </div>
     );
 };

@@ -29,10 +29,15 @@ const SearchedKeywords = () => {
         <div className={styles.recentlyContainer}>
             <div className={styles.recentlyTopWrap}>
                 <p className={styles.title}>최근 검색</p>
-                <p className={styles.allDelete}>전체 삭제</p>
+                <p
+                    className={styles.allDelete}
+                    onClick={() => setSearchedList({})}
+                >
+                    전체 삭제
+                </p>
             </div>
             <div className={styles.keywordContainer}>
-                {searchedList.length && searchedList.map((searched) =>
+                {searchedList.length ? searchedList.map((searched) =>
                     <div className={styles.keywordBox} key={searched.id}>
                         <FiClock className={styles.clock}/>
                         <div className={styles.keyword}>{searched.keyword}</div>
@@ -41,7 +46,7 @@ const SearchedKeywords = () => {
                             onClick={() => removeKeywordHandler(searched.id)}
                         />
                     </div>
-                )}
+                ) : <div className={styles.noContent}>검색 기록이 없습니다.</div>}
             </div>
         </div>
     );

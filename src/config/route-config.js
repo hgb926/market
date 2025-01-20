@@ -15,6 +15,7 @@ import ChatRoom from "../pages/ChatRoom";
 import Settings from "../pages/Settings";
 import LikedPosts from "../pages/LikedPosts";
 import SearchPostPage from "../pages/SearchPostPage";
+import SearchPostResult from "../pages/SearchPostResult";
 
 
 const authRouter = [
@@ -59,7 +60,7 @@ const homeRouter = [
     },
     {
         path: 'search/:keyword',
-        element: <SearchPostPage/>
+        element: <SearchPostResult/>
     },
     {
         path: 'setting',

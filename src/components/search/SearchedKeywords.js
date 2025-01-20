@@ -1,24 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "../../styles/pages/PostSearchPage.module.scss";
 import {FiClock} from "react-icons/fi";
 import {LiaTimesSolid} from "react-icons/lia";
+import {SEARCH_URL} from "../../config/host-config";
 
 const SearchedKeywords = () => {
 
-    const [searchedList, setSearchedList] = useState([
-        {
-            id: 1,
-            keyword: '의자'
-        },
-        {
-            id: 2,
-            keyword: '강아지 계단'
-        },
-        {
-            id: 3,
-            keyword: '아이패드1'
-        },
-    ])
+    const [searchedList, setSearchedList] = useState([])
+    const id = localStorage.getItem('id');
+    useEffect(() => {
+
+        (async () => {
+            const response = await fetch(`${SEARCH_URL}/${id}`);
+            const jsonData = await response.json();
+            setSearchedList(jsonData)
+        })()
+
+    }, []);
 
     const removeKeywordHandler = (id) => {
         setSearchedList((prev) => prev.filter(search => search.id !== id));

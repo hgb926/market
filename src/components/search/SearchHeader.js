@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {sliceTownName} from "../../utils/sliceAddress";
 import {useNavigate} from "react-router-dom";
 import {LiaTimesSolid} from "react-icons/lia";
+import {SEARCH_URL} from "../../config/host-config";
 
 const SearchHeader = ({ keyword }) => {
 
@@ -15,15 +16,25 @@ const SearchHeader = ({ keyword }) => {
     const navi = useNavigate();
     const inputRef = useRef(null);
 
-    const enterHandler = (e) => {
+    const enterHandler = async (e) => {
         if (e.key === 'Enter' && word.trim()) {
-            searchHandler()
+            await searchHandler()
         }
     }
 
-    const searchHandler = () => {
+    const searchHandler = async () => {
 
         try {
+            await fetch(`${SEARCH_URL}`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    word,
+                    userId,
+                })
+            })
+
 
         } catch (e) {
             console.error(e)

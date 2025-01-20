@@ -63,6 +63,9 @@ const SearchedKeywords = () => {
                         >
                             {searched.keyword}
                         </div>
+                        <p className={styles.date}>
+                            {searched.createdAt}
+                        </p>
                         <LiaTimesSolid
                             className={styles.xBtn}
                             onClick={() => removeKeywordHandler(searched.id)}

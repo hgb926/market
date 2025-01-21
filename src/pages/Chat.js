@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 const Chat = () => {
 
     const userId = localStorage.getItem('id')
+    const [currentMenu, setCurrentMenu] = useState('전체');
     const newMessage = useSelector(state => state.sse.message);
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
@@ -84,6 +85,8 @@ const Chat = () => {
                 />
                 <ChatSortBtn
                     setFetchUrl={setFetchUrl}
+                    currentMenu={currentMenu}
+                    setCurrentMenu={setCurrentMenu}
                 />
                 <div className={styles.chatContainer}>
                     {chatList.slice().reverse().map((chat) => (

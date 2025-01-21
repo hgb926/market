@@ -84,13 +84,20 @@ const WriteForm = () => {
         }
     };
 
+    const postDraftHandler = () => {
+
+    }
+
     return (
         <div className={styles.container}>
             {/* 헤더 */}
             <div className={styles.header}>
                 <IoClose className={styles.closeIcon} onClick={homeHandler}/>
                 <h2>내 물건 팔기</h2>
-                <span className={styles.draft}>임시저장</span>
+                <span
+                    className={styles.draft}
+                    onClick={postDraftHandler}
+                >임시저장</span>
             </div>
 
             {/* 이미지 업로드 */}

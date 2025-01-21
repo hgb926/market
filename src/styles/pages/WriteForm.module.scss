@@ -5,7 +5,7 @@
   padding: 16px;
   background: #2A2A2A;
   color: #fff;
-  height: 100vh;
+  margin-bottom: 50px;
   overflow-y: auto;
   position: relative;
 }
@@ -28,6 +28,7 @@
 .draft {
   font-size: 0.9rem;
   color: #737373;
+  cursor: pointer;
 }
 
 /* 이미지 업로드 */

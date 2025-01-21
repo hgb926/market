@@ -23,7 +23,6 @@ const SearchHeader = ({ keyword }) => {
     }
 
     const searchHandler = async () => {
-
         try {
             await fetch(`${SEARCH_URL}`, {
                 method: 'POST',
@@ -34,8 +33,6 @@ const SearchHeader = ({ keyword }) => {
                     userId,
                 })
             })
-
-
         } catch (e) {
             console.error(e)
         }
@@ -44,7 +41,7 @@ const SearchHeader = ({ keyword }) => {
 
     return (
         <div className={styles.searchContainer} onKeyUp={(e) => enterHandler(e)}>
-            <SlArrowLeft className={styles.icon} onClick={() => navi(-1)} />
+            <SlArrowLeft className={styles.icon} onClick={() => navi('/search')} />
             <input
                 className={`${styles.searchInput} ${keyword ? styles.haveKeyword : ""}`}
                 placeholder={`${keyword ? keyword : `${townName} 근처에서 검색`}`}

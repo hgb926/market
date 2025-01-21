@@ -14,6 +14,7 @@ const Chat = () => {
     const newMessage = useSelector(state => state.sse.message);
     const [loading, setLoading] = useState(false)
     const [chatList, setChatList] = useState([])
+    const [fetchUrl, setFetchUrl] = useState(`${CHAT_URL}/list`)
 
 
     useEffect(() => {
@@ -50,26 +51,27 @@ const Chat = () => {
 
 
 
-    const getChatList = async () => {
-        setLoading(true)
-        const response = await fetch(`${CHAT_URL}/list`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({id: userId})
-        });
-        if (response.status === 200) {
-            let result = await response.json();
-            setChatList(result)
-            setLoading(false)
-        } else {
-            let newVar = await response.json();
-            console.log(newVar)
-            setLoading(true)
-        }
-    }
+
     useEffect(() => {
-        getChatList()
-    }, []);
+        (async () => {
+            setLoading(true)
+            const response = await fetch(fetchUrl, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({id: userId})
+            });
+            if (response.status === 200) {
+                let result = await response.json();
+                setChatList(result)
+                setLoading(false)
+            } else {
+                let newVar = await response.json();
+                console.log(newVar)
+                setLoading(true)
+            }
+        })()
+    }, [fetchUrl]);
+
 
 
 
@@ -80,7 +82,9 @@ const Chat = () => {
                     mainText={'채팅'}
                     bell={true}
                 />
-                <ChatSortBtn/>
+                <ChatSortBtn
+                    setFetchUrl={setFetchUrl}
+                />
                 <div className={styles.chatContainer}>
                     {chatList.slice().reverse().map((chat) => (
                         <Link

@@ -89,7 +89,7 @@ const Chat = () => {
                     setCurrentMenu={setCurrentMenu}
                 />
                 <div className={styles.chatContainer}>
-                    {chatList.slice().reverse().map((chat) => (
+                    {chatList.length && !loading ? chatList.slice().reverse().map((chat) => (
                         <Link
                             className={styles.chat}
                             key={chat._id}
@@ -128,7 +128,9 @@ const Chat = () => {
                                     {chat.lastMsg || `${chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.`}
                                 </div>
                             </div>
-                        </Link>))}
+                        </Link>)) :
+                        <div className={styles.noContent}>아직 채팅이 없습니다.</div>
+                    }
                 </div>
             </div>)}
         </>)

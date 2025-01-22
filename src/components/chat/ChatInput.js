@@ -1,10 +1,11 @@
 import React, {useRef, useState} from 'react';
-import { GoPlus } from 'react-icons/go';
-import { LuSendHorizontal } from 'react-icons/lu';
-import { RiEmotionHappyLine } from 'react-icons/ri';
+import {GoPlus} from 'react-icons/go';
+import {LuSendHorizontal} from 'react-icons/lu';
+import {RiEmotionHappyLine} from 'react-icons/ri';
 import styles from '../../styles/pages/ChatRoom.module.scss';
+import {LiaTimesSolid} from "react-icons/lia";
 
-const ChatInput = ({ text, onChange, onSend, inputRef, imageRef }) => {
+const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
 
     const [imageUrl, setImageUrl] = useState('')
     // Enter 키 핸들러 함수
@@ -38,11 +39,11 @@ const ChatInput = ({ text, onChange, onSend, inputRef, imageRef }) => {
             <input
                 type="file"
                 ref={imageRef}
-                style={{ display: 'none' }}
+                style={{display: 'none'}}
                 onChange={fileHandler}
                 accept="image/*"
             />
-            <div className={styles.inputWrap}>
+            <div className={`${styles.inputWrap} ${imageUrl && styles.containImage}`}>
                 <input
                     type="text"
                     value={text}
@@ -50,12 +51,19 @@ const ChatInput = ({ text, onChange, onSend, inputRef, imageRef }) => {
                     onKeyUp={enterHandler} // Enter 핸들러 연결
                     className={styles.input}
                     ref={inputRef}
-                    placeholder="메시지 보내기"
+                    placeholder={`${!imageUrl ? '메시지 보내기' : ''}`}
                 />
-                {/*<div*/}
-                {/*    className={styles.image}*/}
-                {/*/>*/}
-                <RiEmotionHappyLine className={styles.emotion} />
+                {imageUrl &&
+                    <div
+                        className={styles.image}
+                        style={{backgroundImage: `url(${imageUrl})`}}
+                    >
+                        <LiaTimesSolid
+                            className={styles.cancel}
+                            onClick={() => setImageUrl('')}
+                        />
+                    </div>}
+                {!imageUrl && <RiEmotionHappyLine className={styles.emotion}/>}
             </div>
             <LuSendHorizontal
                 className={`${styles.send} ${(inputRef.current.value || imageRef.current.value) && styles.active}`}

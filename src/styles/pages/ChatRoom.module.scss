@@ -198,7 +198,9 @@
       width: 80px;
       height: 80px;
       border-radius: 12px;
-      background: black;
+      position: relative;
+      left: 15px;
+      top: -22px;
     }
     .emotion {
       position: absolute;
@@ -209,6 +211,24 @@
       color: #d3d3d3;
       cursor: pointer;
     }
+    .cancel {
+      position: absolute;
+      top:-6px;
+      right: -9px;
+      padding: 3px;
+      width: 15px;
+      height: 15px;
+      color: #d3d3d3;
+      cursor: pointer;
+      background: #000;
+      border-radius: 50%;
+    }
+  }
+
+  .containImage {
+    height: 100px;
+    position: relative;
+    top: -60px;
   }
   .send {
     flex: 1 0 auto;

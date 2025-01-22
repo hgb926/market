@@ -20,7 +20,7 @@ const ChatMessages = ({inputRef, messages, userId, chat}) => {
             <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
             {messages.map((msg, idx) => {
                 const isDifferentDate = idx === 0 || msg.formatTime[0] !== messages[idx - 1]?.formatTime[0];
-                const isDifferentTime = idx === 0 || msg.formatTime[1] !== messages[idx - 1]?.formatTime[1];
+                // const isDifferentTime = idx === 0 || msg.formatTime[1] !== messages[idx - 1]?.formatTime[1];
 
                 return msg.writer !== userId ? (
                     <>

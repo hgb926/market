@@ -74,8 +74,6 @@ const WriteForm = () => {
             });
 
             if (response.ok) {
-                const responseData = await response.json();
-
                 navi('/');
             } else {
                 const error = await response.text();

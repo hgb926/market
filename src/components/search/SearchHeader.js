@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from "../../styles/pages/PostSearchPage.module.scss";
 import {SlArrowLeft} from "react-icons/sl";
 import {useSelector} from "react-redux";

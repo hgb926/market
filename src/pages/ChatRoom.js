@@ -13,6 +13,8 @@ const ChatRoom = () => {
     const [chat, setChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [text, setText] = useState('');
+    const [imageUrl, setImageUrl] = useState('')  // db에 넣을 url
+    const [image, setImage] = useState('') // 메시지 전송 전 띄워줄 프리뷰
     const [loading, setLoading] = useState(true);
     const [socket, setSocket] = useState(null);
     const dispatch = useDispatch();
@@ -34,7 +36,6 @@ const ChatRoom = () => {
                 const data = await response.json();
                 setTimeout(() => {
                     setChat(data);
-                    console.log(data)
                     setLoading(false);
                 }, 200)
             }
@@ -77,14 +78,19 @@ const ChatRoom = () => {
 
 
     const sendMessage = () => {
-        if (socket && text.trim()) {
+        if (socket && (text.trim() || imageUrl)) {
             const message = {
                 event: 'sendMessage',
                 room: roomId,
-                text,
+                text: text || '',
+                imageUrl : imageUrl || '',
                 writer: userId,
                 taker: chat.customerInfo.customerId === userId ? chat.sellerInfo.sellerId : chat.customerInfo.customerId
             };
+            console.log(message)
+            if (imageUrl) {
+                setImage('')
+            }
             socket.send(JSON.stringify(message));
             setText('');
             inputRef.current.value = '';
@@ -109,15 +115,27 @@ const ChatRoom = () => {
 
     return (
         <>
-            <ChatRoomHeader chat={chat} userId={userId} onBack={() => navigate('/chat')}/>
+            <ChatRoomHeader
+                chat={chat}
+                userId={userId}
+                onBack={() => navigate('/chat')}
+            />
             <PostInfo chat={chat}/>
-            <ChatMessages inputRef={inputRef} messages={messages} userId={userId} chat={chat}/>
+            <ChatMessages
+                inputRef={inputRef}
+                messages={messages}
+                userId={userId}
+                chat={chat}
+            />
             <ChatInput
                 text={text}
                 onChange={setText}
                 onSend={sendMessage}
                 inputRef={inputRef}
+                image={image}
+                setImage={setImage}
                 imageRef={imageRef}
+                setImageUrl={setImageUrl}
             />
         </>
     );

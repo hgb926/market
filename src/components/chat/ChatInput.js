@@ -7,17 +7,16 @@ import styles from '../../styles/pages/ChatRoom.module.scss';
 import {LiaTimesSolid} from "react-icons/lia";
 
 AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+    region: process.env.REACT_APP_AWS_REGION,
 });
 
 const s3 = new AWS.S3();
 // 업로드만 해보자
 
-const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
+const ChatInput = ({text, onChange, onSend, image, setImage, inputRef, imageRef, setImageUrl}) => {
 
-    const [imageUrl, setImageUrl] = useState('')
     // Enter 키 핸들러 함수
     const enterHandler = (e) => {
         if (e.key === 'Enter' && text.trim()) {
@@ -25,22 +24,46 @@ const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
         }
     };
 
+    const uploadImageToS3 = async (file) => {
+        const params = {
+            Bucket: process.env.REACT_APP_AWS_BUCKET_NAME, // S3 버킷 이름
+            Key: `chat-images/${Date.now()}-${file.name}`, // 고유한 파일명
+            Body: file,
+            ContentType: file.type,
+        };
+
+        try {
+            const uploadResult = await s3.upload(params).promise();
+            return uploadResult.Location;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            alert('이미지 업로드 실패');
+        }
+    };
+
+
     // 파일 선택 트리거
     const triggerFileSelect = () => {
         imageRef.current.click();
     };
 
-    const fileHandler = (e) => {
+    const fileHandler = async (e) => {
         const file = e.target.files[0];
 
         if (!file) return;
 
-        // input에 넣을 이미지
-        const imageUrl = URL.createObjectURL(file);
+        // 로컬 미리보기 이미지 설정
+        const localImageUrl = URL.createObjectURL(file);
+        setImage(localImageUrl);
 
-        // getImage(file); // 이미지 파일 객체 전달
-        // setUserImage(imageUrl);
-        setImageUrl(imageUrl)
+        try {
+            const uploadedImageUrl = await uploadImageToS3(file);  // 비동기 함수 실행 및 결과 대기
+            setImageUrl(uploadedImageUrl);
+            console.log("Uploaded image URL:", uploadedImageUrl);
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            alert('이미지 업로드에 실패했습니다.');
+        }
     };
 
     return (
@@ -53,7 +76,7 @@ const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
                 onChange={fileHandler}
                 accept="image/*"
             />
-            <div className={`${styles.inputWrap} ${imageUrl && styles.containImage}`}>
+            <div className={`${styles.inputWrap} ${image && styles.containImage}`}>
                 <input
                     type="text"
                     value={text}
@@ -61,19 +84,19 @@ const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
                     onKeyUp={enterHandler} // Enter 핸들러 연결
                     className={styles.input}
                     ref={inputRef}
-                    placeholder={`${!imageUrl ? '메시지 보내기' : ''}`}
+                    placeholder={`${!image ? '메시지 보내기' : ''}`}
                 />
-                {imageUrl &&
+                {image &&
                     <div
                         className={styles.image}
-                        style={{backgroundImage: `url(${imageUrl})`}}
+                        style={{backgroundImage: `url(${image})`}}
                     >
                         <LiaTimesSolid
                             className={styles.cancel}
-                            onClick={() => setImageUrl('')}
+                            onClick={() => setImage('')}
                         />
                     </div>}
-                {!imageUrl && <RiEmotionHappyLine className={styles.emotion}/>}
+                {!image && <RiEmotionHappyLine className={styles.emotion}/>}
             </div>
             <LuSendHorizontal
                 className={`${styles.send} ${(inputRef.current?.value || imageRef.current?.value) && styles.active}`}

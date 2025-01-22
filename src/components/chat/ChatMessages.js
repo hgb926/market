@@ -27,16 +27,20 @@ const ChatMessages = ({inputRef, messages, userId, chat}) => {
                         {isDifferentDate && <div className={styles.systemTime}>{msg.formatTime[0]}</div>}
                         <div className={styles.sellerChat} key={msg.date}>
                             <div
-                                className={styles.sellerImage}
+                                className={`${styles.sellerImage} ${msg.imageUrl ? styles.alignSelf : ''}`}
                                 style={{
                                     backgroundImage: `url(${userId === chat.customerInfo.customerId
                                         ? chat.sellerInfo.sellerImage
                                         : chat.customerInfo.customerImage})`,
-                                    backgroundSize: 'cover',
-                                    backgroundPosition: 'center',
                                 }}
                             />
-                            <div className={styles.sellerText}>{msg.text}</div>
+                            {msg.text ?
+                                <div className={styles.sellerText}>{msg.text}</div>
+                                :
+                                <div className={styles.sellerImg}
+                                     style={{backgroundImage: `url(${msg.imageUrl})`}}
+                                ></div>
+                            }
                             <div className={styles.sellerSendTime}>
                                 {msg.formatTime[1]}</div>
                         </div>
@@ -49,7 +53,11 @@ const ChatMessages = ({inputRef, messages, userId, chat}) => {
                             <div className={styles.myTime}>
                                 {msg.formatTime[1]}
                             </div>
-                            <div className={styles.myText}>{msg.text}</div>
+                            {msg.text ?
+                                <div className={styles.myText}>{msg.text}</div> :
+                                <div className={styles.myImage}
+                                     style={{backgroundImage: `url(${msg.imageUrl})`}}></div>
+                            }
                         </div>
                     </>
                 );

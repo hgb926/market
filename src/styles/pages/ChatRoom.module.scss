@@ -110,6 +110,11 @@
       width: 35px;
       height: 35px;
       border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+    }
+    .alignSelf {
+      align-self: end;
     }
     .sellerText {
       color: #d3d3d3;
@@ -118,6 +123,15 @@
       background: #3a3a3a;
       border-radius: 5px;
       margin-left: 10px;
+    }
+    .sellerImg {
+      margin-left: 10px;
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      border-radius: 12px;
     }
     .sellerSendTime {
       color: #636363;
@@ -145,6 +159,14 @@
       background: #F35A20;
       border-radius:5px;
       margin: 2px 0;
+    }
+    .myImage {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      border-radius: 12px;
     }
   }
 }

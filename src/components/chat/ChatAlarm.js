@@ -41,7 +41,7 @@ const ChatAlarm = ({ message, setShowAlarm }) => {
                 ></div>
                 <div className={styles.wrap}>
                     <p className={styles.name}>{message.nickname}</p>
-                    <p className={styles.text}>{message.text}</p>
+                    <p className={styles.text}>{message.text || `${message.nickname}님께서 사진을 보냈습니다.`}</p>
                 </div>
                 <div className={styles.postTitle}>{message.postTitle.length > 9 ? message.postTitle.slice(0, 10) + "..." : message.postTitle}</div>
             </div>

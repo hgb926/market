@@ -19,6 +19,7 @@ const ChatRoom = () => {
 
     const chatContainerRef = useRef(null);
     const inputRef = useRef();
+    const imageRef = useRef()
     const navigate = useNavigate();
     const {id: roomId} = useParams();
     const userId = localStorage.getItem('id');
@@ -115,6 +116,7 @@ const ChatRoom = () => {
                 onChange={setText}
                 onSend={sendMessage}
                 inputRef={inputRef}
+                imageRef={imageRef}
             />
         </>
     );

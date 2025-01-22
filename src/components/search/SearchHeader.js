@@ -41,7 +41,7 @@ const SearchHeader = ({ keyword }) => {
 
     return (
         <div className={styles.searchContainer} onKeyUp={(e) => enterHandler(e)}>
-            <SlArrowLeft className={styles.icon} onClick={() => navi('/search')} />
+            <SlArrowLeft className={styles.icon} onClick={() => navi('/')} />
             <input
                 className={`${styles.searchInput} ${keyword ? styles.haveKeyword : ""}`}
                 placeholder={`${keyword ? keyword : `${townName} 근처에서 검색`}`}

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { GoPlus } from 'react-icons/go';
 import { LuSendHorizontal } from 'react-icons/lu';
 import { RiEmotionHappyLine } from 'react-icons/ri';
 import styles from '../../styles/pages/ChatRoom.module.scss';
 
-const ChatInput = ({ text, onChange, onSend, inputRef }) => {
+const ChatInput = ({ text, onChange, onSend, inputRef, imageRef }) => {
+
+
     // Enter 키 핸들러 함수
     const enterHandler = (e) => {
         if (e.key === 'Enter' && text.trim()) {
@@ -12,9 +14,21 @@ const ChatInput = ({ text, onChange, onSend, inputRef }) => {
         }
     };
 
+    // 파일 선택 트리거
+    const triggerFileSelect = () => {
+        imageRef.current.click();
+    };
+
     return (
         <div className={styles.inputContainer}>
-            <GoPlus className={styles.plus} />
+            <GoPlus className={styles.plus} onClick={triggerFileSelect}/>
+            <input
+                type="file"
+                ref={imageRef}
+                style={{ display: 'none' }}
+                // onChange={fileHandler}
+                accept="image/*"
+            />
             <div className={styles.inputWrap}>
                 <input
                     type="text"

@@ -6,7 +6,7 @@ import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import ImageUpload from "../ui/ImageUpload";
 import CategoryDropdown from "../components/navigations/CategoryDropdown";
-import {sliceDetailAddress} from "../utils/sliceAddress";
+import {sliceDetailAddress, sliceTownName} from "../utils/sliceAddress";
 import {POST_URL} from "../config/host-config";
 
 const WriteForm = () => {
@@ -15,6 +15,7 @@ const WriteForm = () => {
     const id = localStorage.getItem('id');
     let {address, profileUrl, nickname} = useSelector(state => state.userInfo.userData) || "하아";
     address = sliceDetailAddress(address)
+    const townName = sliceTownName(address)
 
     const [images, setImages] = useState([]); // 이미지 목록
     const [category, setCategory] = useState('');
@@ -27,6 +28,7 @@ const WriteForm = () => {
     const categorySelectHandler = (category) => {
         setCategory(category);
     };
+
 
 
     // 페이지 진입 시 MainNavigation 숨김
@@ -167,7 +169,7 @@ const WriteForm = () => {
             <div className={styles.inputGroup}>
                 <label>자세한 설명</label>
                 <textarea
-                    placeholder="백석동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)"
+                    placeholder={`${townName}에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)`}
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
             </div>

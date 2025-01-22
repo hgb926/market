@@ -8,13 +8,13 @@ import { sliceDetailAddress, sliceTownName } from '../utils/sliceAddress';
 
 const MapPage = () => {
     const userData = useSelector(state => state.userInfo.userData);
+    const townName = sliceTownName(userData.address)
     const [activeCategory, setActiveCategory] = useState('먹거리'); // 현재 활성화된 카테고리 상태
 
     const categoryClickHandler = (category) => {
         setActiveCategory(category);
     };
 
-    const townName = sliceTownName(userData.address)
 
     const dummyPosts = [
         {

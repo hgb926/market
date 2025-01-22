@@ -91,6 +91,7 @@ const ChatRoom = () => {
         }
     };
 
+
     useEffect(() => {
         fetchChatInfo();
         fetchMessages();
@@ -110,7 +111,7 @@ const ChatRoom = () => {
         <>
             <ChatRoomHeader chat={chat} userId={userId} onBack={() => navigate('/chat')}/>
             <PostInfo chat={chat}/>
-            <ChatMessages messages={messages} userId={userId} chat={chat}/>
+            <ChatMessages inputRef={inputRef} messages={messages} userId={userId} chat={chat}/>
             <ChatInput
                 text={text}
                 onChange={setText}

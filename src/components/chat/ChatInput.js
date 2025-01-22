@@ -1,9 +1,19 @@
-import React, {useRef, useState} from 'react';
+import AWS from 'aws-sdk';
+import React, {useState} from 'react';
 import {GoPlus} from 'react-icons/go';
 import {LuSendHorizontal} from 'react-icons/lu';
 import {RiEmotionHappyLine} from 'react-icons/ri';
 import styles from '../../styles/pages/ChatRoom.module.scss';
 import {LiaTimesSolid} from "react-icons/lia";
+
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
+});
+
+const s3 = new AWS.S3();
+// 업로드만 해보자
 
 const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
 
@@ -66,7 +76,7 @@ const ChatInput = ({text, onChange, onSend, inputRef, imageRef}) => {
                 {!imageUrl && <RiEmotionHappyLine className={styles.emotion}/>}
             </div>
             <LuSendHorizontal
-                className={`${styles.send} ${(inputRef.current.value || imageRef.current.value) && styles.active}`}
+                className={`${styles.send} ${(inputRef.current?.value || imageRef.current?.value) && styles.active}`}
                 onClick={onSend}
             />
         </div>

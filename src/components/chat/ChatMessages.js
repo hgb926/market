@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styles from '../../styles/pages/ChatRoom.module.scss';
 
-const ChatMessages = ({messages, userId, chat}) => {
+const ChatMessages = ({inputRef, messages, userId, chat}) => {
     const chatContainerRef = useRef(null);
 
     // 메시지가 변경될 때 스크롤을 맨 아래로 이동
@@ -11,8 +11,12 @@ const ChatMessages = ({messages, userId, chat}) => {
         }
     }, [messages]);
 
+    const triggerInputClick = () => {
+        inputRef.current.focus();
+    };
+
     return (
-        <div className={styles.chatContainer} ref={chatContainerRef}>
+        <div className={styles.chatContainer} onClick={triggerInputClick} ref={chatContainerRef}>
             <div className={styles.systemNotice}>{chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.</div>
             {messages.map((msg, idx) => {
                 const isDifferentDate = idx === 0 || msg.formatTime[0] !== messages[idx - 1]?.formatTime[0];

@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from '../../styles/pages/ChatRoom.module.scss';
+import ShowUserImage from "../../ui/ShowUserImage";
 
 const ChatMessages = ({inputRef, messages, userId, chat}) => {
     const chatContainerRef = useRef(null);
-
+    const [showImage, setShowImage] = useState(false)
     // 메시지가 변경될 때 스크롤을 맨 아래로 이동
     useEffect(() => {
         if (chatContainerRef.current) {
@@ -38,12 +39,17 @@ const ChatMessages = ({inputRef, messages, userId, chat}) => {
                                 <div className={styles.sellerText}>{msg.text}</div>
                                 :
                                 <div className={styles.sellerImg}
+                                     onClick={() => setShowImage(true)}
                                      style={{backgroundImage: `url(${msg.imageUrl})`}}
                                 ></div>
                             }
                             <div className={styles.sellerSendTime}>
                                 {msg.formatTime[1]}</div>
                         </div>
+                        {showImage && (<ShowUserImage
+                            changeShowUserImage={setShowImage}
+                            image={msg.imageUrl}
+                        />)}
                     </>
                 ) : (
                     <>
@@ -56,9 +62,14 @@ const ChatMessages = ({inputRef, messages, userId, chat}) => {
                             {msg.text ?
                                 <div className={styles.myText}>{msg.text}</div> :
                                 <div className={styles.myImage}
+                                     onClick={() => setShowImage(true)}
                                      style={{backgroundImage: `url(${msg.imageUrl})`}}></div>
                             }
                         </div>
+                        {showImage && (<ShowUserImage
+                            image={msg.imageUrl}
+                            changeShowUserImage={setShowImage}
+                        />)}
                     </>
                 );
             })}

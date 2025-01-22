@@ -6,6 +6,7 @@ import XButton from "./XButton";
 
 const ShowUserImage = ({ image, changeShowUserImage }) => {
 
+    console.log(image)
     return ReactDOM.createPortal(
         <div className={styles.container}>
             <TimeStatus />
@@ -22,9 +23,6 @@ const ShowUserImage = ({ image, changeShowUserImage }) => {
                     className={styles.image}
                     style={{
                         backgroundImage: `url(${image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        cursor: 'pointer'
                     }}
                     onClick={() => changeShowUserImage(false)}
                 ></div>

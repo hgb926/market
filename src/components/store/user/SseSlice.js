@@ -12,12 +12,12 @@ const sseSlice = createSlice({
     reducers: {
         setMessage: (state, action) => {
             state.message = action.payload;
-            console.log('redux가 관리하는 메세지\n',state.message)
+            // console.log('redux가 관리하는 메세지\n',state.message)
         },
         setNotice: (state, action) => {
             state.notice = action.payload;
             state.isNewNotice = true;
-            console.log(`redux가 관라히는 알림\n${state.notice}`)
+            // console.log(`redux가 관라히는 알림\n${state.notice}`)
         },
         clearNewNotice: (state) => {
             state.isNewNotice = false;

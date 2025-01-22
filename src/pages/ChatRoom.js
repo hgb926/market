@@ -90,6 +90,7 @@ const ChatRoom = () => {
             console.log(message)
             if (imageUrl) {
                 setImage('')
+                setImageUrl('')
             }
             socket.send(JSON.stringify(message));
             setText('');

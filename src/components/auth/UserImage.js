@@ -20,7 +20,6 @@ const UserImage = ({ getImage, currentStatus, setImageValidation }) => {
 
         getImage(file); // 이미지 파일 객체 전달
         setUserImage(imageUrl);
-
         currentStatus(true); // 이미지 선택됨
     };
 

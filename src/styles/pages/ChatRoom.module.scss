@@ -177,6 +177,7 @@
     background: #3a3a3a;
     border-radius: 12px;
     position: relative;
+
     .input {
       width: 95%;
       height: 30px;
@@ -184,10 +185,20 @@
       border: none;
       border-radius: 12px;
       color: white;
-      text-indent: 10px;
+      text-indent: 16px;
     }
     .input:focus {
       outline: none;
+    }
+
+    .image {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      background: black;
     }
     .emotion {
       position: absolute;
@@ -201,9 +212,13 @@
   }
   .send {
     flex: 1 0 auto;
-    width: 25px;
-    height: 25px;
-    color: #D3D3D3;
+    width: 30px;
+    height: 30px;
+    color: #919191;
+    transition: color 0.5s ease;
+  }
+  .active {
     cursor: pointer;
+    color: #d3d3d3;
   }
 }

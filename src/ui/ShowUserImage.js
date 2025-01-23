@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from '../styles/components/ImageSlider.module.scss'
 import ReactDOM from "react-dom";
 import TimeStatus from "../layout/TimeStatus";
@@ -6,7 +6,7 @@ import XButton from "./XButton";
 
 const ShowUserImage = ({ image, changeShowUserImage }) => {
 
-    console.log(image)
+
     return ReactDOM.createPortal(
         <div className={styles.container}>
             <TimeStatus />

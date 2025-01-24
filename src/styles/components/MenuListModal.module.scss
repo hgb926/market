@@ -26,6 +26,18 @@
       border-radius: 12px; /* 적용됨 */
       overflow: hidden; /* 자식 요소가 부모의 둥근 모서리를 따라감 */
 
+      .statusChange {
+        display: flex;
+        font-size: 0.9rem;
+        color: #a1a1a1;
+        border-bottom: 1px solid #acabab;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 15px 0;
+        background: #2C2E33;
+        opacity: 0.9;
+      }
       .menus {
         display: flex;
         border-bottom: 1px solid #acabab;

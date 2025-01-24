@@ -15,6 +15,7 @@ const PostStatusModal = ({setOpenModal, postId}) => {
         <div className={styles.overlay} onClick={outerClickHandler}>
             <div className={styles.modalContainer}>
                 <div className={styles.reportAndDelete}>
+                    <div className={styles.statusChange}>상태 변경</div>
                     <div className={styles.menus}>판매중</div>
                     <div className={styles.menus}>예약중</div>
                     <div className={styles.menus}>거래 완료</div>

@@ -28,7 +28,7 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                 <div className={styles.descriptWrap}>
                     {post.writerId === userId ?
                         <div className={styles.statusBox} onClick={() => setOpenModal(true)}>
-                            <span>거래완료</span><IoIosArrowDown/>
+                            <span>판매중</span><IoIosArrowDown/>
                         </div>
                         : ''
                     }

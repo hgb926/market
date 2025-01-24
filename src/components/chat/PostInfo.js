@@ -13,14 +13,12 @@ const PostInfo = ({chat}) => {
                 onClick={() => navi(`/post/${chat.postInfo.postId}`)}
                 style={{
                     backgroundImage: `url(${chat.postInfo.postImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
                 }}
             />
             <div className={styles.postMetaData}>
                 <div className={styles.topWrap}>
         <span className={styles.status}>
-          {chat.postInfo.tradeType === 'sell' ? '판매 중' : '나눔'}
+          {chat.postInfo.tradeType === 'SELL' ? '판매 중' : '나눔'}
         </span>
                     <p className={styles.title}  onClick={() => navi(`/post/${chat.postInfo.postId}`)}>{chat.postInfo.postTitle}</p>
                 </div>

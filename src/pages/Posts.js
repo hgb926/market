@@ -70,11 +70,11 @@ const Posts = () => {
                             {post.wantPlace} · {post.createdAt}
                         </p>
                         <div>
-                            {post.tradeType === "sell" &&
+                            {post.tradeType === "SELL" &&
                                 <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
                             <span
-                                className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}`}>
-                                {post.tradeType === "sell" ? '' : "나눔"}
+                                className={`${styles.tradeType} ${post.tradeType === "SELL" ? '' : styles.share}`}>
+                                {post.tradeType === "SELL" ? '' : "나눔"}
                             </span>
                         </div>
                     </div>

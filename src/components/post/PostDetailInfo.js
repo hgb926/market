@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
-import {sliceAddress} from "../../utils/sliceAddress";
 import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";
-import MenuListModal from "../modals/MenuListModal";
 import PostStatusModal from "../modals/PostStatusModal";
 
 const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
 
     const [openModal, setOpenModal] = useState(false)
 
+    // tradeType : SELL, SHARE
+    // status: RESERVED, SOLD, NOT_SOLD_YET
 
     return (
         <>

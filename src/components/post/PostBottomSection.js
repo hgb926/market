@@ -57,7 +57,7 @@ const PostBottomSection = ({post, isLike, setIsLike}) => {
                     }
                 </div>
                 <div className={styles.descript}>
-                    {post.tradeType === "sell" ?
+                    {post.tradeType === "SELL" ?
                         <>
                             <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>
                             <span className={styles.flag}>{post.suggestFlag ? '가격 제안 불가' : '가격 제한 가능'}</span>

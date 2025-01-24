@@ -38,7 +38,7 @@ const WriteForm = () => {
         navi('..');
     };
 
-    const [tradeType, setTradeType] = useState('sell'); // 초기 값: 판매하기
+    const [tradeType, setTradeType] = useState('SELL'); // 초기 값: 판매하기
 
     const typeChangeHandler = (e) => {
         setTradeType(e.target.value);
@@ -123,35 +123,35 @@ const WriteForm = () => {
             <div className={styles.inputGroup}>
                 <label>거래 방식</label>
                 <div className={styles.radioGroup}>
-                    <label className={tradeType === 'sell' ? styles.selected : ''}>
+                    <label className={tradeType === 'SELL' ? styles.selected : ''}>
                         <input
                             type="radio"
                             name="tradeType"
-                            value="sell"
-                            checked={tradeType === 'sell'}
+                            value="SELL"
+                            checked={tradeType === 'SELL'}
                             onChange={typeChangeHandler}
                         />
                         판매하기
                     </label>
-                    <label className={tradeType === 'share' ? styles.selected : ''}>
+                    <label className={tradeType === 'SHARE' ? styles.selected : ''}>
                         <input
                             type="radio"
                             name="tradeType"
-                            value="share"
-                            checked={tradeType === 'share'}
+                            value="SHARE"
+                            checked={tradeType === 'SHARE'}
                             onChange={typeChangeHandler}
                         />
                         나눔하기
                     </label>
                 </div>
-                {tradeType === 'sell' && (
+                {tradeType === 'SELL' && (
                     <input
                         type="number"
                         placeholder="₩ 가격을 입력해주세요."
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 )}
-                {tradeType === 'sell' && (
+                {tradeType === 'SELL' && (
                     <div className={styles.checkbox}>
                         <input
                             type="checkbox"

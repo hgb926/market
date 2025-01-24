@@ -3,13 +3,13 @@ import styles from "../../styles/pages/PostDetail.module.scss";
 import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";
 import PostStatusModal from "../modals/PostStatusModal";
+import {convertStatusToKorean} from "../../utils/convertStatusToKorean";
 
 const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
 
     const [openModal, setOpenModal] = useState(false)
+    const [status, setStatus] = useState(convertStatusToKorean(post.tradeType, post.status))
 
-    // tradeType : SELL, SHARE
-    // status: RESERVED, SOLD, NOT_SOLD_YET
 
     return (
         <>
@@ -28,7 +28,7 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                 <div className={styles.descriptWrap}>
                     {post.writerId === userId ?
                         <div className={styles.statusBox} onClick={() => setOpenModal(true)}>
-                            <span>판매중</span><IoIosArrowDown/>
+                            <span>{status}</span><IoIosArrowDown/>
                         </div>
                         : ''
                     }

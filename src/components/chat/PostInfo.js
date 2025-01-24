@@ -10,15 +10,14 @@ const PostInfo = ({chat}) => {
 
     const userId = localStorage.getItem('id');
     const [openModal, setOpenModal] = useState(false)
-
     const [postData, setPostData] = useState(chat.postInfo);
 
     const updateStatus = (newStatus) => {
         setPostData((prev) => ({ ...prev, status: newStatus }));
     };
+    const [status, setStatus] = useState(convertStatusToKorean(postData.tradeType, postData.status))
 
     const navi = useNavigate();
-    console.log(chat)
 
     useEffect(() => {
         if (!userId) return;
@@ -28,7 +27,7 @@ const PostInfo = ({chat}) => {
 
         eventSource.onmessage = (event) => {
             const newStatus = JSON.parse(event.data);
-            console.log(newStatus)
+            setStatus(convertStatusToKorean(postData.tradeType, newStatus));
         };
 
         eventSource.onerror = () => {
@@ -38,7 +37,7 @@ const PostInfo = ({chat}) => {
         return () => {
             eventSource.close();
         };
-    }, [userId]); // `chatList`와 `newMessage`를 제외
+    }, [userId]);
 
 
 
@@ -55,11 +54,11 @@ const PostInfo = ({chat}) => {
                 <div className={styles.topWrap}>
                     { chat.sellerInfo.sellerId === userId ?
                         <span className={styles.sellerStatus} onClick={() => setOpenModal(true)}>
-                            <span>{convertStatusToKorean(postData.tradeType, postData.status)}</span><IoIosArrowDown/>
+                            <span>{status}</span><IoIosArrowDown/>
                         </span>
                         :
                         <span className={styles.status}>
-                            {convertStatusToKorean(postData.tradeType, postData.status)}
+                            {status}
                         </span>
                     }
                     <p className={styles.title}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
 import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";
@@ -8,8 +8,12 @@ import {convertStatusToKorean} from "../../utils/convertStatusToOtherLang";
 const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
 
     const [openModal, setOpenModal] = useState(false)
-    const [status, setStatus] = useState(convertStatusToKorean(post.tradeType, post.status))
 
+    const [postData, setPostData] = useState(post);
+
+    const updateStatus = (newStatus) => {
+        setPostData((prev) => ({ ...prev, status: newStatus }));
+    };
 
     return (
         <>
@@ -28,7 +32,7 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                 <div className={styles.descriptWrap}>
                     {post.writerId === userId ?
                         <div className={styles.statusBox} onClick={() => setOpenModal(true)}>
-                            <span>{status}</span><IoIosArrowDown/>
+                            <span>{convertStatusToKorean(postData.tradeType, postData.status)}</span><IoIosArrowDown/>
                         </div>
                         : ''
                     }
@@ -50,6 +54,7 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                     setOpenModal={setOpenModal}
                     postId={post._id}
                     tradeType={post.tradeType}
+                    updateStatus={updateStatus}
                 />
             }
         </>

@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactDOM from "react-dom";
 import styles from '../../styles/components/MenuListModal.module.scss'
 import {POST_URL} from "../../config/host-config";
 import {convertStatusToEng} from '../../utils/convertStatusToOtherLang'
 
-const PostStatusModal = ({ setOpenModal, postId, tradeType }) => {
+const PostStatusModal = ({ setOpenModal, postId, tradeType, updateStatus }) => {
 
     const outerClickHandler = (e) => {
         if (e.target === e.currentTarget) {
@@ -19,17 +19,21 @@ const PostStatusModal = ({ setOpenModal, postId, tradeType }) => {
     const changeStatus = async (status) => {
 
         // 한글 -> 영어 변환 필요
-
+        let changedStatus = convertStatusToEng(tradeType, status);
         try {
-            await fetch(`${POST_URL}/status`, {
+            let response = await fetch(`${POST_URL}/status`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     postId,
-                    status : convertStatusToEng(tradeType, status)
+                    status : changedStatus
                 })
-            })
+            });
+            if (response.status === 200) {
+                updateStatus(changedStatus)
+                setOpenModal(false)
+            }
         } catch (e) {
             console.error(e)
         }

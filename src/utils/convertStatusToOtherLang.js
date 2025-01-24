@@ -1,6 +1,8 @@
-export const convertStatusToKorean = (tradeType, status) => {
+export const convertStatusToOtherLang = (tradeType, status) => {
     // tradeType : SELL, SHARE
     // status: RESERVED, SOLD, NOT_SOLD_YET
+    console.log(tradeType)
+    console.log(status)
     let type = tradeType === "SELL" ? '판매' : '나눔'
     switch (status) {
         case "NOT_SORD_YET":
@@ -13,3 +15,5 @@ export const convertStatusToKorean = (tradeType, status) => {
             break;
     }
 }
+
+

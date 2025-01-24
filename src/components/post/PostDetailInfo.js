@@ -49,6 +49,7 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                 <PostStatusModal
                     setOpenModal={setOpenModal}
                     postId={post._id}
+                    tradeType={post.tradeType}
                 />
             }
         </>

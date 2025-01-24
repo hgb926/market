@@ -8,7 +8,7 @@ export const convertStatusToKorean = (tradeType, status) => {
         case "RESERVED":
             return "예약중"
         case "SOLD":
-            return `${type}완료`
+            return `${type} 완료`
         default:
             break;
     }

@@ -106,6 +106,7 @@ const PostDetail = () => {
                             currentIndex={currentIndex}
                         />
                         <PostDetailInfo
+                            userId={userId}
                             post={post}
                             setShowUserProfile={setShowUserProfile}
                         />

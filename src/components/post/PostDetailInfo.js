@@ -3,7 +3,7 @@ import styles from "../../styles/pages/PostDetail.module.scss";
 import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";
 import PostStatusModal from "../modals/PostStatusModal";
-import {convertStatusToKorean} from "../../utils/convertStatusToKorean";
+import {convertStatusToKorean} from "../../utils/convertStatusToOtherLang";
 
 const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
 

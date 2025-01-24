@@ -39,7 +39,8 @@ const RequestChatBtn = ({post}) => {
                 postImage: post.images[0],
                 postPrice: post.price,
                 postSuggestFlag: post.suggestFlag,
-                tradeType: post.tradeType
+                tradeType: post.tradeType,
+                status: post.status,
             },
         };
         try {

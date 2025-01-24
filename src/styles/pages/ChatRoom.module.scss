@@ -39,8 +39,6 @@
   border-bottom: 1px solid #3a3a3a;
   padding-bottom: 15px;
   cursor: pointer;
-  background-size: cover;
-  background-position: center;
 
   .postImg {
     margin-left: 20px;
@@ -48,6 +46,8 @@
     height: 60px;
     border-radius: 12px;
     //flex: 1 0 auto;
+    background-size: cover;
+    background-position: center;
   }
   .postMetaData {
     display: flex;
@@ -58,8 +58,19 @@
     .topWrap {
       font-size: 1rem;
       display: flex;
+      text-align: center;
+      align-items: center;
       color: #9F9E9E;
 
+      .sellerStatus {
+        margin-right: 10px;
+        color: white;
+        cursor: pointer;
+
+        & > span {
+          margin-right: 5px;
+        }
+      }
       .status {
         margin-right: 10px;
       }

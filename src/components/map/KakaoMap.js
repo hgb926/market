@@ -136,4 +136,4 @@ const KakaoMap = ({ search }) => {
     );
 };
 
-export default KakaoMap;
+export default React.memo(KakaoMap);

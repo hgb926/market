@@ -61,13 +61,13 @@ const MyPage = () => {
                             </div>
                             <SlArrowRight className={styles.arrow}/>
                         </Link>
-                        <div className={styles.menuContainer}>
+                        <Link to={'sold'} className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
-                                <RiPagesLine className={styles.icon}/>
+                                <CiHeart className={styles.icon}/>
                                 <div className={styles.menu}>판매내역</div>
                             </div>
                             <SlArrowRight className={styles.arrow}/>
-                        </div>
+                        </Link>
                         <div className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
                                 <IoBasketOutline className={styles.icon}/>

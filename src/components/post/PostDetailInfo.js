@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
 import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";

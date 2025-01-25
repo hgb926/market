@@ -4,7 +4,7 @@ import styles from '../../styles/components/MenuListModal.module.scss'
 import {POST_URL} from "../../config/host-config";
 import {convertStatusToEng} from '../../utils/convertStatusToOtherLang'
 
-const PostStatusModal = ({ setOpenModal, postId, tradeType, updateStatus }) => {
+const PostStatusModal = ({ setOpenModal, postId, tradeType, updateStatus, partnerId }) => {
 
     const outerClickHandler = (e) => {
         if (e.target === e.currentTarget) {
@@ -20,15 +20,19 @@ const PostStatusModal = ({ setOpenModal, postId, tradeType, updateStatus }) => {
 
         // 한글 -> 영어 변환 필요
         let changedStatus = convertStatusToEng(tradeType, status);
+
+        const payload = {
+            postId,
+            status : changedStatus,
+            partnerId: partnerId || undefined,
+        }
+
         try {
             let response = await fetch(`${POST_URL}/status`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    postId,
-                    status : changedStatus
-                })
+                body: JSON.stringify(payload)
             });
             if (response.status === 200) {
                 updateStatus(changedStatus)

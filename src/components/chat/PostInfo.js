@@ -74,6 +74,7 @@ const PostInfo = ({chat}) => {
                     postId={chat.postInfo.postId}
                     tradeType={chat.postInfo.tradeType}
                     updateStatus={updateStatus}
+                    partnerId={chat.customerInfo.customerId}
                 />
             }
         </div>

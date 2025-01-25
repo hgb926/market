@@ -17,6 +17,7 @@ import LikedPosts from "../pages/LikedPosts";
 import SearchPostPage from "../pages/SearchPostPage";
 import SearchPostResult from "../pages/SearchPostResult";
 import SoldList from "../pages/SoldList";
+import BuyList from "../pages/BuyList";
 
 
 const authRouter = [
@@ -78,6 +79,10 @@ const homeRouter = [
             {
                 path: 'sold',
                 element: <SoldList/>
+            },
+            {
+                path: 'buy',
+                element: <BuyList/>
             }
         ]
     },

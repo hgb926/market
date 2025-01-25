@@ -68,13 +68,13 @@ const MyPage = () => {
                             </div>
                             <SlArrowRight className={styles.arrow}/>
                         </Link>
-                        <div className={styles.menuContainer}>
+                        <Link to={'buy'} className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
-                                <IoBasketOutline className={styles.icon}/>
+                                <CiHeart className={styles.icon}/>
                                 <div className={styles.menu}>구매내역</div>
                             </div>
                             <SlArrowRight className={styles.arrow}/>
-                        </div>
+                        </Link>
                     </div>
                     <div className={styles.section}>
                         <p className={styles.category}>마켓 소식</p>

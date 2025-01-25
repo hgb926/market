@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {CHAT_URL, WEBSOCKET_URL} from '../config/host-config';
 import ChatRoomHeader from '../components/chat/ChatRoomHeader'
@@ -58,6 +58,15 @@ const ChatRoom = () => {
         }
     };
 
+    const newMessageHandler = useCallback((newMessage) => {
+        setMessages((prevMessages) => {
+            if (prevMessages.some(msg => msg.date === newMessage.date)) {
+                return prevMessages;
+            }
+            return [...prevMessages, newMessage];
+        });
+    }, []);
+
     const setupWebSocket = () => {
         const ws = new WebSocket(`${WEBSOCKET_URL}`);
         setSocket(ws);
@@ -69,7 +78,7 @@ const ChatRoom = () => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.event === 'serverToClient') {
-                setMessages((prev) => [...prev, data]);
+                newMessageHandler(data);
             }
         };
 
@@ -100,10 +109,15 @@ const ChatRoom = () => {
 
 
     useEffect(() => {
+        let isMounted = true; // 메모리 누수 방지
         fetchChatInfo();
         fetchMessages();
         const cleanUp = setupWebSocket();
-        return cleanUp;
+
+        return () => {
+            isMounted = false;
+            cleanUp();
+        };
     }, [roomId]);
 
     useEffect(() => {

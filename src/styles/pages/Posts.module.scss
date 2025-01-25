@@ -52,6 +52,22 @@
   font-weight: 600;
   color: #f85047;
 }
+.reserved,
+.sold {
+  font-size: 0.9rem;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+}
+
+.reserved {
+  background: #107955;
+}
+.sold {
+  background: #808187;
+}
+
 .share {
   font-size: 0.9rem;
   font-weight: 600;

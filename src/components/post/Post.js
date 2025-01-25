@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../store/ui/UiSlice";
 
-const Post = ({ post }) => {
+const Post = ({post}) => {
 
     const dispatch = useDispatch();
 
@@ -31,11 +31,23 @@ const Post = ({ post }) => {
                 </p>
                 <div>
                     {post.tradeType === "SELL" &&
-                        <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
-                    <span
-                        className={`${styles.tradeType} ${post.tradeType === "SELL" ? '' : styles.share}`}>
-                                {post.tradeType === "SELL" ? '' : "나눔"}
+                        <>
+                            {post.status === "RESERVED" && <span className={styles.reserved}>예약중</span>}
+                            {post.status === "SOLD" && <span className={styles.sold}>판매 완료</span>}
+                            <span className={styles.price}>
+                                {post.price.toLocaleString('ko-KR')}원
                             </span>
+                        </>
+                    }
+                    {post.tradeType === "SHARE" &&
+                        <>
+                            {post.status === "RESERVED" && <span className={styles.reserved}>예약중</span>}
+                            {post.status === "SOLD" && <span className={styles.sold}>나눔 완료</span>}
+                            <span className={styles.share}>
+                                나눔
+                            </span>
+                        </>
+                    }
                 </div>
             </div>
             <div className={styles.icons}>

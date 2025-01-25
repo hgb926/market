@@ -8,6 +8,7 @@ import {uiActions} from "../components/store/ui/UiSlice";
 import Button from "../ui/Button";
 import {POST_URL} from "../config/host-config";
 import PostsSkeleton from "../skeleton/PostsSkeleton";
+import Post from "../components/post/Post";
 
 
 const Posts = () => {
@@ -44,45 +45,11 @@ const Posts = () => {
     }, []);
 
 
-
-    const dispatch = useDispatch();
-
-    const renderHandler = () => {
-        dispatch(uiActions.changeRenderStatus(false))
-    }
-
     return (
         <>
         {loading ? <PostsSkeleton/> : <div className={styles.container}>
             {posts.map((post) => (
-                <Link
-                    onClick={renderHandler}
-                    to={`/post/${post._id}`}
-                    key={post._id}
-                    className={styles.post}
-                    state={{post}} // props
-                >
-                    <img src={post.images[0]} alt={post.title} className={styles.image}/>
-                    <div className={styles.details}>
-                        <h3 className={styles.title}>{post.title}</h3>
-                        <p className={styles.meta}>
-                            {post.distance && <span>{post.distance}km · </span>}
-                            {post.wantPlace} · {post.createdAt}
-                        </p>
-                        <div>
-                            {post.tradeType === "SELL" &&
-                                <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
-                            <span
-                                className={`${styles.tradeType} ${post.tradeType === "SELL" ? '' : styles.share}`}>
-                                {post.tradeType === "SELL" ? '' : "나눔"}
-                            </span>
-                        </div>
-                    </div>
-                    <div className={styles.icons}>
-                        <span><IoChatbubbleEllipsesSharp/> {post.chats}</span>
-                        <span><FaHeart/>️ {post.likes.length || 0}</span>
-                    </div>
-                </Link>
+                <Post post={post}/>
             ))}
             <Button
                 text={'글쓰기'}

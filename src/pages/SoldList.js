@@ -32,7 +32,7 @@ const SoldList = () => {
     return (
         <div className={styles.container}>
             <MyPageHeader title={'판매 내역'}/>
-            {soldList.reverse().map((post) => (
+            {soldList.map((post) => (
                 <Post post={post}/>
             ))}
         </div>

@@ -32,7 +32,7 @@ const LikedPosts = () => {
     return (
         <div className={styles.container}>
             <MyPageHeader title={'관심목록'}/>
-            {likedList.reverse().map((post) => (
+            {likedList.map((post) => (
                 <Post post={post}/>
             ))}
         </div>

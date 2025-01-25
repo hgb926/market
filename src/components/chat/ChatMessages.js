@@ -17,8 +17,15 @@ const ChatMessages = ({ inputRef, messages, userId, chat }) => {
         inputRef.current.focus();
     };
 
+    const partnerImg = userId === chat.customerInfo.customerId
+        ? chat.sellerInfo.sellerImage
+        : chat.customerInfo.customerImage
+
     return (
-        <div className={styles.chatContainer} onClick={triggerInputClick} ref={chatContainerRef}>
+        <div
+             className={styles.chatContainer}
+             onClick={triggerInputClick}
+             ref={chatContainerRef}>
             <div className={styles.systemNotice}>
                 {chat.customerInfo.customerNickname}님께서 대화를 신청했습니다.
             </div>
@@ -31,10 +38,9 @@ const ChatMessages = ({ inputRef, messages, userId, chat }) => {
                         <div className={styles.sellerChat}>
                             <div
                                 className={`${styles.sellerImage} ${msg.imageUrl ? styles.alignSelf : ''}`}
+                                onClick={() => setSelectedImage(partnerImg)}
                                 style={{
-                                    backgroundImage: `url(${userId === chat.customerInfo.customerId
-                                        ? chat.sellerInfo.sellerImage
-                                        : chat.customerInfo.customerImage})`,
+                                    backgroundImage: `url(${partnerImg})`,
                                 }}
                             />
                             {msg.text ? (

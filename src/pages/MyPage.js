@@ -7,6 +7,8 @@ import {CiHeart} from "react-icons/ci";
 import {IoMdGift} from "react-icons/io";
 import {HiSpeakerphone} from "react-icons/hi";
 import {Link, Outlet, useLocation} from "react-router-dom";
+import {BsBasket3} from "react-icons/bs";
+import {LuClipboard} from "react-icons/lu";
 
 
 const MyPage = () => {
@@ -61,14 +63,14 @@ const MyPage = () => {
                         </Link>
                         <Link to={'sold'} className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
-                                <CiHeart className={styles.icon}/>
+                                <LuClipboard className={styles.icon}/>
                                 <div className={styles.menu}>판매내역</div>
                             </div>
                             <SlArrowRight className={styles.arrow}/>
                         </Link>
                         <Link to={'buy'} className={styles.menuContainer}>
                             <div className={styles.menuSubContainer}>
-                                <CiHeart className={styles.icon}/>
+                                <BsBasket3 className={styles.icon}/>
                                 <div className={styles.menu}>구매내역</div>
                             </div>
                             <SlArrowRight className={styles.arrow}/>

@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import React, {useState} from 'react';
+import React from 'react';
 import {GoPlus} from 'react-icons/go';
 import {LuSendHorizontal} from 'react-icons/lu';
 import {RiEmotionHappyLine} from 'react-icons/ri';

@@ -63,4 +63,4 @@ const TimeStatus = () => {
     );
 };
 
-export default TimeStatus;
+export default React.memo(TimeStatus);

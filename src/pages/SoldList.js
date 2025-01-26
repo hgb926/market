@@ -39,4 +39,4 @@ const SoldList = () => {
     );
 };
 
-export default SoldList;
+export default React.memo(SoldList);

@@ -8,7 +8,6 @@ import HomeNavigationSkeleton from '../../skeleton/HomeNavigationSkeleton';
 import NoticeModal from "../modals/NoticeModal";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {MdArrowBackIos} from "react-icons/md";
 
 
 const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => {

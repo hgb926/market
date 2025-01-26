@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {IoIosArrowBack} from 'react-icons/io';
 import {HiOutlineDotsVertical} from 'react-icons/hi';
 import styles from '../../styles/pages/ChatRoom.module.scss'

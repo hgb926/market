@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/PostSearchPage.module.scss'
 import SearchHeader from "../components/search/SearchHeader";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import {POST_URL} from "../config/host-config";
 import PostsSkeleton from "../skeleton/PostsSkeleton";
 import Post from "../components/post/Post";
-import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
-import {FaHeart} from "react-icons/fa";
 
 
 const SearchPostResult = () => {

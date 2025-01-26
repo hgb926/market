@@ -39,4 +39,4 @@ const BuyList = () => {
     );
 };
 
-export default BuyList;
+export default React.memo(BuyList);

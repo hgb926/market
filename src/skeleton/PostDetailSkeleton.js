@@ -35,4 +35,4 @@ const PostDetailSkeleton = () => {
     );
 };
 
-export default PostDetailSkeleton;
+export default React.memo(PostDetailSkeleton);

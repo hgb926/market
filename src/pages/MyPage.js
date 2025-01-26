@@ -4,8 +4,6 @@ import HomeNavigation from "../components/navigations/HomeNavigation";
 import {useSelector} from "react-redux";
 import {SlArrowRight} from "react-icons/sl";
 import {CiHeart} from "react-icons/ci";
-import {RiPagesLine} from "react-icons/ri";
-import {IoBasketOutline} from "react-icons/io5";
 import {IoMdGift} from "react-icons/io";
 import {HiSpeakerphone} from "react-icons/hi";
 import {Link, Outlet, useLocation} from "react-router-dom";
@@ -99,4 +97,4 @@ const MyPage = () => {
     );
 };
 
-export default MyPage;
+export default React.memo(MyPage);

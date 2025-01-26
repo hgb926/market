@@ -39,4 +39,4 @@ const LikedPosts = () => {
     );
 };
 
-export default LikedPosts;
+export default React.memo(LikedPosts);

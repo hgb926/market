@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from "../../styles/pages/PostDetail.module.scss";
 import {FaHeart} from "react-icons/fa";
 import {CiHeart} from "react-icons/ci";

@@ -131,4 +131,4 @@ const PostDetail = () => {
 };
 
 
-export default PostDetail;
+export default React.memo(PostDetail);

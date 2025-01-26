@@ -16,4 +16,4 @@ const HomeNavigationSkeleton = () => {
     );
 };
 
-export default HomeNavigationSkeleton;
+export default React.memo(HomeNavigationSkeleton);

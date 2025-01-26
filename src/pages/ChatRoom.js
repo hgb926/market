@@ -5,7 +5,7 @@ import ChatRoomHeader from '../components/chat/ChatRoomHeader'
 import ChatMessages from '../components/chat/ChatMessages';
 import ChatInput from '../components/chat/ChatInput';
 import PostInfo from "../components/chat/PostInfo";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {uiActions} from "../components/store/ui/UiSlice";
 import Spinner from "../skeleton/Spinner";
 

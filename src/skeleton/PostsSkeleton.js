@@ -24,4 +24,4 @@ const PostsSkeleton = () => {
     );
 };
 
-export default PostsSkeleton;
+export default React.memo(PostsSkeleton);

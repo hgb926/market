@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: #2A2A2A;
+  color: #fff;
+  overflow-y: auto;
+
+  .subContainer {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

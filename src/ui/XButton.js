@@ -18,10 +18,13 @@ const XButton = ({changeShowImage, changeShowUserImage, from, ui}) => {
             case "showUserImage" :
                 changeShowUserImage(false)
                 break;
-            case 'auth' :
-                navi(-1)
-                break
-            case 'setting':
+            // case 'auth' :
+            //     navi(-1)
+            //     break
+            // case 'setting':
+            //     navi(-1)
+            //     break;
+            default:
                 navi(-1)
                 break;
         }

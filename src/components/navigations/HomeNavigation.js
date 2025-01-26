@@ -8,6 +8,7 @@ import HomeNavigationSkeleton from '../../skeleton/HomeNavigationSkeleton';
 import NoticeModal from "../modals/NoticeModal";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {MdArrowBackIos} from "react-icons/md";
 
 
 const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => {
@@ -40,15 +41,17 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.town}>
-                    {mainText}
-                    {arrow && <IoIosArrowDown className={styles.arrow} />}
-                </div>
+                {mainText &&
+                    <div className={styles.town}>
+                        {mainText}
+                        {arrow && <IoIosArrowDown className={styles.arrow}/>}
+                    </div>
+                }
                 <div className={styles.menus}>
                     {hamburger && <RxHamburgerMenu />}
 
                     {search && (
-                        <IoMdSearch onClick={() => navigate('search')} />
+                        <IoMdSearch onClick={() => navi('search')} />
                     )}
 
                     {bell && (
@@ -59,7 +62,7 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
                     )}
 
                     {setting && (
-                        <IoSettingsOutline onClick={() => navigate('/setting')} />
+                        <IoSettingsOutline onClick={() => navi('/setting')} />
                     )}
                 </div>
             </div>

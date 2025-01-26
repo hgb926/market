@@ -18,28 +18,25 @@
     .subContainer {
       width: 90%;
       display: flex;
-      justify-content: center; /* 제목을 중앙 정렬 */
+      justify-content: space-between; /* 제목을 중앙 정렬 */
       align-items: center;
       margin: 0 auto;
       position: relative; /* 제목을 기준으로 배치 */
-    }
 
-    .title { /* 제목 */
-      text-align: center;
-      font-size: 1.2rem;
-    }
 
-    .empty {
-      visibility: hidden; /* 오른쪽 공간 확보를 위한 빈 div 숨김 */
-    }
 
-    .back {
-      position: absolute; /* 부모 요소(.subContainer)를 기준으로 배치 */
-      left: 0; /* 왼쪽 고정 */
-      top: 50%; /* 수직 중앙 */
-      transform: translateY(-50%); /* 수직 중앙 맞춤 */
-      cursor: pointer;
-      font-size: 1.5rem;
+      .title { /* 제목 */
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      .search {
+        font-size: 1.7rem;
+      }
+
+      .back {
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
     }
   }
 
@@ -85,72 +82,80 @@
   }
   // ============== settings end ================ //
   // ============== LikedList ================ //
-  .post:first-child {
-    margin-top: 65px;
-  }
 
-  .post {
-    text-decoration: none;
-    color: #eaeaea;
-    display: flex;
-    align-items: center;
-    padding: 18px 0;
-    gap: 12px;
-    cursor: pointer;
-    border-bottom: 1px solid #393939;
+  .postContainer {
 
-    .image {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      background-color: #444;
+    width: 90%;
+    margin: 0 auto;
+
+    .post:first-child {
+      margin-top: 65px;
     }
 
-    .details {
-      flex: 1;
+    .post {
+      text-decoration: none;
+      color: #eaeaea;
+      display: flex;
+      align-items: center;
+      padding: 18px 0;
+      gap: 12px;
+      cursor: pointer;
+      border-bottom: 1px solid #393939;
+
+      .image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        background-color: #444;
+      }
+
+      .details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .meta {
+        font-size: 0.85rem;
+        color: #a1a1a1;
+      }
+
+    }
+    .tradeType {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #f85047;
+    }
+    .share {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #a1a1a1;
+    }
+    .price {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .icons {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-    }
-
-    .title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .meta {
+      align-items: flex-end;
+      gap: 4px;
       font-size: 0.85rem;
       color: #a1a1a1;
     }
-
-  }
-  .tradeType {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #f85047;
-  }
-  .share {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #a1a1a1;
-  }
-  .price {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    margin-right: 10px;
   }
 
-  .icons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    font-size: 0.85rem;
-    color: #a1a1a1;
-  }
 
   // ============== LikedList end ================ //
 }

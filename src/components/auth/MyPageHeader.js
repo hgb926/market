@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "../../styles/pages/Settings.module.scss";
 import {MdArrowBackIos} from "react-icons/md";
 import {useNavigate} from "react-router-dom";
+import {IoMdSearch} from "react-icons/io";
 
 const MyPageHeader = ({ title }) => {
 
@@ -15,7 +16,7 @@ const MyPageHeader = ({ title }) => {
                     onClick={() => navi(-1)}
                 />
                 <h1 className={styles.title}>{title}</h1>
-                <div className={styles.empty}></div>
+                <IoMdSearch className={styles.search} onClick={() => navi('/search')}/>
             </div>
         </div>
     );

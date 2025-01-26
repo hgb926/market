@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../styles/pages/Posts.module.scss";
+import styles from "../../styles/components/Post.module.scss";
 import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
 import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";

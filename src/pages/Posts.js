@@ -1,10 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/pages/Posts.module.scss';
-import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
-import {FaHeart} from "react-icons/fa";
-import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {uiActions} from "../components/store/ui/UiSlice";
 import Button from "../ui/Button";
 import {POST_URL} from "../config/host-config";
 import PostsSkeleton from "../skeleton/PostsSkeleton";

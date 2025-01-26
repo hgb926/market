@@ -33,49 +33,42 @@ const HomeNavigation = ({mainText, arrow, bell, hamburger, search, setting}) => 
         }
     }, [pathname]);
 
-    if (loading) {
-        return <HomeNavigationSkeleton/>;
-    }
+    if (loading) return <HomeNavigationSkeleton/>;
+
+
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.town}>
                     {mainText}
-                    {arrow && <IoIosArrowDown className={styles.arrow}/>}
+                    {arrow && <IoIosArrowDown className={styles.arrow} />}
                 </div>
                 <div className={styles.menus}>
-                    {hamburger && <RxHamburgerMenu/>}
-                    {search &&
-                        <IoMdSearch
-                            onClick={() => navi('search')}
-                        />
-                    }
-                    {bell &&
+                    {hamburger && <RxHamburgerMenu />}
+
+                    {search && (
+                        <IoMdSearch onClick={() => navigate('search')} />
+                    )}
+
+                    {bell && (
                         <>
-                            <LuBell
-                                onClick={() => setOpenNotice(!openNotice)}
-                            />
+                            <LuBell onClick={() => setOpenNotice(!openNotice)} />
                             {isNewNotice && <div className={styles.circle}></div>}
                         </>
+                    )}
 
-                    }
-                    {setting &&
-                        <IoSettingsOutline
-                            onClick={() => navi('/setting')}
-                        />
-                    }
+                    {setting && (
+                        <IoSettingsOutline onClick={() => navigate('/setting')} />
+                    )}
                 </div>
             </div>
-            {
-                openNotice &&
-                <NoticeModal
-                    setOpenNotice={setOpenNotice}
-                />
-            }
+
+            {openNotice && (
+                <NoticeModal setOpenNotice={setOpenNotice} />
+            )}
         </>
-    )
-        ;
+    );
 };
 
 export default HomeNavigation;

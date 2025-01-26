@@ -8,6 +8,7 @@ import {POST_URL} from "../config/host-config";
 import PostsSkeleton from "../skeleton/PostsSkeleton";
 import {IoChatbubbleEllipsesSharp} from "react-icons/io5";
 import {FaHeart} from "react-icons/fa";
+import Post from "../components/post/Post";
 
 
 const SearchPostResult = () => {
@@ -49,33 +50,7 @@ const SearchPostResult = () => {
             <SearchHeader keyword={keyword}/>
             {loading ? <PostsSkeleton/> : <div className={styles.container}>
                 {posts.length ? posts.map((post) => (
-                    <Link
-                        to={`/post/${post._id}`}
-                        key={post._id}
-                        className={styles.post}
-                        state={{post}} // props
-                    >
-                        <img src={post.images[0]} alt={post.title} className={styles.image}/>
-                        <div className={styles.details}>
-                            <h3 className={styles.title}>{post.title}</h3>
-                            <p className={styles.meta}>
-                                {post.distance && <span>{post.distance}km · </span>}
-                                {post.wantPlace} · {post.createdAt}
-                            </p>
-                            <div>
-                                {post.tradeType === "sell" &&
-                                    <span className={styles.price}>{post.price.toLocaleString('ko-KR')}원</span>}
-                                <span
-                                    className={`${styles.tradeType} ${post.tradeType === "sell" ? styles.tradeType : styles.share}`}>
-                                {post.tradeType === "sell" ? '' : "나눔"}
-                            </span>
-                            </div>
-                        </div>
-                        <div className={styles.icons}>
-                            <span><IoChatbubbleEllipsesSharp/> {post.chats}</span>
-                            <span><FaHeart/>️ {post.likes.length || 0}</span>
-                        </div>
-                    </Link>
+                    <Post post={post}/>
                 )) :
                     <div className={styles.noContent}>"{keyword}" 검색 결과 0건</div>
                 }

@@ -21,6 +21,20 @@ const ChatMessages = ({ inputRef, messages, userId, chat }) => {
         ? chat.sellerInfo.sellerImage
         : chat.customerInfo.customerImage
 
+    // {
+    //     "_id": "67949053d87b25694e35a293",
+    //     "room": "679484f2bf77f40377a6a635",
+    //     "text": "ㅎㅇ",
+    //     "imageUrl": "",
+    //     "writer": "6780b7a9cf99c01b49f8fe57",
+    //     "date": "2025-01-25T07:18:43.266Z",
+    //     "taker": "6780c132f6b6ce277c05b8d1",
+    //     "formatTime": [
+    //     "2025년 01월 25일",
+    //     "오후 4:18"
+    // ]
+    // }
+
     return (
         <div
              className={styles.chatContainer}
@@ -31,18 +45,20 @@ const ChatMessages = ({ inputRef, messages, userId, chat }) => {
             </div>
             {messages.map((msg, idx) => {
                 const isDifferentDate = idx === 0 || msg.formatTime[0] !== messages[idx - 1]?.formatTime[0];
-
+                const isPartnersLastMsg = idx === 0 || msg.writer !== messages[idx - 1]?.writer
                 return msg.writer !== userId ? (
                     <React.Fragment key={msg.date}>
                         {isDifferentDate && <div className={styles.systemTime}>{msg.formatTime[0]}</div>}
                         <div className={styles.sellerChat}>
-                            <div
+                            {isPartnersLastMsg ? <div
                                 className={`${styles.sellerImage} ${msg.imageUrl ? styles.alignSelf : ''}`}
                                 onClick={() => setSelectedImage(partnerImg)}
                                 style={{
                                     backgroundImage: `url(${partnerImg})`,
                                 }}
                             />
+                            : <div className={styles.empty}/>
+                            }
                             {msg.text ? (
                                 <div className={styles.sellerText}>{msg.text}</div>
                             ) : (

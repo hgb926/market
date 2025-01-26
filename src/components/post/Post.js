@@ -51,8 +51,8 @@ const Post = ({post}) => {
                 </div>
             </div>
             <div className={styles.icons}>
-                <span><IoChatbubbleEllipsesSharp/> {post.chats}</span>
-                <span><FaHeart/>️ {post.likes.length || 0}</span>
+                {post.chats ? <span><IoChatbubbleEllipsesSharp/> {post.chats}</span> : ''}
+                {post.likes.length ? <span><FaHeart/>️ {post.likes.length || 0}</span> : ''}
             </div>
         </Link>
     );

@@ -9,7 +9,6 @@ import {uiActions} from "../store/ui/UiSlice";
 const Post = ({post}) => {
 
     const dispatch = useDispatch();
-
     const renderHandler = () => {
         dispatch(uiActions.changeRenderStatus(false))
     }

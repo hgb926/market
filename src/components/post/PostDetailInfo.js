@@ -4,12 +4,15 @@ import KakaoMap from "../map/KakaoMap";
 import {IoIosArrowDown} from "react-icons/io";
 import PostStatusModal from "../modals/PostStatusModal";
 import {convertStatusToKorean} from "../../utils/convertStatusToOtherLang";
+import {useNavigate} from "react-router-dom";
 
 const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
 
     const [openModal, setOpenModal] = useState(false)
 
     const [postData, setPostData] = useState(post);
+
+    const navi = useNavigate()
 
     const updateStatus = (newStatus) => {
         setPostData((prev) => ({ ...prev, status: newStatus }));
@@ -37,7 +40,12 @@ const PostDetailInfo = ({ post,setShowUserProfile, userId  }) => {
                         : ''
                     }
                     <h1 className={styles.title}>{post.title}</h1>
-                    <span className={styles.category}>{post.category}</span>
+                    <span
+                        className={styles.category}
+                        onClick={() => navi(`/category/${post.category}`)}
+                    >
+                        {post.category}
+                    </span>
                     <span style={{color: '#9f9e9e'}}> · </span>
                     <span className={styles.time}>{post.createdAt}</span>
                     <div className={styles.content}>{post.content}</div>

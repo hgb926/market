@@ -18,6 +18,7 @@ import SearchPostPage from "../pages/SearchPostPage";
 import SearchPostResult from "../pages/SearchPostResult";
 import SoldList from "../pages/SoldList";
 import BuyList from "../pages/BuyList";
+import CategorySearchPage from "../pages/CategorySearchPage";
 
 
 const authRouter = [
@@ -67,6 +68,10 @@ const homeRouter = [
     {
         path: 'setting',
         element: <Settings/>
+    },
+    {
+        path: 'category/:keyword',
+        element: <CategorySearchPage/>
     },
     {
         path: 'info',
